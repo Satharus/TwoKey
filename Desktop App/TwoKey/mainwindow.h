@@ -20,6 +20,8 @@ public:
 
 private slots:
     void changeStatus();
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     //Pointer to the USB handler, to get updates from it

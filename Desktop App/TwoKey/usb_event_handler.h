@@ -57,6 +57,7 @@ public slots:
 private:
     //Serial port object to connect with the token
     QSerialPort *token;
+    char message[17];
 
 //Linux specific objects
 #ifdef Q_OS_LINUX

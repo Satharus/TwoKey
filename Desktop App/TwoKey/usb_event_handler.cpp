@@ -1,6 +1,8 @@
 #include "usb_event_handler.h"
 #include "mainwindow.h"
 
+#include<QThread>
+
 USBEventHandler::USBEventHandler(QObject *parent) : QObject(parent)
 {
     token = new QSerialPort();
@@ -28,6 +30,10 @@ USBEventHandler::USBEventHandler(QObject *parent) : QObject(parent)
     //Check for the token every time a device is inserted or removed
     connect(this, SIGNAL(SerialDeviceInserted()), SLOT(checkForToken()));
     connect(this, SIGNAL(SerialDeviceRemoved()), SLOT(checkForToken()));
+
+    for (int i = 0; i < 16; i++)
+       message[i] = 'a' + static_cast<char>(i);
+    message[16] = static_cast<char>(NULL);
 }
 
 
@@ -63,12 +69,13 @@ bool USBEventHandler::nativeEventFilter(const QByteArray &eventType, void *_mess
         qDebug() << "Device Inserted, type: " << device->dbch_devicetype;
         if (device->dbch_devicetype == 0x3)
             emit SerialDeviceInserted();
+
     }
     else if (message->message == WM_DEVICECHANGE && message->wParam == DBT_DEVICEREMOVECOMPLETE)
     {
         qDebug() << "Device Removed, type: " << device->dbch_devicetype;
         if (device->dbch_devicetype == 0x3)
-          emit SerialDeviceRemoved();
+            emit SerialDeviceRemoved();
     }
 #endif
     return false;
@@ -118,20 +125,19 @@ void USBEventHandler::checkForToken()
              it doesn't seem to work properly (timing wise)
              Later on, the actual communication with the token will be
          */
-         char message[17];
-         for (int i = 0; i < 16; i++)
-            message[i] = rand()%0x7F + 0x21;
 
-         char response[17];
+         QString response = "";
          token->write(message);
-         token->waitForBytesWritten();
+         token->waitForBytesWritten(3000);
          qDebug() << token->bytesAvailable();
-         if (token->bytesAvailable() >= 15)
+
+         if (token->bytesAvailable() > 0)
          {
-             token->waitForReadyRead(2000);
-             token->readLine(response, 16);
-             token->clear(QSerialPort::Direction::AllDirections);
+             token->waitForReadyRead(3000);
+             response = token->read(16);
+             token->flush();
          }
+
          qDebug() << "Port: " << token->portName() << "Value: " << response;
 //         for (int i = 0; i < 16; i++)
 //         {
@@ -140,25 +146,11 @@ void USBEventHandler::checkForToken()
 
      }
      else
+     {
          qDebug() << "Token not present";
+         token->close();
+     }
 }
-
-
-/*    nano->waitForReadyRead(200);
-
-    if (nano->bytesAvailable() < 14)
-    {
-        data = nano->readAll();
-        nano ->clear(QSerialPort::Direction::AllDirections);
-        if (!data.contains("*") && !data.contains("#")) return;
-    }
-    else
-    {
-        data = nano->readLine(14);
-        nScans++;
-        nano ->clear(QSerialPort::Direction::AllDirections);
-    }*/
-
 
 #ifdef Q_OS_LINUX
 void USBEventHandler::tick()

@@ -31,3 +31,8 @@ void MainWindow::changeStatus()
         this->ui->statusLabel->setStyleSheet("background: rgb(157,60,60)");
     }
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    this->usb_notif->checkForToken();
+}
