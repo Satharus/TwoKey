@@ -1,8 +1,6 @@
 #include "usb_event_handler.h"
 #include "mainwindow.h"
 
-#include<QThread>
-
 USBEventHandler::USBEventHandler(QObject *parent) : QObject(parent)
 {
     token = new QSerialPort();
