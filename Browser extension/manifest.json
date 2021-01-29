@@ -1,0 +1,44 @@
+{
+    "manifest_version":2,
+    "name":"TwoKey",
+    "version":"1.0",
+    "description":"An autofill browser extension",
+    "icons":
+    {
+        "128":"icon128.png" ,
+        "48" :"icon48.png" ,
+        "16" :"icon16.png"
+
+    },
+   
+    "permissions":
+    [
+        "storage",
+        "tabs",
+        "<all_urls>"
+    ],
+    "background":
+    {
+        "scripts":["background.js"]
+    },
+    "content_scripts":
+    [
+        {
+            
+            "js":["content.js"],
+            "matches":
+            [
+                "<all_urls>"
+            ]
+
+        }
+    ],
+    "browser_action":
+    {
+        "default_icon":"icon48.png"
+        
+    }
+   
+  
+  
+}
