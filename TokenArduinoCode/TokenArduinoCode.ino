@@ -2,19 +2,16 @@ void setup()
 {
   Serial.begin(9600);
 }
-
+  char message[17];
 void loop() 
 {
-  char _signal;
-    //Serial.print(Serial.available());
-    if (Serial.availableForWrite() > 0)
+    if (Serial.available() >= 15)
     {
-      _signal = Serial.read();
-      //Serial.print(sig);
-
-      //if (sig == '1')
-      //{
-        Serial.write("1234");
-      //}
+      Serial.readBytes(message, 16);
+      for (int i = 0; i < 16; i++)
+      {
+        message[i] += 1;
+      }
+      Serial.print(message);
     }
 }

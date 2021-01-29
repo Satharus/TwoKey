@@ -118,19 +118,47 @@ void USBEventHandler::checkForToken()
              it doesn't seem to work properly (timing wise)
              Later on, the actual communication with the token will be
          */
-         //
-         token->write("1");
+         char message[17];
+         for (int i = 0; i < 16; i++)
+            message[i] = rand()%0x7F + 0x21;
+
+         char response[17];
+         token->write(message);
          token->waitForBytesWritten();
-         token->waitForReadyRead(2000);
+         qDebug() << token->bytesAvailable();
+         if (token->bytesAvailable() >= 15)
+         {
+             token->waitForReadyRead(2000);
+             token->readLine(response, 16);
+             token->clear(QSerialPort::Direction::AllDirections);
+         }
+         qDebug() << "Port: " << token->portName() << "Value: " << response;
+//         for (int i = 0; i < 16; i++)
+//         {
+//            qDebug() << static_cast<int>(message[i]) << '\t' << static_cast<int>(response[i]);
+//         }
 
-         QString value = token->readAll();
-         qDebug() << "Port: " << token->portName() << "Value: " << value;
-
-         token->clear(QSerialPort::Direction::AllDirections);
      }
      else
          qDebug() << "Token not present";
 }
+
+
+/*    nano->waitForReadyRead(200);
+
+    if (nano->bytesAvailable() < 14)
+    {
+        data = nano->readAll();
+        nano ->clear(QSerialPort::Direction::AllDirections);
+        if (!data.contains("*") && !data.contains("#")) return;
+    }
+    else
+    {
+        data = nano->readLine(14);
+        nScans++;
+        nano ->clear(QSerialPort::Direction::AllDirections);
+    }*/
+
 
 #ifdef Q_OS_LINUX
 void USBEventHandler::tick()
