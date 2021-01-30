@@ -24,11 +24,15 @@ void MainWindow::changeStatus()
     {
         //Set to green
         this->ui->statusLabel->setStyleSheet("background: rgb(65,157,60)");
+        this->ui->sentValue->setText("Message:  " + this->usb_notif->getMessage());
+        this->ui->response->setText("Response: " + this->usb_notif->getResponse());
     }
     else
     {
         //Set to red
         this->ui->statusLabel->setStyleSheet("background: rgb(157,60,60)");
+        this->ui->sentValue->setText("Message:  ");
+        this->ui->response->setText("Response: ");
     }
 }
 

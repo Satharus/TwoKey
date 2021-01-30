@@ -32,6 +32,7 @@ USBEventHandler::USBEventHandler(QObject *parent) : QObject(parent)
     for (int i = 0; i < 16; i++)
        message[i] = 'a' + static_cast<char>(i);
     message[16] = static_cast<char>(NULL);
+    response = "";
 }
 
 
@@ -99,10 +100,6 @@ void USBEventHandler::checkForToken()
          }
      }
 
-     //Alert the rest of the classes that the token status has changed, and update its status
-     tokenConnected = tokenIsAvailable;
-     emit this->tokenStatusChanged();
-
      if (tokenIsAvailable)
      {
          qDebug() << "Token present";
@@ -124,7 +121,7 @@ void USBEventHandler::checkForToken()
              Later on, the actual communication with the token will be
          */
 
-         QString response = "";
+
          token->write(message);
          token->waitForBytesWritten(3000);
          qDebug() << token->bytesAvailable();
@@ -148,6 +145,10 @@ void USBEventHandler::checkForToken()
          qDebug() << "Token not present";
          token->close();
      }
+
+     //Alert the rest of the classes that the token status has changed, and update its status
+     tokenConnected = tokenIsAvailable;
+     emit this->tokenStatusChanged();
 }
 
 #ifdef Q_OS_LINUX
@@ -197,4 +198,16 @@ void USBEventHandler::tick()
         }
     }
 }
+
 #endif
+
+QString USBEventHandler::getResponse() const
+{
+    return response;
+}
+
+QString USBEventHandler::getMessage() const
+{
+    QString temp(message);
+    return temp;
+}

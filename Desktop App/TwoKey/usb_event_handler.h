@@ -39,6 +39,9 @@ public:
     bool tokenConnected;
 
 
+    QString getResponse() const;
+    QString getMessage() const;
+
 signals:
     //Signals for the states of USB devices
     void SerialDeviceInserted();
@@ -58,6 +61,7 @@ private:
     //Serial port object to connect with the token
     QSerialPort *token;
     char message[17];
+    QString response;
 
 //Linux specific objects
 #ifdef Q_OS_LINUX
