@@ -3,7 +3,6 @@
 
 USBEventHandler::USBEventHandler(QObject *parent) : QObject(parent)
 {
-    token = new QSerialPort();
 #ifdef Q_OS_LINUX
     timer = new QTimer(this);
 
@@ -26,13 +25,8 @@ USBEventHandler::USBEventHandler(QObject *parent) : QObject(parent)
     timer->start(250/*X*/);
 #endif
     //Check for the token every time a device is inserted or removed
-    connect(this, SIGNAL(SerialDeviceInserted()), SLOT(checkForToken()));
-    connect(this, SIGNAL(SerialDeviceRemoved()), SLOT(checkForToken()));
-
-    for (int i = 0; i < 16; i++)
-       message[i] = 'a' + static_cast<char>(i);
-    message[16] = static_cast<char>(NULL);
-    response = "";
+    connect(this, SIGNAL(SerialDeviceInserted()), SLOT(checkDeviceID()));
+    connect(this, SIGNAL(SerialDeviceRemoved()), SLOT(checkDeviceID()));
 }
 
 
@@ -44,7 +38,6 @@ USBEventHandler::~USBEventHandler()
     timer->stop();
     delete timer;
 #endif
-    delete token;
 }
 
 bool USBEventHandler::nativeEventFilter(const QByteArray &eventType, void *_message, long *result)
@@ -80,11 +73,21 @@ bool USBEventHandler::nativeEventFilter(const QByteArray &eventType, void *_mess
     return false;
 }
 
-void USBEventHandler::checkForToken()
+bool USBEventHandler::getTokenStatus()
 {
+    return tokenIsAvailable;
+}
+
+QString USBEventHandler::getTokenPortName()
+{
+    return tokenPortName;
+}
+
+void USBEventHandler::checkDeviceID()
+{
+     tokenIsAvailable = false;
      qDebug() << "Checking for token: ";
-     bool tokenIsAvailable = false;
-     QString tokenPortName;
+
 
      //Enumerate all of the connected serial devices and check if it is the token
      foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts())
@@ -100,54 +103,8 @@ void USBEventHandler::checkForToken()
          }
      }
 
-     if (tokenIsAvailable)
-     {
-         qDebug() << "Token present";
-         if (!token->isOpen())
-         {
-            //Set connection properties for the token
-            token->setPortName(tokenPortName);
-            token->setBaudRate(QSerialPort::Baud9600);
-            token->setDataBits(QSerialPort::Data8);
-            token->setParity(QSerialPort::NoParity);
-            token->setStopBits(QSerialPort::OneStop);
-            token->setFlowControl(QSerialPort::NoFlowControl);
-            if (!token->open(QIODevice::ReadWrite))
-                qDebug() << "Couldn't communicate with token, it is likely in use by another program.";
-         }
-         /*
-             TODO: Fix the communication between this part and the arduino,
-             it doesn't seem to work properly (timing wise)
-             Later on, the actual communication with the token will be
-         */
 
-
-         token->write(message);
-         token->waitForBytesWritten(3000);
-         qDebug() << token->bytesAvailable();
-
-         if (token->bytesAvailable() > 0)
-         {
-             token->waitForReadyRead(3000);
-             response = token->read(16);
-             token->flush();
-         }
-
-         qDebug() << "Port: " << token->portName() << "Value: " << response;
-//         for (int i = 0; i < 16; i++)
-//         {
-//            qDebug() << static_cast<int>(message[i]) << '\t' << static_cast<int>(response[i]);
-//         }
-
-     }
-     else
-     {
-         qDebug() << "Token not present";
-         token->close();
-     }
-
-     //Alert the rest of the classes that the token status has changed, and update its status
-     tokenConnected = tokenIsAvailable;
+     //Alert the rest of the classes that the token status has changed
      emit this->tokenStatusChanged();
 }
 
@@ -200,14 +157,3 @@ void USBEventHandler::tick()
 }
 
 #endif
-
-QString USBEventHandler::getResponse() const
-{
-    return response;
-}
-
-QString USBEventHandler::getMessage() const
-{
-    QString temp(message);
-    return temp;
-}

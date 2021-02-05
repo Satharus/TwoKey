@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "usb_event_handler.h"
+#include "usb_communicator.h"
 
 #include <QMainWindow>
 #include <QDebug>
@@ -15,7 +15,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr, USBEventHandler *usb_notif = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr, USB_communicator *usb_comm = nullptr);
     ~MainWindow();
 
 private slots:
@@ -24,8 +24,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    //Pointer to the USB handler, to get updates from it
-    USBEventHandler *usb_notif;
+    USB_communicator *usb_comm;
 };
 
 #endif // MAINWINDOW_H

@@ -26,10 +26,12 @@ linux {
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
+        usb_communicator.cpp \
         usb_event_handler.cpp
 
 HEADERS += \
         mainwindow.h \
+        usb_communicator.h \
         usb_event_handler.h
 
 FORMS += \

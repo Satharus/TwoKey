@@ -4,7 +4,6 @@
 
 #include <QAbstractNativeEventFilter>
 #include <QSerialPortInfo>
-#include <QSerialPort>
 #include <QObject>
 #include <QDebug>
 
@@ -23,7 +22,6 @@
 #define TOKEN_VENDOR_ID     6790
 #define TOKEN_PRODUCT_ID    29987
 
-
 class USBEventHandler : public QObject, public QAbstractNativeEventFilter
 {
     Q_OBJECT
@@ -35,12 +33,9 @@ public:
     //Implementing the original function from QAbstractNativeEventFilter
     virtual bool nativeEventFilter(const QByteArray &eventType, void *message, long *result);
 
-    //Variable to store the status of the token
-    bool tokenConnected;
+    bool getTokenStatus();
+    QString getTokenPortName();
 
-
-    QString getResponse() const;
-    QString getMessage() const;
 
 signals:
     //Signals for the states of USB devices
@@ -51,18 +46,13 @@ signals:
 
 public slots:
     //Function checks if the token itself exists, and communicates with it
-    void checkForToken();
+    void checkDeviceID();
 #ifdef Q_OS_LINUX
     //Tick function to check for the token on Linux every unit time
     void tick();
 #endif
 
 private:
-    //Serial port object to connect with the token
-    QSerialPort *token;
-    char message[17];
-    QString response;
-
 //Linux specific objects
 #ifdef Q_OS_LINUX
     QTimer *timer;
@@ -71,6 +61,9 @@ private:
     struct udev* udev;
     int deviceFD;
 #endif
+    //Variable to store the status of the token
+    bool tokenIsAvailable;
+    QString tokenPortName;
 };
 
 #endif // USB_EVENT_NOTIFICATION_H

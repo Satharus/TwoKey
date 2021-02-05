@@ -1,4 +1,4 @@
-#include "usb_event_handler.h"
+#include "usb_communicator.h"
 #include "mainwindow.h"
 
 #include <QAbstractEventDispatcher>
@@ -8,10 +8,10 @@ int main(int argc, char *argv[])
 {
     QApplication twoKey(argc, argv);
 
-    USBEventHandler *usb_notif = new USBEventHandler();
-    twoKey.eventDispatcher()->installNativeEventFilter(usb_notif);
+    USB_communicator *usb_comm = new USB_communicator();
+    twoKey.eventDispatcher()->installNativeEventFilter(usb_comm->usb_notif);
 
-    MainWindow mainWindow(nullptr, usb_notif);
+    MainWindow mainWindow(nullptr, usb_comm);
 
     mainWindow.show();
     return twoKey.exec();
