@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent, USB_communicator *usb_comm) :
     ui->setupUi(this);
 
     this->usb_comm = usb_comm;
+
     connect(this->usb_comm->usb_notif, SIGNAL(tokenStatusChanged()), this, SLOT(changeStatus()));
     this->usb_comm->usb_notif->checkDeviceID();
     this->usb_comm->checkForToken();
@@ -21,12 +22,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::changeStatus()
 {
+    this->usb_comm->checkForToken();
     if (usb_comm->getTokenStatus())
     {
         //Set to green
         this->ui->statusLabel->setStyleSheet("background: rgb(65,157,60)");
-        this->ui->sentValue->setText("Message:  " + this->usb_comm->getMessage());
-        this->ui->response->setText("Response: " + this->usb_comm->getResponse());
+        this->ui->sentValue->setText("Message:  " + this->usb_comm->getLastMessage());
+        this->ui->response->setText("Response: " + this->usb_comm->getLastResponse());
     }
     else
     {
@@ -37,8 +39,20 @@ void MainWindow::changeStatus()
     }
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_refreshButton_clicked()
 {
     this->usb_comm->checkForToken();
     this->changeStatus();
+}
+
+void MainWindow::on_writeButton_clicked()
+{
+    this->usb_comm->writeToToken(this->ui->writeBox->text().toStdString().c_str());
+    this->ui->sentValue->setText("Message:  " + this->ui->writeBox->text());
+    this->ui->writeBox->clear();
+}
+
+void MainWindow::on_readButton_clicked()
+{
+    this->ui->response->setText("Response: " + this->usb_comm->readFromToken());
 }

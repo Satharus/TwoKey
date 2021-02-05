@@ -17,6 +17,37 @@ USB_communicator::~USB_communicator()
     delete usb_notif;
 }
 
+void USB_communicator::writeToToken(const char* message, int waitTime, bool flushAfterWrite)
+{
+    strncpy(this->message, message, 16);
+    token->write(message);
+    token->waitForBytesWritten(waitTime);
+    if (flushAfterWrite)
+        token->flush();
+}
+
+QString USB_communicator::readFromToken(int waitTime, bool flushAfterRead)
+{
+    token->waitForReadyRead(waitTime);
+    response = token->read(16);
+    if (flushAfterRead)
+        token->flush();
+    return response;
+}
+
+void USB_communicator::clearTokenBuffer()
+{
+    token->flush();
+    token->clear(QSerialPort::Direction::AllDirections);
+    token->waitForReadyRead(1000);
+}
+
+void USB_communicator::closeToken()
+{
+    this->clearTokenBuffer();
+    this->token->close();
+}
+
 
 void USB_communicator::checkForToken()
 {
@@ -36,12 +67,7 @@ void USB_communicator::checkForToken()
                qDebug() << "Couldn't communicate with token, it is likely in use by another program.";
         }
         /*
-            TODO: Fix the communication between this part and the arduino,
-            it doesn't seem to work properly (timing wise)
-            Later on, the actual communication with the token will be
-        */
-
-
+        //Temporary hello message
         token->write(message);
         token->waitForBytesWritten(3000);
         qDebug() << token->bytesAvailable();
@@ -52,12 +78,9 @@ void USB_communicator::checkForToken()
             response = token->read(16);
             token->flush();
         }
-
-        qDebug() << "Port: " << token->portName() << "Value: " << response;
-//         for (int i = 0; i < 16; i++)
-//         {
-//            qDebug() << static_cast<int>(message[i]) << '\t' << static_cast<int>(response[i]);
-//         }
+        */
+        token->flush();
+        qDebug() << "Port: " << token->portName() << "Last Response: " << response;
     }
     else
     {
@@ -72,13 +95,13 @@ bool USB_communicator::getTokenStatus()
     return usb_notif->getTokenStatus();
 }
 
-QString USB_communicator::getMessage() const
+QString USB_communicator::getLastMessage() const
 {
-    QString temp(message);
-    return temp;
+    QString msg(message);
+    return msg;
 }
 
-QString USB_communicator::getResponse() const
+QString USB_communicator::getLastResponse() const
 {
     return response;
 }

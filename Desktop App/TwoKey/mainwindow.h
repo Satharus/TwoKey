@@ -20,7 +20,11 @@ public:
 
 private slots:
     void changeStatus();
-    void on_pushButton_clicked();
+    void on_refreshButton_clicked();
+
+    void on_writeButton_clicked();
+
+    void on_readButton_clicked();
 
 private:
     Ui::MainWindow *ui;

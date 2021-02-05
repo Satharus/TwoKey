@@ -86,7 +86,7 @@ QString USBEventHandler::getTokenPortName()
 void USBEventHandler::checkDeviceID()
 {
      tokenIsAvailable = false;
-     qDebug() << "Checking for token: ";
+     qDebug() << "Scanning for token...";
 
 
      //Enumerate all of the connected serial devices and check if it is the token
@@ -102,7 +102,6 @@ void USBEventHandler::checkDeviceID()
              tokenIsAvailable = true;
          }
      }
-
 
      //Alert the rest of the classes that the token status has changed
      emit this->tokenStatusChanged();

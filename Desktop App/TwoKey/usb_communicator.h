@@ -12,15 +12,17 @@ public:
     USB_communicator();
     ~USB_communicator();
 
-    void write();
-    QString read();
+    void writeToToken(const char* message, int waitTime = 3000, bool flushAfterWrite = true);
+    QString readFromToken(int waitTime = 3000, bool flushAfterRead = false);
+    void clearTokenBuffer();
+    void closeToken();
     void checkForToken();
     bool getTokenStatus();
 
     //Pointer to the USB handler, to get updates from it
     USBEventHandler *usb_notif;
-    QString getMessage() const;
-    QString getResponse() const;
+    QString getLastMessage() const;
+    QString getLastResponse() const;
 private:
 
     QSerialPort *token;
