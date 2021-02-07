@@ -3,7 +3,9 @@
 
 #include "usb_communicator.h"
 
+#include <QSocketNotifier>
 #include <QMainWindow>
+#include <iostream>
 #include <QDebug>
 
 namespace Ui {
@@ -25,10 +27,12 @@ private slots:
     void on_writeButton_clicked();
 
     void on_readButton_clicked();
+    QString readFromStdin();
 
 private:
     Ui::MainWindow *ui;
     USB_communicator *usb_comm;
+    QSocketNotifier *stdinNotifier;
 };
 
 #endif // MAINWINDOW_H

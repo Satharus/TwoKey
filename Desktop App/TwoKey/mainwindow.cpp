@@ -6,16 +6,19 @@ MainWindow::MainWindow(QWidget *parent, USB_communicator *usb_comm) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     this->usb_comm = usb_comm;
+    this->stdinNotifier = new QSocketNotifier(fileno(stdin), QSocketNotifier::Type::Read, this);
 
     connect(this->usb_comm->usb_notif, SIGNAL(tokenStatusChanged()), this, SLOT(changeStatus()));
+    connect(this->stdinNotifier, SIGNAL(activated(int)), this, SLOT(readFromStdin()));
+
     this->usb_comm->usb_notif->checkDeviceID();
     this->usb_comm->checkForToken();
 }
 
 MainWindow::~MainWindow()
 {
+    delete stdinNotifier;
     delete usb_comm;
     delete ui;
 }
@@ -55,4 +58,16 @@ void MainWindow::on_writeButton_clicked()
 void MainWindow::on_readButton_clicked()
 {
     this->ui->response->setText("Response: " + this->usb_comm->readFromToken());
+}
+
+QString MainWindow::readFromStdin()
+{
+    std::string stdinMessage;
+    std::cin >> stdinMessage;
+    QString retMessage = QString::fromStdString(stdinMessage);
+
+
+    this->ui->browserExtensionLabel->setText("Extension Message: " + retMessage);
+
+    return retMessage;
 }
