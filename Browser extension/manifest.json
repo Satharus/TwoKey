@@ -15,7 +15,8 @@
     [
         "storage",
         "tabs",
-        "<all_urls>"
+        "<all_urls>",
+        "nativeMessaging"
     ],
     "background":
     {
@@ -35,8 +36,8 @@
     ],
     "browser_action":
     {
-        "default_icon":"icon48.png"
-        
+        "default_icon":"icon48.png",
+        "default_popup":"popup.html"
     }
    
   
