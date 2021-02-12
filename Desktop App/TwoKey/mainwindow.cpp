@@ -15,6 +15,106 @@ MainWindow::MainWindow(QWidget *parent, USB_communicator *usb_comm) :
     this->usb_comm->usb_notif->checkDeviceID();
     this->usb_comm->checkForToken();
 }
+// https://amin-ahmadi.com/2016/01/17/how-to-send-and-receive-json-requests-in-qt/
+// https://stackoverflow.com/questions/13302236/qt-simple-post-request
+QString test;
+void MainWindow::postRequest()
+{
+    QNetworkRequest request(QUrl("https://64.227.127.192/login"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QJsonObject json;
+    json.insert("email", "oracle@gmail.com");
+    json.insert("password", "test1234");
+
+    QNetworkAccessManager nam;
+
+    QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
+    reply->ignoreSslErrors();
+    while (!reply->isFinished())
+    {
+        qApp->processEvents();
+    }
+
+    QByteArray response_data = reply->readAll();
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+
+    QString challenge = jsonResponse.object()["challenge"].toString();
+    this->jwt = jsonResponse.object()["Access-token"].toString();
+    qDebug() << challenge;
+
+    usb_comm->writeToToken(challenge.toStdString().c_str());
+    test = usb_comm->readFromToken();
+
+    this->ui->sentValue->setText("Message: " + challenge);
+    this->ui->response->setText("Response:" + test);
+
+    Danya2FA();
+}
+
+
+void MainWindow::Danya2FA()
+{
+    QNetworkRequest request(QUrl("https://64.227.127.192/2fa"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QJsonObject json;
+    json.insert("Access-token", jwt);
+    json.insert("challenge", QString(test.toUtf8().toBase64()));
+    qDebug() << test;
+    qDebug() << QString(test.toUtf8().toBase64());
+    QNetworkAccessManager nam;
+
+    QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
+
+    reply->ignoreSslErrors();
+
+    while (!reply->isFinished())
+    {
+        qApp->processEvents();
+    }
+
+    QByteArray response_data = reply->readAll();
+    qDebug() << response_data;
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+
+    qDebug() << jsonResponse;
+
+}
+
+
+
+void MainWindow::registerDanya()
+{
+    QNetworkRequest request(QUrl("https://64.227.127.192/reg"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QJsonObject json;
+    json.insert("first_name", "Ahmed");
+    json.insert("last_name", "Mahmoud");
+    json.insert("email", "oracle@gmail.com");
+    json.insert("username", "oracle");
+    json.insert("password", "test1234");
+    json.insert("physical_id", "testtoken0123456");
+
+    qDebug() << json;
+
+    QNetworkAccessManager nam;
+
+    QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
+
+    reply->ignoreSslErrors();
+
+    while (!reply->isFinished())
+    {
+        qApp->processEvents();
+    }
+
+    QByteArray response_data = reply->readAll();
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+
+    qDebug() << jsonResponse;
+
+}
+
+
 
 MainWindow::~MainWindow()
 {
@@ -70,4 +170,14 @@ QString MainWindow::readFromStdin()
     this->ui->browserExtensionLabel->setText("Extension Message: " + retMessage);
 
     return retMessage;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    postRequest();
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    registerDanya();
 }

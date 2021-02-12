@@ -19,6 +19,7 @@ USB_communicator::~USB_communicator()
 
 void USB_communicator::writeToToken(const char* message, int waitTime, bool flushAfterWrite)
 {
+    if (!token->isOpen()) return;
     strncpy(this->message, message, 16);
     token->write(message);
     token->waitForBytesWritten(waitTime);
@@ -28,6 +29,7 @@ void USB_communicator::writeToToken(const char* message, int waitTime, bool flus
 
 QString USB_communicator::readFromToken(int waitTime, bool flushAfterRead)
 {
+    if (!token->isOpen()) return "";
     token->waitForReadyRead(waitTime);
     response = token->read(16);
     if (flushAfterRead)

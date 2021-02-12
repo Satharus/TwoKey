@@ -4,7 +4,7 @@ void setup()
   Serial.setTimeout(3000);
 }
   char message[17];
-  int shift = 0;
+  char key[17] = "testtoken0123456";
 void loop() 
 {
     if (Serial.available() > 0)
@@ -12,9 +12,8 @@ void loop()
       Serial.readBytes(message, 16);
       for (int i = 0; i < 16; i++)
       {
-        message[i] += shift;
+        message[i] += 1;
       }
-      shift = (shift+1)%15;
       Serial.write(message);
       Serial.flush();
     }
