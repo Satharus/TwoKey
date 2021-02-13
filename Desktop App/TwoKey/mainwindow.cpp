@@ -40,7 +40,7 @@ void MainWindow::postRequest()
 
     QString challenge = jsonResponse.object()["challenge"].toString();
     this->jwt = jsonResponse.object()["Access-token"].toString();
-    qDebug() << challenge;
+    qDebug() << "Recieved Challenge: " << challenge;
 
     usb_comm->writeToToken(challenge.toStdString().c_str());
     test = usb_comm->readFromToken();
@@ -59,8 +59,8 @@ void MainWindow::Danya2FA()
     QJsonObject json;
     json.insert("Access-token", jwt);
     json.insert("challenge", QString(test.toUtf8().toBase64()));
-    qDebug() << test;
-    qDebug() << QString(test.toUtf8().toBase64());
+    qDebug() << "Encrypted Challenge: " << test;
+    qDebug() << "Base64 Challenge: " << QString(test.toUtf8().toBase64());
     QNetworkAccessManager nam;
 
     QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
@@ -73,11 +73,12 @@ void MainWindow::Danya2FA()
     }
 
     QByteArray response_data = reply->readAll();
-    qDebug() << response_data;
     QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
-
-    qDebug() << jsonResponse;
-
+    this->jwt = jsonResponse.object()["Access-token"].toString();
+    if (jsonResponse.object()["Message"].toString() == "Successful Login!!")
+        qDebug() << "\nResponse(New JWT): " <<  this->jwt;
+    else
+        qDebug() << "\nResponse: " <<  jsonResponse.object()["Message"].toString();
 }
 
 
@@ -94,8 +95,6 @@ void MainWindow::registerDanya()
     json.insert("password", "test1234");
     json.insert("physical_id", "testtoken0123456");
 
-    qDebug() << json;
-
     QNetworkAccessManager nam;
 
     QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
@@ -110,7 +109,7 @@ void MainWindow::registerDanya()
     QByteArray response_data = reply->readAll();
     QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
 
-    qDebug() << jsonResponse;
+    qDebug() << "\nResponse: " <<  jsonResponse;
 
 }
 
