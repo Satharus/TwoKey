@@ -116,6 +116,16 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QPushButton" name="generate_button">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>🔄</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>

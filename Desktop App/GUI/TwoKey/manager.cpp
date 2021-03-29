@@ -29,6 +29,7 @@ void manager::on_edit_button_clicked()
     ui->website->setReadOnly(false);
     ui->username->setReadOnly(false);
     ui->password->setReadOnly(false);
+    ui->generate_button->setEnabled(true);
     ui->save_button->setEnabled(true);
 }
 
