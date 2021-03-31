@@ -7,6 +7,8 @@ manager::manager(QWidget *parent) :
     ui(new Ui::manager)
 {
     ui->setupUi(this);
+    ui->save_button->setVisible(false);
+    ui->generate_button->setVisible(false);
 }
 
 manager::~manager()
@@ -29,7 +31,9 @@ void manager::on_edit_button_clicked()
     ui->website->setReadOnly(false);
     ui->username->setReadOnly(false);
     ui->password->setReadOnly(false);
+    ui->generate_button->setVisible(true);
     ui->generate_button->setEnabled(true);
+    ui->save_button->setVisible(true);
     ui->save_button->setEnabled(true);
 }
 
@@ -44,5 +48,13 @@ void manager::on_save_button_clicked()
     ui->website->setReadOnly(true);
     ui->username->setReadOnly(true);
     ui->password->setReadOnly(true);
+    ui->generate_button->setVisible(false);
+    ui->generate_button->setEnabled(false);
     ui->save_button->setEnabled(false);
+    ui->save_button->setVisible(false);
+}
+
+void manager::on_addaccount_button_clicked()
+{
+
 }

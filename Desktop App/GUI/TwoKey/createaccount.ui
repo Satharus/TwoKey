@@ -16,9 +16,8 @@
   <property name="styleSheet">
    <string notr="true">QWidget
 {
-	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0.00480769 rgba(3, 50, 76, 255),stop:0.293269 rgba(6, 82, 125, 255),stop:0.514423 rgba(8, 117, 178, 255),stop:0.745192 rgba(7, 108, 164, 255),stop:1 rgba(3, 51, 77, 255));
+	background-color: #00478f;
 	color: #000000;
-
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -229,7 +228,7 @@
       <item>
        <widget class="QPushButton" name="showpassword_button">
         <property name="styleSheet">
-         <string notr="true">	background-color: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(42, 95, 113, 255),stop:1 rgba(12, 53, 97, 255));
+         <string notr="true">	background-color: #00478f;
 	color: #fff;
 	border: 0px;
 	border-radius: 5px;

@@ -18,6 +18,10 @@ public:
 private slots:
     void on_addaccount_showpassword_clicked();
 
+    void on_cancel_button_clicked();
+
+    void on_addaccount_button_clicked();
+
 private:
     Ui::addaccount *ui;
 };

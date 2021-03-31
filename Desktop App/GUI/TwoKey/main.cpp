@@ -8,13 +8,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    login w;
-    w.show();
-    createaccount e;
-    e.show();
-    manager r;
-    r.show();
-    addaccount t;
-    t.show();
+    login start_widget;
+    start_widget.show();
     return a.exec();
 }

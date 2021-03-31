@@ -24,6 +24,8 @@ private slots:
 
     void on_save_button_clicked();
 
+    void on_addaccount_button_clicked();
+
 private:
     Ui::manager *ui;
 };

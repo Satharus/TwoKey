@@ -22,3 +22,13 @@ void createaccount::on_showpassword_button_clicked()
         ui->password->setEchoMode(QLineEdit::Password);
     }
 }
+
+void createaccount::on_login_button_clicked()
+{
+
+}
+
+void createaccount::on_createaccount_button_clicked()
+{
+
+}

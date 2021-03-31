@@ -22,3 +22,13 @@ void addaccount::on_addaccount_showpassword_clicked()
         ui->addaccount_password->setEchoMode(QLineEdit::Password);
     }
 }
+
+void addaccount::on_cancel_button_clicked()
+{
+
+}
+
+void addaccount::on_addaccount_button_clicked()
+{
+
+}
