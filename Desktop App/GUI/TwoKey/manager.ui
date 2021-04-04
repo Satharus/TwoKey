@@ -45,21 +45,57 @@
         <property name="styleSheet">
          <string notr="true">QListWidget{
 	background-color: #bfbfbf;
-	color: #000000;
+	color: #fff;
 	border-style: solid;
 	border-color: #141414;
 	border-radius: 5px;
-	padding-left: 10px;
+	show-decoration-selected: 0;
+}
+
+
+QListWidget::item:selected{
+	color: #ffffff;
+	font-weight: bold;
+	background-color: #002952;
+   	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 5px;
+}
+
+
+QListWidget::item:!selected{
+	color: #000000;
+	background-color: transparent;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 0px;
+}
+
+
+QListWidget::item:!selected:hover{
+	color: #000000;
+	background-color: #ababab;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 0px;
 }</string>
         </property>
         <item>
          <property name="text">
-          <string>Item 1</string>
+          <string>Domain 1</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>tem 2</string>
+          <string>Domain 2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Domain 3</string>
          </property>
         </item>
        </widget>
@@ -139,22 +175,29 @@ QPushButton::pressed
        <widget class="QComboBox" name="comboBox">
         <property name="styleSheet">
          <string notr="true">QComboBox{
-	background-color: #bfbfbf;
-	color: #000000;
+	background-color: #002952;
+	color: #ffffff;
+	selection-color: #000000;
+	selection-background-color: #bfbfbf;
 	border-style: solid;
 	border-color: #141414;
 	border-radius: 5px;
-	padding-left: 10px;
+	padding-left: 5px;
 }</string>
         </property>
         <item>
          <property name="text">
-          <string>Item 1</string>
+          <string>Account 1</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Item 2</string>
+          <string>Account 2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Account 3</string>
          </property>
         </item>
        </widget>
