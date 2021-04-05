@@ -1,0 +1,1183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TwoKey</class>
+ <widget class="QWidget" name="TwoKey">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>541</width>
+    <height>465</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TwoKey</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget
+{
+	background-color: #00478f;
+	color: #000000;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QLabel" name="twokey">
+     <property name="styleSheet">
+      <string notr="true">	background-color: transparent;
+	color: #fff;
+
+</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt;🔑 TwoKey&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QStackedWidget" name="twokey_stackedwidget">
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
+     <widget class="QWidget" name="login_page" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QVBoxLayout" name="login_layout">
+         <item>
+          <widget class="QLabel" name="login_username_label">
+           <property name="styleSheet">
+            <string notr="true">	background-color: transparent;
+	color: #fff;
+
+</string>
+           </property>
+           <property name="text">
+            <string>Username/Email:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="login_username">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="login_password_label">
+           <property name="styleSheet">
+            <string notr="true">	background-color: transparent;
+	color: #fff;
+
+</string>
+           </property>
+           <property name="text">
+            <string>Password:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="login_password_layout">
+           <item>
+            <widget class="QLineEdit" name="login_password">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="login_showpassword_button">
+             <property name="styleSheet">
+              <string notr="true">	background-color: #00478f;
+	color: #fff;
+	border: 0px;
+	border-radius: 5px;
+	padding: 5px;
+</string>
+             </property>
+             <property name="text">
+              <string>👁</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="password_loginbuttons_spacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="login_bottons_layout">
+           <item>
+            <widget class="QPushButton" name="login_button">
+             <property name="maximumSize">
+              <size>
+               <width>389</width>
+               <height>29</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #ff9c2b;
+	color: #000000;
+	font-weight: bold;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #ffaf5d;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #dd872f;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Login</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="createaccount_button">
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #ff9c2b;
+	color: #000000;
+	font-weight: bold;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #ffaf5d;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #dd872f;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Create an Account</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="signup_page">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QVBoxLayout" name="signup_layout">
+         <item>
+          <layout class="QHBoxLayout" name="signup_name_layout">
+           <item>
+            <widget class="QLabel" name="signup_firstname_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>First name: </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="signup_firstname">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="signup_lastname_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Last name:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="signup_lastname">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="signup_email_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Email/Phone number:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="signup_email">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="signup_username_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Username: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="signup_username">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="signup_password_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Password: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="signup_password_layout">
+           <item>
+            <widget class="QLineEdit" name="signup_password">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="signup_showpassword_button">
+             <property name="styleSheet">
+              <string notr="true">	background-color: #00478f;
+	color: #fff;
+	border: 0px;
+	border-radius: 5px;
+	padding: 5px;
+</string>
+             </property>
+             <property name="text">
+              <string>👁</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="signup_buttons_layout">
+           <item>
+            <widget class="QPushButton" name="signup_button">
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #ff9c2b;
+	color: #000000;
+	font-weight: bold;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #ffaf5d;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #dd872f;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Create an Account</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="signup_login_button">
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #ff9c2b;
+	color: #000000;
+	font-weight: bold;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #ffaf5d;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #dd872f;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Login</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="manager_page">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QHBoxLayout" name="manager_layout">
+         <item>
+          <layout class="QVBoxLayout" name="vault_layout">
+           <item>
+            <widget class="QLabel" name="vault_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Vault:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QListWidget" name="manager_accounts_list">
+             <property name="styleSheet">
+              <string notr="true">QListWidget{
+	background-color: #bfbfbf;
+	color: #fff;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	show-decoration-selected: 0;
+}
+
+
+QListWidget::item:selected{
+	color: #ffffff;
+	font-weight: bold;
+	background-color: #002952;
+   	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 5px;
+}
+
+
+QListWidget::item:!selected{
+	color: #000000;
+	background-color: transparent;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 0px;
+}
+
+
+QListWidget::item:!selected:hover{
+	color: #000000;
+	background-color: #ababab;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 0px;
+}</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Domain 1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Domain 2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Domain 3</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="manager_addaccount_button">
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #ff9c2b;
+	color: #000000;
+	font-weight: bold;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #ffaf5d;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #dd872f;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Add Account</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="information_layout">
+           <item>
+            <widget class="QLabel" name="information_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Information:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="manager_accounts_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Accounts:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="manager_accounts_combobox">
+             <property name="styleSheet">
+              <string notr="true">QComboBox{
+	background-color: #002952;
+	color: #ffffff;
+	selection-color: #000000;
+	selection-background-color: #bfbfbf;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 5px;
+}</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Account 1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Account 2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Account 3</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="manager_website_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Website:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="manager_website">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="manager_username_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Email/Username:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="manager_username">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="manager_password_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Password:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="manager_password_layout">
+             <item>
+              <widget class="QLineEdit" name="manager_password">
+               <property name="styleSheet">
+                <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+               </property>
+               <property name="echoMode">
+                <enum>QLineEdit::Password</enum>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="manager_showpassword_button">
+               <property name="styleSheet">
+                <string notr="true">	background-color: #00478f;
+	color: #fff;
+	border: 0px;
+	border-radius: 5px;
+	padding: 5px;
+</string>
+               </property>
+               <property name="text">
+                <string>👁</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="manager_copypassword_button">
+               <property name="styleSheet">
+                <string notr="true">	background-color: #00478f;
+	color: #fff;
+	border: 0px;
+	border-radius: 5px;
+	padding: 5px;
+</string>
+               </property>
+               <property name="text">
+                <string>📄</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="manager_generate_button">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">	background-color: #00478f;
+	color: #fff;
+	border: 0px;
+	border-radius: 5px;
+	padding: 5px;
+</string>
+               </property>
+               <property name="text">
+                <string>🔄</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="manager_password_buttons_spacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="manager_save_button">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #ff9c2b;
+	color: #000000;
+	font-weight: bold;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #ffaf5d;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #dd872f;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Save Changes</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="manager_edit_button">
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #ff9c2b;
+	color: #000000;
+	font-weight: bold;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #ffaf5d;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #dd872f;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Edit Account Information</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="addaccount_page">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <layout class="QVBoxLayout" name="addaccount_layout">
+         <item>
+          <widget class="QLabel" name="addaccount_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Add Account:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="addaccount_website_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}</string>
+           </property>
+           <property name="text">
+            <string>Website:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="addaccount_website">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="addaccount_username_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}</string>
+           </property>
+           <property name="text">
+            <string>Email/Username:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="addaccount_username">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="addaccount_password_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #fff;
+
+}</string>
+           </property>
+           <property name="text">
+            <string>Password: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="addaccount_password_layout">
+           <item>
+            <widget class="QLineEdit" name="addaccount_password">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}</string>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="addaccount_showpassword_button">
+             <property name="styleSheet">
+              <string notr="true">	background-color: #00478f;
+	color: #fff;
+	border: 0px;
+	border-radius: 5px;
+	padding: 5px;
+</string>
+             </property>
+             <property name="text">
+              <string>👁</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="addaccount_generate_button">
+             <property name="styleSheet">
+              <string notr="true">	background-color: #00478f;
+	color: #fff;
+	border: 0px;
+	border-radius: 5px;
+	padding: 5px;
+</string>
+             </property>
+             <property name="text">
+              <string>🔄</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="password_addaccounts_spacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="addaccount_buttons_layout">
+           <item>
+            <widget class="QPushButton" name="addaccount_button">
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #ff9c2b;
+	color: #000000;
+	font-weight: bold;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #ffaf5d;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #dd872f;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Add Account</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="addaccount_cancel_button">
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #ff9c2b;
+	color: #000000;
+	font-weight: bold;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #ffaf5d;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #dd872f;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Cancel</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
