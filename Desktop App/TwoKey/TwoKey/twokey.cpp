@@ -156,7 +156,7 @@ bool TwoKey::backend_logout()
 
 void TwoKey::on_login_button_clicked()
 {
-    if (backend_login(ui->login_username->text(),
+    if (backend_login(ui->login_email->text(),
                       ui->login_password->text()))
     {
         ui->twokey_stackedwidget->setCurrentIndex(2); // LOGIN BUTTON
@@ -170,20 +170,20 @@ void TwoKey::on_createaccount_button_clicked()
 
 //                SECOND page SIGN UP
 
-void TwoKey::on_signup_button_clicked()
+void TwoKey::on_register_button_clicked()
 {
-    if (backend_register(ui->signup_firstname->text(),
-                         ui->signup_lastname->text(),
-                         ui->signup_email->text(),
-                         ui->signup_username->text(),
-                         ui->signup_password->text(),
-                         ui->signup_serial->text()))
+    if (backend_register(ui->register_firstname->text(),
+                         ui->register_lastname->text(),
+                         ui->register_email->text(),
+                         ui->register_username->text(),
+                         ui->register_password->text(),
+                         ui->register_serial->text()))
     {
         ui->twokey_stackedwidget->setCurrentIndex(0); // CREATE ACCOUNT BUTTON
     }
 }
 
-void TwoKey::on_signup_login_button_clicked()
+void TwoKey::on_register_login_button_clicked()
 {
     ui->twokey_stackedwidget->setCurrentIndex(0); // LOGIN BUTTON
 }
@@ -193,6 +193,12 @@ void TwoKey::on_signup_login_button_clicked()
 void TwoKey::on_manager_addaccount_button_clicked()
 {
     ui->twokey_stackedwidget->setCurrentIndex(3); // ADD ACCOUNT BUTTON
+}
+
+void TwoKey::on_manager_logout_button_clicked()
+{
+    backend_logout();
+    ui->twokey_stackedwidget->setCurrentIndex(0);
 }
 
 //                FORTH page ADD ACCOUNT
@@ -268,13 +274,13 @@ void TwoKey::on_login_showpassword_button_clicked()    //     SHOW PASSWORD
 
 //                SECOND page SIGN UP
 
-void TwoKey::on_signup_showpassword_button_clicked()    //     SHOW PASSWORD
+void TwoKey::on_register_showpassword_button_clicked()    //     SHOW PASSWORD
 {
-    if(ui->signup_password->echoMode() == QLineEdit::Password){
-        ui->signup_password->setEchoMode(QLineEdit::Normal);
+    if(ui->register_password->echoMode() == QLineEdit::Password){
+        ui->register_password->setEchoMode(QLineEdit::Normal);
     }
     else{
-        ui->signup_password->setEchoMode(QLineEdit::Password);
+        ui->register_password->setEchoMode(QLineEdit::Password);
     }
 }
 

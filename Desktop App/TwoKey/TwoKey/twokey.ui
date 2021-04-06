@@ -59,7 +59,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="login_username">
+          <widget class="QLineEdit" name="login_email">
            <property name="styleSheet">
             <string notr="true">QLineEdit
 {
@@ -242,14 +242,14 @@ QPushButton::pressed
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="signup_page">
+     <widget class="QWidget" name="register_page">
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <layout class="QVBoxLayout" name="signup_layout">
+        <layout class="QVBoxLayout" name="register_layout">
          <item>
-          <layout class="QHBoxLayout" name="signup_name_layout">
+          <layout class="QHBoxLayout" name="register_name_layout">
            <item>
-            <widget class="QLabel" name="signup_firstname_label">
+            <widget class="QLabel" name="register_firstname_label">
              <property name="styleSheet">
               <string notr="true">QLabel
 {
@@ -264,7 +264,7 @@ QPushButton::pressed
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="signup_firstname">
+            <widget class="QLineEdit" name="register_firstname">
              <property name="styleSheet">
               <string notr="true">QLineEdit
 {
@@ -281,7 +281,7 @@ QPushButton::pressed
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="signup_lastname_label">
+            <widget class="QLabel" name="register_lastname_label">
              <property name="styleSheet">
               <string notr="true">QLabel
 {
@@ -296,7 +296,7 @@ QPushButton::pressed
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="signup_lastname">
+            <widget class="QLineEdit" name="register_lastname">
              <property name="styleSheet">
               <string notr="true">QLineEdit
 {
@@ -315,7 +315,7 @@ QPushButton::pressed
           </layout>
          </item>
          <item>
-          <widget class="QLabel" name="signup_email_label">
+          <widget class="QLabel" name="register_email_label">
            <property name="styleSheet">
             <string notr="true">QLabel
 {
@@ -330,7 +330,7 @@ QPushButton::pressed
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="signup_email">
+          <widget class="QLineEdit" name="register_email">
            <property name="styleSheet">
             <string notr="true">QLineEdit
 {
@@ -347,7 +347,7 @@ QPushButton::pressed
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="signup_username_label">
+          <widget class="QLabel" name="register_username_label">
            <property name="styleSheet">
             <string notr="true">QLabel
 {
@@ -362,7 +362,7 @@ QPushButton::pressed
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="signup_username">
+          <widget class="QLineEdit" name="register_username">
            <property name="styleSheet">
             <string notr="true">QLineEdit
 {
@@ -379,7 +379,7 @@ QPushButton::pressed
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="signup_password_label">
+          <widget class="QLabel" name="register_password_label">
            <property name="styleSheet">
             <string notr="true">QLabel
 {
@@ -394,9 +394,9 @@ QPushButton::pressed
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="signup_password_layout">
+          <layout class="QHBoxLayout" name="register_password_layout">
            <item>
-            <widget class="QLineEdit" name="signup_password">
+            <widget class="QLineEdit" name="register_password">
              <property name="styleSheet">
               <string notr="true">QLineEdit
 {
@@ -416,7 +416,7 @@ QPushButton::pressed
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="signup_showpassword_button">
+            <widget class="QPushButton" name="register_showpassword_button">
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
@@ -451,7 +451,7 @@ QPushButton::pressed
           </layout>
          </item>
          <item>
-          <widget class="QLabel" name="signup_serial_label">
+          <widget class="QLabel" name="register_serial_label">
            <property name="styleSheet">
             <string notr="true">QLabel
 {
@@ -466,7 +466,7 @@ QPushButton::pressed
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="signup_serial">
+          <widget class="QLineEdit" name="register_serial">
            <property name="styleSheet">
             <string notr="true">QLineEdit
 {
@@ -483,7 +483,7 @@ QPushButton::pressed
           </widget>
          </item>
          <item>
-          <spacer name="signup_password_buttons_spacer">
+          <spacer name="register_password_buttons_spacer">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
            </property>
@@ -496,9 +496,9 @@ QPushButton::pressed
           </spacer>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="signup_buttons_layout">
+          <layout class="QHBoxLayout" name="register_buttons_layout">
            <item>
-            <widget class="QPushButton" name="signup_login_button">
+            <widget class="QPushButton" name="register_login_button">
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
@@ -532,7 +532,7 @@ QPushButton::pressed
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="signup_button">
+            <widget class="QPushButton" name="register_button">
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
@@ -573,6 +573,40 @@ QPushButton::pressed
      </widget>
      <widget class="QWidget" name="manager_page">
       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QPushButton" name="manager_logout_button">
+         <property name="styleSheet">
+          <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Log Out</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <layout class="QHBoxLayout" name="manager_layout">
          <item>

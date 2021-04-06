@@ -36,11 +36,13 @@ private slots:
 
     void on_createaccount_button_clicked();
 
-    void on_signup_button_clicked();
+    void on_register_button_clicked();
 
-    void on_signup_login_button_clicked();
+    void on_register_login_button_clicked();
 
     void on_manager_addaccount_button_clicked();
+
+    void on_manager_logout_button_clicked();
 
     void on_addaccount_button_clicked();
 
@@ -54,7 +56,7 @@ private slots:
     // PASSWORD BOX BUTTONS
     void on_login_showpassword_button_clicked();
 
-    void on_signup_showpassword_button_clicked();
+    void on_register_showpassword_button_clicked();
 
     void on_manager_showpassword_button_clicked();
 
