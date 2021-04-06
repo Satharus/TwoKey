@@ -1,12 +1,19 @@
 #include "twokey.h"
 #include "ui_twokey.h"
-#include "qclipboard.h"
 
-TwoKey::TwoKey(QWidget *parent)
-    : QWidget(parent)
+TwoKey::TwoKey(QWidget *parent, USB_communicator *usb_comm) :
+    QWidget(parent)
     , ui(new Ui::TwoKey)
 {
     ui->setupUi(this);
+
+    this->usb_comm = usb_comm;
+    connect(this->usb_comm->usb_notif, SIGNAL(tokenStatusChanged()), this, SLOT(changeStatus()));
+
+    this->usb_comm->usb_notif->checkDeviceID();
+    this->usb_comm->checkForToken();
+
+
     ui->twokey_stackedwidget->setCurrentIndex(0);
     ui->manager_save_button->setVisible(false);
     ui->manager_generate_button->setVisible(false);
@@ -15,6 +22,119 @@ TwoKey::TwoKey(QWidget *parent)
 TwoKey::~TwoKey()
 {
     delete ui;
+}
+
+// https://amin-ahmadi.com/2016/01/17/how-to-send-and-receive-json-requests-in-qt/
+// https://stackoverflow.com/questions/13302236/qt-simple-post-request
+bool TwoKey::backend_login(QString email, QString password)
+{
+    QNetworkRequest request(QUrl("https://64.227.127.192/login"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QJsonObject json;
+    json.insert("email", email);
+    json.insert("password", password);
+
+    QNetworkAccessManager nam;
+
+    QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
+    reply->ignoreSslErrors();
+    while (!reply->isFinished())
+    {
+        qApp->processEvents();
+    }
+
+    QByteArray response_data = reply->readAll();
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+
+    QString challenge = jsonResponse.object()["challenge"].toString();
+    this->jwt = jsonResponse.object()["Access-token"].toString();
+    qDebug() << "Recieved Challenge: " << challenge;
+
+    usb_comm->writeToToken(challenge.toStdString().c_str());
+    tokenChallengeResponse = usb_comm->readFromToken();
+
+    qDebug() << "Message: " + challenge;
+    qDebug() << "Response:" + tokenChallengeResponse;
+
+    if (backend_2fa())
+    {
+        return true;
+    }
+    else return false;
+}
+
+bool TwoKey::backend_register(QString firstName, QString lastName, QString email, QString username, QString password, QString serial)
+{
+    QNetworkRequest request(QUrl("https://64.227.127.192/reg"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QJsonObject json;
+    json.insert("first_name", firstName);
+    json.insert("last_name", lastName);
+    json.insert("email", email);
+    json.insert("username", username);
+    json.insert("password", password);
+    json.insert("serial", serial);
+
+    QNetworkAccessManager nam;
+
+    QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
+
+    reply->ignoreSslErrors();
+
+    while (!reply->isFinished())
+    {
+        qApp->processEvents();
+    }
+
+    QByteArray response_data = reply->readAll();
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+
+    qDebug() << "\nResponse: " <<  jsonResponse;
+
+    if (jsonResponse.object()["Message"].toString().contains("Done"))
+    {
+            return true;
+    }
+    else return false;
+}
+
+bool TwoKey::backend_2fa()
+{
+    QNetworkRequest request(QUrl("https://64.227.127.192/2fa"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QJsonObject json;
+    json.insert("Access-token", jwt);
+    json.insert("challenge", QString(tokenChallengeResponse.toUtf8().toBase64()));
+    qDebug() << "Encrypted Challenge: " << tokenChallengeResponse;
+    qDebug() << "Base64 Challenge: " << QString(tokenChallengeResponse.toUtf8().toBase64());
+    QNetworkAccessManager nam;
+
+    QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
+
+    reply->ignoreSslErrors();
+
+    while (!reply->isFinished())
+    {
+        qApp->processEvents();
+    }
+
+    QByteArray response_data = reply->readAll();
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+    this->jwt = jsonResponse.object()["Access-token"].toString();
+
+    for (auto a :jsonResponse.object().keys())
+    qDebug() << a << jsonResponse.object()[a].toString();
+
+    if (jsonResponse.object()["Message"].toString() == "Successful Login!!")
+    {
+        qDebug() << "\nResponse(New JWT): " <<  this->jwt;
+        return true;
+    }
+    else
+    {
+        qDebug() << "\nResponse: " <<  jsonResponse.object()["Message"].toString();
+        return false;
+    }
 }
 
 /*
@@ -30,7 +150,11 @@ TwoKey::~TwoKey()
 
 void TwoKey::on_login_button_clicked()
 {
-    ui->twokey_stackedwidget->setCurrentIndex(2); // LOGIN BUTTON
+    if (backend_login(ui->login_username->text(),
+                      ui->login_password->text()))
+    {
+        ui->twokey_stackedwidget->setCurrentIndex(2); // LOGIN BUTTON
+    }
 }
 
 void TwoKey::on_createaccount_button_clicked()
@@ -42,7 +166,15 @@ void TwoKey::on_createaccount_button_clicked()
 
 void TwoKey::on_signup_button_clicked()
 {
-    ui->twokey_stackedwidget->setCurrentIndex(0); // CREATE ACCOUNT BUTTON
+    if (backend_register(ui->signup_firstname->text(),
+                         ui->signup_lastname->text(),
+                         ui->signup_email->text(),
+                         ui->signup_username->text(),
+                         ui->signup_password->text(),
+                         ui->signup_serial->text()))
+    {
+        ui->twokey_stackedwidget->setCurrentIndex(0); // CREATE ACCOUNT BUTTON
+    }
 }
 
 void TwoKey::on_signup_login_button_clicked()

@@ -37,7 +37,7 @@
    <item>
     <widget class="QStackedWidget" name="twokey_stackedwidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="login_page">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -54,7 +54,7 @@
 </string>
            </property>
            <property name="text">
-            <string>Username/Email:</string>
+            <string>Email:</string>
            </property>
           </widget>
          </item>
@@ -325,7 +325,7 @@ QPushButton::pressed
 </string>
            </property>
            <property name="text">
-            <string>Email/Phone number:</string>
+            <string>Email</string>
            </property>
           </widget>
          </item>
@@ -451,6 +451,38 @@ QPushButton::pressed
           </layout>
          </item>
          <item>
+          <widget class="QLabel" name="signup_serial_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #0000;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Serial Number:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="signup_serial">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="signup_password_buttons_spacer">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
@@ -465,6 +497,40 @@ QPushButton::pressed
          </item>
          <item>
           <layout class="QHBoxLayout" name="signup_buttons_layout">
+           <item>
+            <widget class="QPushButton" name="signup_login_button">
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Back</string>
+             </property>
+            </widget>
+           </item>
            <item>
             <widget class="QPushButton" name="signup_button">
              <property name="styleSheet">
@@ -496,40 +562,6 @@ QPushButton::pressed
              </property>
              <property name="text">
               <string>Create an Account</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="signup_login_button">
-             <property name="styleSheet">
-              <string notr="true">QPushButton
-{
-	background-color: #003468;
-	color: #ffffff;
-	border-style: solid;
-	border-color: #000000;
-	border-radius: 5px;
-	padding: 5px;
-
-}
-
-
-QPushButton::hover
-{
-	background-color: #00478f;
-
-}
-
-
-QPushButton::pressed
-{
-	background-color: #002041;
-
-}
-</string>
-             </property>
-             <property name="text">
-              <string>Login</string>
              </property>
             </widget>
            </item>

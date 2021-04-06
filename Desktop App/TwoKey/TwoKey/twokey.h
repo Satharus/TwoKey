@@ -1,7 +1,17 @@
 #ifndef TWOKEY_H
 #define TWOKEY_H
 
+
+#include "usb_communicator.h"
+
+#include <QSocketNotifier>
+#include <QClipboard>
+#include <QMainWindow>
+#include <QtNetwork>
+#include <iostream>
 #include <QWidget>
+#include <QDebug>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class TwoKey; }
@@ -12,8 +22,12 @@ class TwoKey : public QWidget
     Q_OBJECT
 
 public:
-    TwoKey(QWidget *parent = nullptr);
+    TwoKey(QWidget *parent = nullptr, USB_communicator *usb_comm = nullptr);
     ~TwoKey();
+
+    bool backend_login(QString, QString);
+    bool backend_register(QString, QString, QString, QString, QString, QString);
+    bool backend_2fa();
 
 private slots:
     // NAVIGATION
@@ -53,5 +67,8 @@ private slots:
 
 private:
     Ui::TwoKey *ui;
+    QString jwt;
+    USB_communicator *usb_comm;
+    QString tokenChallengeResponse;
 };
 #endif // TWOKEY_H

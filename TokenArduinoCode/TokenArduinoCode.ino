@@ -4,7 +4,7 @@ void setup()
   Serial.setTimeout(3000);
 }
   char message[17];
-  char key[17] = "testtoken0123456";
+  char key[17] = "rskDSkocuB6YuLxO";
 void loop() 
 {
     if (Serial.available() > 0)
