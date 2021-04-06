@@ -1,11 +1,15 @@
 #include "twokey.h"
 #include "ui_twokey.h"
+#include "qclipboard.h"
 
 TwoKey::TwoKey(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::TwoKey)
 {
     ui->setupUi(this);
+    ui->twokey_stackedwidget->setCurrentIndex(0);
+    ui->manager_save_button->setVisible(false);
+    ui->manager_generate_button->setVisible(false);
 }
 
 TwoKey::~TwoKey()
@@ -13,3 +17,160 @@ TwoKey::~TwoKey()
     delete ui;
 }
 
+/*
+ _   _    ___     _____ ____    _  _____ ___ ___  _   _
+| \ | |  / \ \   / |_ _/ ___|  / \|_   _|_ _/ _ \| \ | |
+|  \| | / _ \ \ / / | | |  _  / _ \ | |  | | | | |  \| |
+| |\  |/ ___ \ V /  | | |_| |/ ___ \| |  | | |_| | |\  |
+|_| \_/_/   \_\_/  |___\____/_/   \_|_| |___\___/|_| \_|
+
+*/
+
+//                FIRST page LOGIN
+
+void TwoKey::on_login_button_clicked()
+{
+    ui->twokey_stackedwidget->setCurrentIndex(2); // LOGIN BUTTON
+}
+
+void TwoKey::on_createaccount_button_clicked()
+{
+    ui->twokey_stackedwidget->setCurrentIndex(1); // CREATE ACCOUNT BUTTON
+}
+
+//                SECOND page SIGN UP
+
+void TwoKey::on_signup_button_clicked()
+{
+    ui->twokey_stackedwidget->setCurrentIndex(0); // CREATE ACCOUNT BUTTON
+}
+
+void TwoKey::on_signup_login_button_clicked()
+{
+    ui->twokey_stackedwidget->setCurrentIndex(0); // LOGIN BUTTON
+}
+
+//                THIRD page MANAGER
+
+void TwoKey::on_manager_addaccount_button_clicked()
+{
+    ui->twokey_stackedwidget->setCurrentIndex(3); // ADD ACCOUNT BUTTON
+}
+
+//                FORTH page ADD ACCOUNT
+
+void TwoKey::on_addaccount_button_clicked()
+{
+    ui->twokey_stackedwidget->setCurrentIndex(2); // ADD ACCOUNT BUTTON
+}
+
+void TwoKey::on_addaccount_cancel_button_clicked()
+{
+    ui->twokey_stackedwidget->setCurrentIndex(2); // CANCEL BUTTON
+}
+
+/*
+ __  __    _    _   _    _    ____ _____ ____     _____ ____ ___ _____    ___ _   _ _____ ___     ____  _   _ _____ _____ ___  _   _ ____
+|  \/  |  / \  | \ | |  / \  / ___| ____|  _ \   | ____|  _ |_ _|_   _|  |_ _| \ | |  ___/ _ \   | __ )| | | |_   _|_   _/ _ \| \ | / ___|
+| |\/| | / _ \ |  \| | / _ \| |  _|  _| | |_) |  |  _| | | | | |  | |     | ||  \| | |_ | | | |  |  _ \| | | | | |   | || | | |  \| \___ \
+| |  | |/ ___ \| |\  |/ ___ | |_| | |___|  _ <   | |___| |_| | |  | |     | || |\  |  _|| |_| |  | |_) | |_| | | |   | || |_| | |\  |___) |
+|_|  |_/_/   \_|_| \_/_/   \_\____|_____|_| \_\  |_____|____|___| |_|    |___|_| \_|_|   \___/   |____/ \___/  |_|   |_| \___/|_| \_|____/
+*/
+
+//                ONLY    THIRD page MANAGER
+
+void TwoKey::on_manager_edit_button_clicked()    //    EDIT INFO BUTTON
+{
+    ui->manager_website->setReadOnly(false);
+    ui->manager_username->setReadOnly(false);
+    ui->manager_password->setReadOnly(false);
+    ui->manager_generate_button->setVisible(true);
+    ui->manager_generate_button->setEnabled(true);
+    ui->manager_save_button->setVisible(true);
+    ui->manager_save_button->setEnabled(true);
+}
+
+void TwoKey::on_manager_save_button_clicked()    //    SAVE INFO BUTTON
+{
+    ui->manager_website->setReadOnly(true);
+    ui->manager_username->setReadOnly(true);
+    ui->manager_password->setReadOnly(true);
+    ui->manager_generate_button->setVisible(false);
+    ui->manager_generate_button->setEnabled(false);
+    ui->manager_save_button->setEnabled(false);
+    ui->manager_save_button->setVisible(false);
+}
+
+/*
+ ____   _    ____ ______        _____  ____  ____     ____   _____  _    ____  _   _ _____ _____ ___  _   _ ____
+|  _ \ / \  / ___/ ___\ \      / / _ \|  _ \|  _ \   | __ ) / _ \ \/ /  | __ )| | | |_   _|_   _/ _ \| \ | / ___|
+| |_) / _ \ \___ \___ \\ \ /\ / | | | | |_) | | | |  |  _ \| | | \  /   |  _ \| | | | | |   | || | | |  \| \___ \
+|  __/ ___ \ ___) ___) |\ V  V /| |_| |  _ <| |_| |  | |_) | |_| /  \   | |_) | |_| | | |   | || |_| | |\  |___) |
+|_| /_/   \_|____|____/  \_/\_/  \___/|_| \_|____/   |____/ \___/_/\_\  |____/ \___/  |_|   |_| \___/|_| \_|____/
+*/
+
+//                FIRST page LOGIN
+
+void TwoKey::on_login_showpassword_button_clicked()    //     SHOW PASSWORD
+{
+    if(ui->login_password->echoMode() == QLineEdit::Password){
+        ui->login_password->setEchoMode(QLineEdit::Normal);
+    }
+    else{
+        ui->login_password->setEchoMode(QLineEdit::Password);
+    }
+}
+
+
+//                SECOND page SIGN UP
+
+void TwoKey::on_signup_showpassword_button_clicked()    //     SHOW PASSWORD
+{
+    if(ui->signup_password->echoMode() == QLineEdit::Password){
+        ui->signup_password->setEchoMode(QLineEdit::Normal);
+    }
+    else{
+        ui->signup_password->setEchoMode(QLineEdit::Password);
+    }
+}
+
+//                THIRD page MANAGER
+
+void TwoKey::on_manager_showpassword_button_clicked()    //     SHOW PASSWORD
+{
+    if(ui->manager_password->echoMode() == QLineEdit::Password){
+        ui->manager_password->setEchoMode(QLineEdit::Normal);
+    }
+    else{
+        ui->manager_password->setEchoMode(QLineEdit::Password);
+    }
+}
+
+void TwoKey::on_manager_copypassword_button_clicked()    //    COPY PASSWORD TO CLIPBOARD
+{
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(ui->manager_password->text());
+}
+
+void TwoKey::on_manager_generate_button_clicked()    //    GENERATE PASSWORD
+{
+    ui->manager_password->setText("PASSWORDMANAGER");
+}
+
+//                FORTH page ADD ACCOUNT
+
+
+void TwoKey::on_addaccount_showpassword_button_clicked()    //     SHOW PASSWORD
+{
+    if(ui->addaccount_password->echoMode() == QLineEdit::Password){
+        ui->addaccount_password->setEchoMode(QLineEdit::Normal);
+    }
+    else{
+        ui->addaccount_password->setEchoMode(QLineEdit::Password);
+    }
+}
+
+void TwoKey::on_addaccount_generate_button_clicked()    //    GENERATE PASSWORD
+{
+    ui->manager_password->setText("PASSWORDMANAGER");
+}

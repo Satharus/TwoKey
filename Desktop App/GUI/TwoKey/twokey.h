@@ -15,6 +15,42 @@ public:
     TwoKey(QWidget *parent = nullptr);
     ~TwoKey();
 
+private slots:
+    // NAVIGATION
+    void on_login_button_clicked();
+
+    void on_createaccount_button_clicked();
+
+    void on_signup_button_clicked();
+
+    void on_signup_login_button_clicked();
+
+    void on_manager_addaccount_button_clicked();
+
+    void on_addaccount_button_clicked();
+
+    void on_addaccount_cancel_button_clicked();
+
+    // MANAGER EDIT INFO BUTTONS
+    void on_manager_edit_button_clicked();
+
+    void on_manager_save_button_clicked();
+
+    // PASSWORD BOX BUTTONS
+    void on_login_showpassword_button_clicked();
+
+    void on_signup_showpassword_button_clicked();
+
+    void on_manager_showpassword_button_clicked();
+
+    void on_manager_copypassword_button_clicked();
+
+    void on_manager_generate_button_clicked();
+
+    void on_addaccount_showpassword_button_clicked();
+
+    void on_addaccount_generate_button_clicked();
+
 private:
     Ui::TwoKey *ui;
 };
