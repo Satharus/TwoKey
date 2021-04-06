@@ -137,6 +137,12 @@ bool TwoKey::backend_2fa()
     }
 }
 
+bool TwoKey::backend_logout()
+{
+    this->jwt.clear();
+    return true;
+}
+
 /*
  _   _    ___     _____ ____    _  _____ ___ ___  _   _
 | \ | |  / \ \   / |_ _/ ___|  / \|_   _|_ _/ _ \| \ | |

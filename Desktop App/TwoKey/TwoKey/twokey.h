@@ -28,6 +28,7 @@ public:
     bool backend_login(QString, QString);
     bool backend_register(QString, QString, QString, QString, QString, QString);
     bool backend_2fa();
+    bool backend_logout();
 
 private slots:
     // NAVIGATION
