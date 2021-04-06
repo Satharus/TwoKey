@@ -75,12 +75,15 @@ void TwoKey::on_addaccount_cancel_button_clicked()
 | |\/| | / _ \ |  \| | / _ \| |  _|  _| | |_) |  |  _| | | | | |  | |     | ||  \| | |_ | | | |  |  _ \| | | | | |   | || | | |  \| \___ \
 | |  | |/ ___ \| |\  |/ ___ | |_| | |___|  _ <   | |___| |_| | |  | |     | || |\  |  _|| |_| |  | |_) | |_| | | |   | || |_| | |\  |___) |
 |_|  |_/_/   \_|_| \_/_/   \_\____|_____|_| \_\  |_____|____|___| |_|    |___|_| \_|_|   \___/   |____/ \___/  |_|   |_| \___/|_| \_|____/
+
 */
 
 //                ONLY    THIRD page MANAGER
 
 void TwoKey::on_manager_edit_button_clicked()    //    EDIT INFO BUTTON
 {
+    ui->manager_edit_button->setEnabled(false);
+    ui->manager_edit_button->setVisible(false);
     ui->manager_website->setReadOnly(false);
     ui->manager_username->setReadOnly(false);
     ui->manager_password->setReadOnly(false);
@@ -92,6 +95,8 @@ void TwoKey::on_manager_edit_button_clicked()    //    EDIT INFO BUTTON
 
 void TwoKey::on_manager_save_button_clicked()    //    SAVE INFO BUTTON
 {
+    ui->manager_edit_button->setEnabled(true);
+    ui->manager_edit_button->setVisible(true);
     ui->manager_website->setReadOnly(true);
     ui->manager_username->setReadOnly(true);
     ui->manager_password->setReadOnly(true);
@@ -107,6 +112,7 @@ void TwoKey::on_manager_save_button_clicked()    //    SAVE INFO BUTTON
 | |_) / _ \ \___ \___ \\ \ /\ / | | | | |_) | | | |  |  _ \| | | \  /   |  _ \| | | | | |   | || | | |  \| \___ \
 |  __/ ___ \ ___) ___) |\ V  V /| |_| |  _ <| |_| |  | |_) | |_| /  \   | |_) | |_| | | |   | || |_| | |\  |___) |
 |_| /_/   \_|____|____/  \_/\_/  \___/|_| \_|____/   |____/ \___/_/\_\  |____/ \___/  |_|   |_| \___/|_| \_|____/
+
 */
 
 //                FIRST page LOGIN

@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true">QWidget
 {
-	background-color: #ebf2f8;
+	background-color: #eaf1f8;
 	color: #000000;
 }</string>
   </property>
@@ -37,7 +37,7 @@
    <item>
     <widget class="QStackedWidget" name="twokey_stackedwidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="login_page">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -115,11 +115,29 @@
            <item>
             <widget class="QPushButton" name="login_showpassword_button">
              <property name="styleSheet">
-              <string notr="true">	background-color: #00478f;
-	color: #fff;
-	border: 0px;
+              <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #0000;
+	border-style: solid;
+	border-color: #ebf2f8;
 	border-radius: 5px;
 	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
 </string>
              </property>
              <property name="text">
@@ -155,9 +173,8 @@
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-	background-color: #ff9c2b;
-	color: #000000;
-	font-weight: bold;
+	background-color: #003468;
+	color: #ffffff;
 	border-style: solid;
 	border-color: #000000;
 	border-radius: 5px;
@@ -168,14 +185,14 @@
 
 QPushButton::hover
 {
-	background-color: #ffaf5d;
+	background-color: #00478f;
 
 }
 
 
 QPushButton::pressed
 {
-	background-color: #dd872f;
+	background-color: #002041;
 
 }
 </string>
@@ -190,9 +207,8 @@ QPushButton::pressed
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-	background-color: #ff9c2b;
-	color: #000000;
-	font-weight: bold;
+	background-color: #003468;
+	color: #ffffff;
 	border-style: solid;
 	border-color: #000000;
 	border-radius: 5px;
@@ -203,14 +219,14 @@ QPushButton::pressed
 
 QPushButton::hover
 {
-	background-color: #ffaf5d;
+	background-color: #00478f;
 
 }
 
 
 QPushButton::pressed
 {
-	background-color: #dd872f;
+	background-color: #002041;
 
 }
 </string>
@@ -402,11 +418,29 @@ QPushButton::pressed
            <item>
             <widget class="QPushButton" name="signup_showpassword_button">
              <property name="styleSheet">
-              <string notr="true">	background-color: #00478f;
-	color: #fff;
-	border: 0px;
+              <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #0000;
+	border-style: solid;
+	border-color: #ebf2f8;
 	border-radius: 5px;
 	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
 </string>
              </property>
              <property name="text">
@@ -436,9 +470,8 @@ QPushButton::pressed
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-	background-color: #ff9c2b;
-	color: #000000;
-	font-weight: bold;
+	background-color: #003468;
+	color: #ffffff;
 	border-style: solid;
 	border-color: #000000;
 	border-radius: 5px;
@@ -449,14 +482,14 @@ QPushButton::pressed
 
 QPushButton::hover
 {
-	background-color: #ffaf5d;
+	background-color: #00478f;
 
 }
 
 
 QPushButton::pressed
 {
-	background-color: #dd872f;
+	background-color: #002041;
 
 }
 </string>
@@ -471,9 +504,8 @@ QPushButton::pressed
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-	background-color: #ff9c2b;
-	color: #000000;
-	font-weight: bold;
+	background-color: #003468;
+	color: #ffffff;
 	border-style: solid;
 	border-color: #000000;
 	border-radius: 5px;
@@ -484,14 +516,14 @@ QPushButton::pressed
 
 QPushButton::hover
 {
-	background-color: #ffaf5d;
+	background-color: #00478f;
 
 }
 
 
 QPushButton::pressed
 {
-	background-color: #dd872f;
+	background-color: #002041;
 
 }
 </string>
@@ -543,9 +575,9 @@ QPushButton::pressed
 
 
 QListWidget::item:selected{
-	color: #ffffff;
+	color: #000000;
 	font-weight: bold;
-	background-color: #002952;
+	background-color: #a6a6a6;
    	border-style: solid;
 	border-color: #141414;
 	border-radius: 5px;
@@ -565,7 +597,7 @@ QListWidget::item:!selected{
 
 QListWidget::item:!selected:hover{
 	color: #000000;
-	background-color: #ababab;
+	background-color: #b3b3b3;
 	border-style: solid;
 	border-color: #141414;
 	border-radius: 5px;
@@ -594,9 +626,8 @@ QListWidget::item:!selected:hover{
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-	background-color: #ff9c2b;
-	color: #000000;
-	font-weight: bold;
+	background-color: #003468;
+	color: #ffffff;
 	border-style: solid;
 	border-color: #000000;
 	border-radius: 5px;
@@ -607,14 +638,14 @@ QListWidget::item:!selected:hover{
 
 QPushButton::hover
 {
-	background-color: #ffaf5d;
+	background-color: #00478f;
 
 }
 
 
 QPushButton::pressed
 {
-	background-color: #dd872f;
+	background-color: #002041;
 
 }
 </string>
@@ -663,9 +694,9 @@ QPushButton::pressed
             <widget class="QComboBox" name="manager_accounts_combobox">
              <property name="styleSheet">
               <string notr="true">QComboBox{
-	background-color: #002952;
-	color: #ffffff;
-	selection-color: #000000;
+	background-color: #bfbfbf;
+	color: #0000;
+	selection-color: #0000;
 	selection-background-color: #bfbfbf;
 	border-style: solid;
 	border-color: #141414;
@@ -803,11 +834,29 @@ QPushButton::pressed
              <item>
               <widget class="QPushButton" name="manager_showpassword_button">
                <property name="styleSheet">
-                <string notr="true">	background-color: #00478f;
-	color: #fff;
-	border: 0px;
+                <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #0000;
+	border-style: solid;
+	border-color: #ebf2f8;
 	border-radius: 5px;
 	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
 </string>
                </property>
                <property name="text">
@@ -818,11 +867,29 @@ QPushButton::pressed
              <item>
               <widget class="QPushButton" name="manager_copypassword_button">
                <property name="styleSheet">
-                <string notr="true">	background-color: #00478f;
-	color: #fff;
-	border: 0px;
+                <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #0000;
+	border-style: solid;
+	border-color: #ebf2f8;
 	border-radius: 5px;
 	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
 </string>
                </property>
                <property name="text">
@@ -836,11 +903,29 @@ QPushButton::pressed
                 <bool>false</bool>
                </property>
                <property name="styleSheet">
-                <string notr="true">	background-color: #00478f;
-	color: #fff;
-	border: 0px;
+                <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #0000;
+	border-style: solid;
+	border-color: #ebf2f8;
 	border-radius: 5px;
 	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
 </string>
                </property>
                <property name="text">
@@ -871,9 +956,8 @@ QPushButton::pressed
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-	background-color: #ff9c2b;
-	color: #000000;
-	font-weight: bold;
+	background-color: #003468;
+	color: #ffffff;
 	border-style: solid;
 	border-color: #000000;
 	border-radius: 5px;
@@ -884,14 +968,14 @@ QPushButton::pressed
 
 QPushButton::hover
 {
-	background-color: #ffaf5d;
+	background-color: #00478f;
 
 }
 
 
 QPushButton::pressed
 {
-	background-color: #dd872f;
+	background-color: #002041;
 
 }
 </string>
@@ -906,9 +990,8 @@ QPushButton::pressed
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-	background-color: #ff9c2b;
-	color: #000000;
-	font-weight: bold;
+	background-color: #003468;
+	color: #ffffff;
 	border-style: solid;
 	border-color: #000000;
 	border-radius: 5px;
@@ -919,14 +1002,14 @@ QPushButton::pressed
 
 QPushButton::hover
 {
-	background-color: #ffaf5d;
+	background-color: #00478f;
 
 }
 
 
 QPushButton::pressed
 {
-	background-color: #dd872f;
+	background-color: #002041;
 
 }
 </string>
@@ -1062,11 +1145,29 @@ QPushButton::pressed
            <item>
             <widget class="QPushButton" name="addaccount_showpassword_button">
              <property name="styleSheet">
-              <string notr="true">	background-color: #00478f;
-	color: #fff;
-	border: 0px;
+              <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #0000;
+	border-style: solid;
+	border-color: #ebf2f8;
 	border-radius: 5px;
 	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
 </string>
              </property>
              <property name="text">
@@ -1077,11 +1178,29 @@ QPushButton::pressed
            <item>
             <widget class="QPushButton" name="addaccount_generate_button">
              <property name="styleSheet">
-              <string notr="true">	background-color: #00478f;
-	color: #fff;
-	border: 0px;
+              <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #0000;
+	border-style: solid;
+	border-color: #ebf2f8;
 	border-radius: 5px;
 	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
 </string>
              </property>
              <property name="text">
@@ -1111,9 +1230,8 @@ QPushButton::pressed
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-	background-color: #ff9c2b;
-	color: #000000;
-	font-weight: bold;
+	background-color: #003468;
+	color: #ffffff;
 	border-style: solid;
 	border-color: #000000;
 	border-radius: 5px;
@@ -1124,14 +1242,14 @@ QPushButton::pressed
 
 QPushButton::hover
 {
-	background-color: #ffaf5d;
+	background-color: #00478f;
 
 }
 
 
 QPushButton::pressed
 {
-	background-color: #dd872f;
+	background-color: #002041;
 
 }
 </string>
@@ -1146,9 +1264,8 @@ QPushButton::pressed
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
-	background-color: #ff9c2b;
-	color: #000000;
-	font-weight: bold;
+	background-color: #003468;
+	color: #ffffff;
 	border-style: solid;
 	border-color: #000000;
 	border-radius: 5px;
@@ -1159,14 +1276,14 @@ QPushButton::pressed
 
 QPushButton::hover
 {
-	background-color: #ffaf5d;
+	background-color: #00478f;
 
 }
 
 
 QPushButton::pressed
 {
-	background-color: #dd872f;
+	background-color: #002041;
 
 }
 </string>
