@@ -17,15 +17,17 @@ TwoKey::TwoKey(QWidget *parent, USB_communicator *usb_comm) :
     ui->twokey_stackedwidget->setCurrentIndex(0);
     ui->manager_save_button->setVisible(false);
     ui->manager_generate_button->setVisible(false);
+    returnShortcut = new QShortcut(QKeySequence("Return"), ui->login_page);
+    QObject::connect(returnShortcut, SIGNAL(activated()), ui->login_button, SLOT(click()));
 }
 
 TwoKey::~TwoKey()
 {
+    delete usb_comm;
+    delete returnShortcut;
     delete ui;
 }
 
-// https://amin-ahmadi.com/2016/01/17/how-to-send-and-receive-json-requests-in-qt/
-// https://stackoverflow.com/questions/13302236/qt-simple-post-request
 bool TwoKey::backend_login(QString email, QString password)
 {
     QNetworkRequest request(QUrl("https://64.227.127.192/login"));
@@ -160,6 +162,12 @@ void TwoKey::on_login_button_clicked()
                       ui->login_password->text()))
     {
         ui->twokey_stackedwidget->setCurrentIndex(2); // LOGIN BUTTON
+        ui->login_email->clear();
+        ui->login_password->clear();
+    }
+    else
+    {
+        ui->login_password->clear();
     }
 }
 
@@ -180,10 +188,16 @@ void TwoKey::on_register_button_clicked()
                          ui->register_serial->text()))
     {
         ui->twokey_stackedwidget->setCurrentIndex(0); // CREATE ACCOUNT BUTTON
+        ui->register_firstname->clear();
+        ui->register_lastname->clear();
+        ui->register_email->clear();
+        ui->register_username->clear();
+        ui->register_password->clear();
+        ui->register_serial->clear();
     }
 }
 
-void TwoKey::on_register_login_button_clicked()
+void TwoKey::on_register_back_button_clicked()
 {
     ui->twokey_stackedwidget->setCurrentIndex(0); // LOGIN BUTTON
 }
@@ -323,4 +337,21 @@ void TwoKey::on_addaccount_showpassword_button_clicked()    //     SHOW PASSWORD
 void TwoKey::on_addaccount_generate_button_clicked()    //    GENERATE PASSWORD
 {
     ui->manager_password->setText("PASSWORDMANAGER");
+}
+
+void TwoKey::changeStatus()
+{
+    this->usb_comm->checkForToken();
+    if (usb_comm->getTokenStatus())
+    {
+        //Set to green
+        this->ui->statusLabel->setStyleSheet("background: rgb(65,157,60)");
+        this->ui->statusLabel->setToolTip("TwoKey's token is connected.");
+    }
+    else
+    {
+        //Set to red
+        this->ui->statusLabel->setStyleSheet("background: rgb(157,60,60)");
+        this->ui->statusLabel->setToolTip("TwoKey's token is disconnected.");
+    }
 }

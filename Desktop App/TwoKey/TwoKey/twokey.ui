@@ -22,10 +22,20 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
+    <widget class="QLabel" name="statusLabel">
+     <property name="toolTip">
+      <string/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLabel" name="twokey">
      <property name="styleSheet">
       <string notr="true">	background-color: transparent;
-	color: #0000;
+	color: #000000;
 
 </string>
      </property>
@@ -49,7 +59,7 @@
             <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
            </property>
@@ -81,7 +91,7 @@
             <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
            </property>
@@ -114,11 +124,14 @@
            </item>
            <item>
             <widget class="QPushButton" name="login_showpassword_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
 	background-color: #ebf2f8;
-	color: #0000;
+	color: #000000;
 	border-style: solid;
 	border-color: #ebf2f8;
 	border-radius: 5px;
@@ -170,6 +183,9 @@ QPushButton::pressed
                <height>29</height>
               </size>
              </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
@@ -200,10 +216,19 @@ QPushButton::pressed
              <property name="text">
               <string>Login</string>
              </property>
+             <property name="autoDefault">
+              <bool>false</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
             </widget>
            </item>
            <item>
             <widget class="QPushButton" name="createaccount_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
@@ -254,7 +279,7 @@ QPushButton::pressed
               <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
              </property>
@@ -286,7 +311,7 @@ QPushButton::pressed
               <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
              </property>
@@ -320,7 +345,7 @@ QPushButton::pressed
             <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
            </property>
@@ -352,7 +377,7 @@ QPushButton::pressed
             <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
            </property>
@@ -384,7 +409,7 @@ QPushButton::pressed
             <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
            </property>
@@ -401,7 +426,7 @@ QPushButton::pressed
               <string notr="true">QLineEdit
 {
 	background-color: #bfbfbf;
-	color: #000000;
+	color: #00000000;
 	border-style: solid;
 	border-color: #141414;
 	border-radius: 5px;
@@ -421,7 +446,7 @@ QPushButton::pressed
               <string notr="true">QPushButton
 {
 	background-color: #ebf2f8;
-	color: #0000;
+	color: #000000;
 	border-style: solid;
 	border-color: #ebf2f8;
 	border-radius: 5px;
@@ -456,7 +481,7 @@ QPushButton::pressed
             <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
            </property>
@@ -498,14 +523,14 @@ QPushButton::pressed
          <item>
           <layout class="QHBoxLayout" name="register_buttons_layout">
            <item>
-            <widget class="QPushButton" name="register_login_button">
+            <widget class="QPushButton" name="register_back_button">
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
 	background-color: #003468;
 	color: #ffffff;
 	border-style: solid;
-	border-color: #000000;
+	border-color: #00000000;
 	border-radius: 5px;
 	padding: 5px;
 
@@ -539,7 +564,7 @@ QPushButton::pressed
 	background-color: #003468;
 	color: #ffffff;
 	border-style: solid;
-	border-color: #000000;
+	border-color: #00000000;
 	border-radius: 5px;
 	padding: 5px;
 
@@ -617,7 +642,7 @@ QPushButton::pressed
               <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 
 }
 </string>
@@ -731,7 +756,7 @@ QPushButton::pressed
               <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 
 }
 </string>
@@ -747,7 +772,7 @@ QPushButton::pressed
               <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
              </property>
@@ -761,8 +786,8 @@ QPushButton::pressed
              <property name="styleSheet">
               <string notr="true">QComboBox{
 	background-color: #bfbfbf;
-	color: #0000;
-	selection-color: #0000;
+	color: #000000;
+	selection-color: #000000;
 	selection-background-color: #bfbfbf;
 	border-style: solid;
 	border-color: #141414;
@@ -793,7 +818,7 @@ QPushButton::pressed
               <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
              </property>
@@ -828,7 +853,7 @@ QPushButton::pressed
               <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
              </property>
@@ -863,7 +888,7 @@ QPushButton::pressed
               <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
              </property>
@@ -903,7 +928,7 @@ QPushButton::pressed
                 <string notr="true">QPushButton
 {
 	background-color: #ebf2f8;
-	color: #0000;
+	color: #000000;
 	border-style: solid;
 	border-color: #ebf2f8;
 	border-radius: 5px;
@@ -936,7 +961,7 @@ QPushButton::pressed
                 <string notr="true">QPushButton
 {
 	background-color: #ebf2f8;
-	color: #0000;
+	color: #000000;
 	border-style: solid;
 	border-color: #ebf2f8;
 	border-radius: 5px;
@@ -972,7 +997,7 @@ QPushButton::pressed
                 <string notr="true">QPushButton
 {
 	background-color: #ebf2f8;
-	color: #0000;
+	color: #000000;
 	border-style: solid;
 	border-color: #ebf2f8;
 	border-radius: 5px;
@@ -1101,7 +1126,7 @@ QPushButton::pressed
             <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
            </property>
@@ -1116,7 +1141,7 @@ QPushButton::pressed
             <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
            </property>
@@ -1147,7 +1172,7 @@ QPushButton::pressed
             <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
            </property>
@@ -1178,7 +1203,7 @@ QPushButton::pressed
             <string notr="true">QLabel
 {
 	background-color: transparent;
-	color: #0000;
+	color: #000000;
 }
 </string>
            </property>
@@ -1214,7 +1239,7 @@ QPushButton::pressed
               <string notr="true">QPushButton
 {
 	background-color: #ebf2f8;
-	color: #0000;
+	color: #000000;
 	border-style: solid;
 	border-color: #ebf2f8;
 	border-radius: 5px;
@@ -1247,7 +1272,7 @@ QPushButton::pressed
               <string notr="true">QPushButton
 {
 	background-color: #ebf2f8;
-	color: #0000;
+	color: #000000;
 	border-style: solid;
 	border-color: #ebf2f8;
 	border-radius: 5px;

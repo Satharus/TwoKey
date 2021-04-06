@@ -5,8 +5,9 @@
 #include "usb_communicator.h"
 
 #include <QSocketNotifier>
-#include <QClipboard>
 #include <QMainWindow>
+#include <QClipboard>
+#include <QShortcut>
 #include <QtNetwork>
 #include <iostream>
 #include <QWidget>
@@ -38,7 +39,7 @@ private slots:
 
     void on_register_button_clicked();
 
-    void on_register_login_button_clicked();
+    void on_register_back_button_clicked();
 
     void on_manager_addaccount_button_clicked();
 
@@ -68,10 +69,13 @@ private slots:
 
     void on_addaccount_generate_button_clicked();
 
+    void changeStatus();
+
 private:
     Ui::TwoKey *ui;
     QString jwt;
     USB_communicator *usb_comm;
+    QShortcut *returnShortcut;
     QString tokenChallengeResponse;
 };
 #endif // TWOKEY_H
