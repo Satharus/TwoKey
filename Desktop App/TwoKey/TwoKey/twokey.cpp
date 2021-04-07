@@ -14,9 +14,11 @@ TwoKey::TwoKey(QWidget *parent, USB_communicator *usb_comm) :
     this->usb_comm->checkForToken();
 
 
-    ui->twokey_stackedwidget->setCurrentIndex(0);
+    ui->twokey_stackedwidget->setCurrentIndex(2);
     ui->manager_save_button->setVisible(false);
     ui->manager_generate_button->setVisible(false);
+    ui->manager_logout_button->setVisible(false);
+    ui->manager_logout_button->setEnabled(false);
     returnShortcut = new QShortcut(QKeySequence("Return"), ui->login_page);
     QObject::connect(returnShortcut, SIGNAL(activated()), ui->login_button, SLOT(click()));
 }
@@ -353,5 +355,17 @@ void TwoKey::changeStatus()
         //Set to red
         this->ui->statusLabel->setStyleSheet("background: rgb(157,60,60)");
         this->ui->statusLabel->setToolTip("TwoKey's token is disconnected.");
+    }
+}
+
+void TwoKey::on_twokey_stackedwidget_currentChanged(int arg1)
+{
+    if(arg1 == 2){
+        ui->manager_logout_button->setVisible(true);
+        ui->manager_logout_button->setEnabled(true);
+    }
+    else{
+        ui->manager_logout_button->setVisible(false);
+        ui->manager_logout_button->setEnabled(false);
     }
 }
