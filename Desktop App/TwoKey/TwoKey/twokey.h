@@ -11,7 +11,7 @@
 #include <QtNetwork>
 #include <iostream>
 #include <QWidget>
-#include <QBitmap>
+#include <QPixmap>
 #include <QDebug>
 
 

@@ -14,7 +14,7 @@ TwoKey::TwoKey(QWidget *parent, USB_communicator *usb_comm) :
     this->usb_comm->checkForToken();
 
 
-    ui->twokey_stackedwidget->setCurrentIndex(2);
+    ui->twokey_stackedwidget->setCurrentIndex(0);
     ui->manager_save_button->setVisible(false);
     ui->manager_generate_button->setVisible(false);
     ui->manager_logout_button->setVisible(false);
@@ -347,14 +347,21 @@ void TwoKey::changeStatus()
     if (usb_comm->getTokenStatus())
     {
         //Set to green
-        this->ui->statusLabel->setStyleSheet("background: rgb(65,157,60)");
+        ui->statusLabel->setPixmap(QPixmap("://Icons/StatusIcons/greenStatusIconCircle.png").scaled(ui->statusLabel->maximumWidth(),
+                                                                                     ui->statusLabel->maximumHeight(),
+                                                                                     Qt::KeepAspectRatio));
         this->ui->statusLabel->setToolTip("TwoKey's token is connected.");
     }
     else
     {
         //Set to red
-        this->ui->statusLabel->setStyleSheet("background: rgb(157,60,60)");
+        ui->statusLabel->setPixmap(QPixmap("://Icons/StatusIcons/redStatusIconCircle.png").scaled(ui->statusLabel->maximumWidth(),
+                                                                                     ui->statusLabel->maximumHeight(),
+                                                                                     Qt::KeepAspectRatio));
         this->ui->statusLabel->setToolTip("TwoKey's token is disconnected.");
+        backend_logout();
+        ui->twokey_stackedwidget->setCurrentIndex(0);
+
     }
 }
 
