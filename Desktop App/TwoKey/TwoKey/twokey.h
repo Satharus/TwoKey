@@ -11,6 +11,7 @@
 #include <QtNetwork>
 #include <iostream>
 #include <QWidget>
+#include <QBitmap>
 #include <QDebug>
 
 
@@ -70,6 +71,8 @@ private slots:
     void on_addaccount_generate_button_clicked();
 
     void changeStatus();
+
+    void on_twokey_stackedwidget_currentChanged(int arg1);
 
 private:
     Ui::TwoKey *ui;

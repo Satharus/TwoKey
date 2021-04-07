@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>541</width>
-    <height>465</height>
+    <height>482</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,34 +20,154 @@
 	color: #000000;
 }</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_6">
    <item>
-    <widget class="QLabel" name="statusLabel">
-     <property name="toolTip">
-      <string/>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="twokey">
-     <property name="styleSheet">
-      <string notr="true">	background-color: transparent;
+    <layout class="QHBoxLayout" name="twokey_status_logout_layout">
+     <item>
+      <layout class="QVBoxLayout" name="status_logout_layout">
+       <item>
+        <widget class="QLabel" name="statusLabel">
+         <property name="minimumSize">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="manager_logout_button">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string>Log Out.</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+         </property>
+         <property name="text">
+          <string>&lt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer name="twokey_status_logout_spacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>36</width>
+         <height>17</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <spacer name="twokey_status_logout_spacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="twokey">
+       <property name="styleSheet">
+        <string notr="true">	background-color: transparent;
 	color: #000000;
 
 </string>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt;🔑 TwoKey&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt;🔑 TwoKey&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="twokey_spacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <spacer name="twokey_spacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>34</width>
+         <height>17</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QStackedWidget" name="twokey_stackedwidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="login_page">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -442,6 +562,9 @@ QPushButton::pressed
            </item>
            <item>
             <widget class="QPushButton" name="register_showpassword_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
@@ -524,6 +647,9 @@ QPushButton::pressed
           <layout class="QHBoxLayout" name="register_buttons_layout">
            <item>
             <widget class="QPushButton" name="register_back_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
@@ -558,6 +684,9 @@ QPushButton::pressed
            </item>
            <item>
             <widget class="QPushButton" name="register_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
@@ -598,40 +727,6 @@ QPushButton::pressed
      </widget>
      <widget class="QWidget" name="manager_page">
       <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <widget class="QPushButton" name="manager_logout_button">
-         <property name="styleSheet">
-          <string notr="true">QPushButton
-{
-	background-color: #003468;
-	color: #ffffff;
-	border-style: solid;
-	border-color: #000000;
-	border-radius: 5px;
-	padding: 5px;
-
-}
-
-
-QPushButton::hover
-{
-	background-color: #00478f;
-
-}
-
-
-QPushButton::pressed
-{
-	background-color: #002041;
-
-}
-</string>
-         </property>
-         <property name="text">
-          <string>Log Out</string>
-         </property>
-        </widget>
-       </item>
        <item>
         <layout class="QHBoxLayout" name="manager_layout">
          <item>
@@ -714,6 +809,9 @@ QListWidget::item:!selected:hover{
            </item>
            <item>
             <widget class="QPushButton" name="manager_addaccount_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
@@ -924,6 +1022,9 @@ QPushButton::pressed
              </item>
              <item>
               <widget class="QPushButton" name="manager_showpassword_button">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton
 {
@@ -957,6 +1058,9 @@ QPushButton::pressed
              </item>
              <item>
               <widget class="QPushButton" name="manager_copypassword_button">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton
 {
@@ -992,6 +1096,9 @@ QPushButton::pressed
               <widget class="QPushButton" name="manager_generate_button">
                <property name="enabled">
                 <bool>false</bool>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton
@@ -1044,6 +1151,9 @@ QPushButton::pressed
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
@@ -1078,6 +1188,9 @@ QPushButton::pressed
            </item>
            <item>
             <widget class="QPushButton" name="manager_edit_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
@@ -1318,6 +1431,9 @@ QPushButton::pressed
           <layout class="QHBoxLayout" name="addaccount_buttons_layout">
            <item>
             <widget class="QPushButton" name="addaccount_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
@@ -1352,6 +1468,9 @@ QPushButton::pressed
            </item>
            <item>
             <widget class="QPushButton" name="addaccount_cancel_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
              <property name="styleSheet">
               <string notr="true">QPushButton
 {
