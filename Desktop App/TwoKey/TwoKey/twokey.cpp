@@ -1,6 +1,8 @@
 #include "twokey.h"
 #include "ui_twokey.h"
 
+#include <QThread>
+
 TwoKey::TwoKey(QWidget *parent, USB_communicator *usb_comm) :
     QWidget(parent)
     , ui(new Ui::TwoKey)
@@ -13,12 +15,22 @@ TwoKey::TwoKey(QWidget *parent, USB_communicator *usb_comm) :
     this->usb_comm->usb_notif->checkDeviceID();
     this->usb_comm->checkForToken();
 
+    this->browserExtensionThread = new QThread();
+    this->browserExtensionComm = new BrowserExtensionCommunicator();
+
+    browserExtensionComm->moveToThread(browserExtensionThread);
+
+    connect(browserExtensionThread, SIGNAL(started()), browserExtensionComm, SLOT(startServer()));
+    connect(browserExtensionThread, SIGNAL(finished()), browserExtensionComm, SLOT(stopServer()));
+    browserExtensionThread->start();
+
 
     ui->twokey_stackedwidget->setCurrentIndex(0);
     ui->manager_save_button->setVisible(false);
     ui->manager_generate_button->setVisible(false);
     ui->manager_logout_button->setVisible(false);
     ui->manager_logout_button->setEnabled(false);
+
     returnShortcut = new QShortcut(QKeySequence("Return"), ui->login_page);
     QObject::connect(returnShortcut, SIGNAL(activated()), ui->login_button, SLOT(click()));
 }

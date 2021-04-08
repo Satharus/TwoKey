@@ -2,6 +2,7 @@
 #define TWOKEY_H
 
 
+#include "browser_extension_communicator.h"
 #include "usb_communicator.h"
 
 #include <QSocketNotifier>
@@ -76,8 +77,13 @@ private slots:
 
 private:
     Ui::TwoKey *ui;
+
     QString jwt;
     USB_communicator *usb_comm;
+
+    QThread *browserExtensionThread;
+    BrowserExtensionCommunicator *browserExtensionComm;
+
     QShortcut *returnShortcut;
     QString tokenChallengeResponse;
 };

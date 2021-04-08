@@ -6,8 +6,6 @@
 
 int main(int argc, char *argv[])
 {
-
-
     QApplication twoKey(argc, argv);
 
     USB_communicator *usb_comm = new USB_communicator();

@@ -7,17 +7,25 @@ CONFIG += c++11
 linux {
     LIBS += -ludev
 }
+
+windows {
+    LIBS += -lws2_32
+}
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    browser_extension_communicator.cpp \
     main.cpp \
+    sandbird.c \
     twokey.cpp \
     usb_communicator.cpp \
     usb_event_handler.cpp
 
 HEADERS += \
+    browser_extension_communicator.h \
+    sandbird.h \
     twokey.h \
     usb_communicator.h \
     usb_event_handler.h
