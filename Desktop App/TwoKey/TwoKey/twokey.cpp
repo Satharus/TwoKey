@@ -1,8 +1,6 @@
 #include "twokey.h"
 #include "ui_twokey.h"
 
-#include <QThread>
-
 TwoKey::TwoKey(QWidget *parent, USB_communicator *usb_comm) :
     QWidget(parent)
     , ui(new Ui::TwoKey)
@@ -16,12 +14,17 @@ TwoKey::TwoKey(QWidget *parent, USB_communicator *usb_comm) :
     this->usb_comm->checkForToken();
 
     this->browserExtensionThread = new QThread();
-    this->browserExtensionComm = new BrowserExtensionCommunicator();
+
+    this->emitter = new BrowserExtensionCommunicatorEmitter();
+    this->browserExtensionComm = new BrowserExtensionCommunicator(emitter);
 
     browserExtensionComm->moveToThread(browserExtensionThread);
 
     connect(browserExtensionThread, SIGNAL(started()), browserExtensionComm, SLOT(startServer()));
     connect(browserExtensionThread, SIGNAL(finished()), browserExtensionComm, SLOT(stopServer()));
+
+    connect(emitter, SIGNAL(testSignal(QString)), this, SLOT(messageBoxTest(QString)));
+
     browserExtensionThread->start();
 
 
@@ -387,4 +390,9 @@ void TwoKey::on_twokey_stackedwidget_currentChanged(int arg1)
         ui->manager_logout_button->setVisible(false);
         ui->manager_logout_button->setEnabled(false);
     }
+}
+
+void TwoKey::messageBoxTest(QString pwd)
+{
+    QMessageBox::information(this, "Data recieved from browser extension", "Adam Zahran is based and redpilled\n The Recieved password is " + QString(pwd));
 }

@@ -1,11 +1,14 @@
 #include "browser_extension_communicator.h"
 
-BrowserExtensionCommunicator::BrowserExtensionCommunicator() :
+BrowserExtensionCommunicator::BrowserExtensionCommunicator(BrowserExtensionCommunicatorEmitter *emitter) :
     QObject()
 {
     memset(&opt, 0, sizeof(opt));
     opt.port = "8000";
     opt.handler = event_handler;
+
+    this->emitter = emitter;
+    opt.udata = this->emitter;
 
     server = sb_new_server(&opt);
 
@@ -39,7 +42,8 @@ void BrowserExtensionCommunicator::stopServer()
     sb_close_server(server);
 }
 
-int BrowserExtensionCommunicator::event_handler(sb_Event *e) {
+int BrowserExtensionCommunicator::event_handler(sb_Event *e)
+{
   if (e->type == SB_EV_REQUEST)
   {
     char *passwd = reinterpret_cast<char*>(malloc(20));
@@ -64,6 +68,8 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e) {
         sb_send_status(e->stream, 200, "OK");
         sb_send_header(e->stream, "Content-Type", "text/plain");
         sb_writef(e->stream, "user:omar;pass=lol");
+        BrowserExtensionCommunicatorEmitter* emitter = (BrowserExtensionCommunicatorEmitter*)e->udata;
+        emitter->emitSignal(QString(passwd));
     }
     else
     {
@@ -76,5 +82,9 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e) {
   return SB_RES_OK;
 }
 
+BrowserExtensionCommunicatorEmitter::BrowserExtensionCommunicatorEmitter(){}
 
-
+void BrowserExtensionCommunicatorEmitter::emitSignal(QString pwd)
+{
+    emit testSignal(pwd);
+}

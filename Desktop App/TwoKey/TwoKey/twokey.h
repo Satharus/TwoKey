@@ -6,15 +6,16 @@
 #include "usb_communicator.h"
 
 #include <QSocketNotifier>
+#include <QMessageBox>
 #include <QMainWindow>
 #include <QClipboard>
 #include <QShortcut>
 #include <QtNetwork>
 #include <iostream>
 #include <QWidget>
+#include <QThread>
 #include <QPixmap>
 #include <QDebug>
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class TwoKey; }
@@ -75,6 +76,8 @@ private slots:
 
     void on_twokey_stackedwidget_currentChanged(int arg1);
 
+    void messageBoxTest(QString pwd);
+
 private:
     Ui::TwoKey *ui;
 
@@ -83,7 +86,7 @@ private:
 
     QThread *browserExtensionThread;
     BrowserExtensionCommunicator *browserExtensionComm;
-
+    BrowserExtensionCommunicatorEmitter *emitter;
     QShortcut *returnShortcut;
     QString tokenChallengeResponse;
 };
