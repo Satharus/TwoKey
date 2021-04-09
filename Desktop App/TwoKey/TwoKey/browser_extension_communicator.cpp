@@ -1,5 +1,9 @@
 #include "browser_extension_communicator.h"
 
+
+/* Test url
+ * http://localhost:8000/?masterpwd=lololol&url=test.com&email=lol@lol.net&pwd=lelelel
+ */
 BrowserExtensionCommunicator::BrowserExtensionCommunicator(BrowserExtensionCommunicatorEmitter *emitter) :
     QObject()
 {
@@ -22,6 +26,7 @@ BrowserExtensionCommunicator::~BrowserExtensionCommunicator()
 {
     if (running) this->stopServer();
     free(server);
+    delete emitter;
 }
 
 void BrowserExtensionCommunicator::startServer()
@@ -55,7 +60,7 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e)
     char *username = reinterpret_cast<char*>(malloc(20));
     sb_get_var(e->stream,"email",username,20);
 
-     char *Pwd = reinterpret_cast<char*>(malloc(20));
+    char *Pwd = reinterpret_cast<char*>(malloc(20));
     sb_get_var(e->stream,"pwd",Pwd,20);
 
     qDebug() << e->method << "-" << e->path;

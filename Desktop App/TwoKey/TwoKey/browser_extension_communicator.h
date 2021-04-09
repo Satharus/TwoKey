@@ -31,8 +31,6 @@ public slots:
     void startServer();
     void stopServer();
 
-signals:
-
 private:
     sb_Options opt;
     sb_Server *server;
