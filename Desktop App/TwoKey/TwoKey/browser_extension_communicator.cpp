@@ -16,7 +16,8 @@ BrowserExtensionCommunicator::BrowserExtensionCommunicator(BrowserExtensionCommu
 
     server = sb_new_server(&opt);
 
-    if (!server) {
+    if (!server)
+    {
       fprintf(stderr, "failed to initialize server\n");
       exit(EXIT_FAILURE);
     }
@@ -68,7 +69,7 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e)
     qDebug() << "url:\t" << url;
     qDebug() << "email:\t" << username;
     qDebug() << "pwd:\t" << Pwd;
-    if (!strcmp(passwd, "lololol"))
+    if (!strcmp(passwd, "test1234"))
     {
         sb_send_status(e->stream, 200, "OK");
         sb_send_header(e->stream, "Content-Type", "text/plain");
@@ -87,9 +88,13 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e)
   return SB_RES_OK;
 }
 
-BrowserExtensionCommunicatorEmitter::BrowserExtensionCommunicatorEmitter(){}
+BrowserExtensionCommunicatorEmitter::BrowserExtensionCommunicatorEmitter(BackendClient *backendClient)
+{
+    this->backendClient = backendClient;
+}
 
 void BrowserExtensionCommunicatorEmitter::emitSignal(QString pwd)
 {
-    emit testSignal(pwd);
+    this->backendClient->login("newuser@gmail.com", pwd);
+    emit testSignal(QString(this->backendClient->getJwt()));
 }

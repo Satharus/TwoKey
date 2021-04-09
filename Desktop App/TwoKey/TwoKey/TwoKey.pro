@@ -16,6 +16,7 @@ windows {
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    backend_client.cpp \
     browser_extension_communicator.cpp \
     main.cpp \
     sandbird.c \
@@ -24,6 +25,7 @@ SOURCES += \
     usb_event_handler.cpp
 
 HEADERS += \
+    backend_client.h \
     browser_extension_communicator.h \
     sandbird.h \
     twokey.h \

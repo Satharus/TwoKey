@@ -4,13 +4,12 @@
 
 #include "browser_extension_communicator.h"
 #include "usb_communicator.h"
+#include "backend_client.h"
 
-#include <QSocketNotifier>
 #include <QMessageBox>
 #include <QMainWindow>
 #include <QClipboard>
 #include <QShortcut>
-#include <QtNetwork>
 #include <iostream>
 #include <QWidget>
 #include <QThread>
@@ -26,13 +25,8 @@ class TwoKey : public QWidget
     Q_OBJECT
 
 public:
-    TwoKey(QWidget *parent = nullptr, USB_communicator *usb_comm = nullptr);
+    TwoKey(QWidget *parent = nullptr, USBCommunicator *usbComm = nullptr);
     ~TwoKey();
-
-    bool backend_login(QString, QString);
-    bool backend_register(QString, QString, QString, QString, QString, QString);
-    bool backend_2fa();
-    bool backend_logout();
 
 private slots:
     // NAVIGATION
@@ -80,14 +74,13 @@ private slots:
 
 private:
     Ui::TwoKey *ui;
+    USBCommunicator *usbComm;
 
-    QString jwt;
-    USB_communicator *usb_comm;
+    BackendClient *backendClient;
 
     QThread *browserExtensionThread;
     BrowserExtensionCommunicator *browserExtensionComm;
     BrowserExtensionCommunicatorEmitter *emitter;
     QShortcut *returnShortcut;
-    QString tokenChallengeResponse;
 };
 #endif // TWOKEY_H

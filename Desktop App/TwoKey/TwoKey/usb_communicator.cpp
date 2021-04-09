@@ -1,6 +1,6 @@
 #include "usb_communicator.h"
 
-USB_communicator::USB_communicator()
+USBCommunicator::USBCommunicator()
 {
     this->usb_notif = new USBEventHandler();
     this->token = new QSerialPort();
@@ -11,13 +11,13 @@ USB_communicator::USB_communicator()
     response = "";
 }
 
-USB_communicator::~USB_communicator()
+USBCommunicator::~USBCommunicator()
 {
     delete token;
     delete usb_notif;
 }
 
-void USB_communicator::writeToToken(const char* message, int waitTime, bool flushAfterWrite)
+void USBCommunicator::writeToToken(const char* message, int waitTime, bool flushAfterWrite)
 {
     if (!token->isOpen()) return;
     strncpy(this->message, message, 16);
@@ -27,7 +27,7 @@ void USB_communicator::writeToToken(const char* message, int waitTime, bool flus
         token->flush();
 }
 
-QString USB_communicator::readFromToken(int waitTime, bool flushAfterRead)
+QString USBCommunicator::readFromToken(int waitTime, bool flushAfterRead)
 {
     if (!token->isOpen()) return "";
     token->waitForReadyRead(waitTime);
@@ -37,21 +37,21 @@ QString USB_communicator::readFromToken(int waitTime, bool flushAfterRead)
     return response;
 }
 
-void USB_communicator::clearTokenBuffer()
+void USBCommunicator::clearTokenBuffer()
 {
     token->flush();
     token->clear(QSerialPort::Direction::AllDirections);
     token->waitForReadyRead(1000);
 }
 
-void USB_communicator::closeToken()
+void USBCommunicator::closeToken()
 {
     this->clearTokenBuffer();
     this->token->close();
 }
 
 
-void USB_communicator::checkForToken()
+void USBCommunicator::checkForToken()
 {
     if (usb_notif->getTokenStatus())
     {
@@ -68,19 +68,7 @@ void USB_communicator::checkForToken()
            if (!token->open(QIODevice::ReadWrite))
                qDebug() << "Couldn't communicate with token, it is likely in use by another program.";
         }
-        /*
-        //Temporary hello message
-        token->write(message);
-        token->waitForBytesWritten(3000);
-        qDebug() << token->bytesAvailable();
 
-        if (token->bytesAvailable() > 0)
-        {
-            token->waitForReadyRead(3000);
-            response = token->read(16);
-            token->flush();
-        }
-        */
         token->flush();
         qDebug() << "Port: " << token->portName() << "Last Response: " << response;
     }
@@ -92,18 +80,18 @@ void USB_communicator::checkForToken()
 
 }
 
-bool USB_communicator::getTokenStatus()
+bool USBCommunicator::getTokenStatus()
 {
     return usb_notif->getTokenStatus();
 }
 
-QString USB_communicator::getLastMessage() const
+QString USBCommunicator::getLastMessage() const
 {
     QString msg(message);
     return msg;
 }
 
-QString USB_communicator::getLastResponse() const
+QString USBCommunicator::getLastResponse() const
 {
     return response;
 }

@@ -1,21 +1,25 @@
 #include "twokey.h"
 #include "ui_twokey.h"
 
-TwoKey::TwoKey(QWidget *parent, USB_communicator *usb_comm) :
+TwoKey::TwoKey(QWidget *parent, USBCommunicator *usbComm) :
     QWidget(parent)
     , ui(new Ui::TwoKey)
 {
     ui->setupUi(this);
 
-    this->usb_comm = usb_comm;
-    connect(this->usb_comm->usb_notif, SIGNAL(tokenStatusChanged()), this, SLOT(changeStatus()));
+    this->backendClient = new BackendClient(usbComm);
 
-    this->usb_comm->usb_notif->checkDeviceID();
-    this->usb_comm->checkForToken();
+
+    this->usbComm = usbComm;
+    connect(this->usbComm->usb_notif, SIGNAL(tokenStatusChanged()), this, SLOT(changeStatus()));
+
+    this->usbComm->usb_notif->checkDeviceID();
+    this->usbComm->checkForToken();
+
 
     this->browserExtensionThread = new QThread();
 
-    this->emitter = new BrowserExtensionCommunicatorEmitter();
+    this->emitter = new BrowserExtensionCommunicatorEmitter(backendClient);
     this->browserExtensionComm = new BrowserExtensionCommunicator(emitter);
 
     browserExtensionComm->moveToThread(browserExtensionThread);
@@ -26,6 +30,7 @@ TwoKey::TwoKey(QWidget *parent, USB_communicator *usb_comm) :
     connect(emitter, SIGNAL(testSignal(QString)), this, SLOT(messageBoxTest(QString)));
 
     browserExtensionThread->start();
+
 
 
     ui->twokey_stackedwidget->setCurrentIndex(0);
@@ -40,126 +45,9 @@ TwoKey::TwoKey(QWidget *parent, USB_communicator *usb_comm) :
 
 TwoKey::~TwoKey()
 {
-    delete usb_comm;
+    delete usbComm;
     delete returnShortcut;
     delete ui;
-}
-
-bool TwoKey::backend_login(QString email, QString password)
-{
-    QNetworkRequest request(QUrl("https://64.227.127.192/login"));
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    QJsonObject json;
-    json.insert("email", email);
-    json.insert("password", password);
-
-    QNetworkAccessManager nam;
-
-    QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
-    reply->ignoreSslErrors();
-    while (!reply->isFinished())
-    {
-        qApp->processEvents();
-    }
-
-    QByteArray response_data = reply->readAll();
-    QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
-
-    QString challenge = jsonResponse.object()["challenge"].toString();
-    this->jwt = jsonResponse.object()["Access-token"].toString();
-    qDebug() << "Recieved Challenge: " << challenge;
-
-    usb_comm->writeToToken(challenge.toStdString().c_str());
-    tokenChallengeResponse = usb_comm->readFromToken();
-
-    qDebug() << "Message: " + challenge;
-    qDebug() << "Response:" + tokenChallengeResponse;
-
-    if (backend_2fa())
-    {
-        return true;
-    }
-    else return false;
-}
-
-bool TwoKey::backend_register(QString firstName, QString lastName, QString email, QString username, QString password, QString serial)
-{
-    QNetworkRequest request(QUrl("https://64.227.127.192/reg"));
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    QJsonObject json;
-    json.insert("first_name", firstName);
-    json.insert("last_name", lastName);
-    json.insert("email", email);
-    json.insert("username", username);
-    json.insert("password", password);
-    json.insert("serial", serial);
-
-    QNetworkAccessManager nam;
-
-    QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
-
-    reply->ignoreSslErrors();
-
-    while (!reply->isFinished())
-    {
-        qApp->processEvents();
-    }
-
-    QByteArray response_data = reply->readAll();
-    QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
-
-    qDebug() << "\nResponse: " <<  jsonResponse;
-
-    if (jsonResponse.object()["Message"].toString().contains("Done"))
-    {
-            return true;
-    }
-    else return false;
-}
-
-bool TwoKey::backend_2fa()
-{
-    QNetworkRequest request(QUrl("https://64.227.127.192/2fa"));
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    QJsonObject json;
-    json.insert("Access-token", jwt);
-    json.insert("challenge", QString(tokenChallengeResponse.toUtf8().toBase64()));
-    qDebug() << "Encrypted Challenge: " << tokenChallengeResponse;
-    qDebug() << "Base64 Challenge: " << QString(tokenChallengeResponse.toUtf8().toBase64());
-    QNetworkAccessManager nam;
-
-    QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
-
-    reply->ignoreSslErrors();
-
-    while (!reply->isFinished())
-    {
-        qApp->processEvents();
-    }
-
-    QByteArray response_data = reply->readAll();
-    QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
-    this->jwt = jsonResponse.object()["Access-token"].toString();
-
-    for (auto a :jsonResponse.object().keys())
-    qDebug() << a << jsonResponse.object()[a].toString();
-
-    if (jsonResponse.object()["Message"].toString() == "Successful Login!!")
-    {
-        qDebug() << "\nResponse(New JWT): " <<  this->jwt;
-        return true;
-    }
-    else
-    {
-        qDebug() << "\nResponse: " <<  jsonResponse.object()["Message"].toString();
-        return false;
-    }
-}
-
-bool TwoKey::backend_logout()
-{
-    this->jwt.clear();
-    return true;
 }
 
 /*
@@ -175,7 +63,7 @@ bool TwoKey::backend_logout()
 
 void TwoKey::on_login_button_clicked()
 {
-    if (backend_login(ui->login_email->text(),
+    if (backendClient->login(ui->login_email->text(),
                       ui->login_password->text()))
     {
         ui->twokey_stackedwidget->setCurrentIndex(2); // LOGIN BUTTON
@@ -197,7 +85,7 @@ void TwoKey::on_createaccount_button_clicked()
 
 void TwoKey::on_register_button_clicked()
 {
-    if (backend_register(ui->register_firstname->text(),
+    if (backendClient->_register(ui->register_firstname->text(),
                          ui->register_lastname->text(),
                          ui->register_email->text(),
                          ui->register_username->text(),
@@ -228,7 +116,7 @@ void TwoKey::on_manager_addaccount_button_clicked()
 
 void TwoKey::on_manager_logout_button_clicked()
 {
-    backend_logout();
+    backendClient->logout();
     ui->twokey_stackedwidget->setCurrentIndex(0);
 }
 
@@ -358,8 +246,8 @@ void TwoKey::on_addaccount_generate_button_clicked()    //    GENERATE PASSWORD
 
 void TwoKey::changeStatus()
 {
-    this->usb_comm->checkForToken();
-    if (usb_comm->getTokenStatus())
+    this->usbComm->checkForToken();
+    if (usbComm->getTokenStatus())
     {
         //Set to green
         ui->statusLabel->setPixmap(QPixmap("://Icons/StatusIcons/greenStatusIconCircle.png").scaled(ui->statusLabel->maximumWidth(),
@@ -374,7 +262,7 @@ void TwoKey::changeStatus()
                                                                                      ui->statusLabel->maximumHeight(),
                                                                                      Qt::KeepAspectRatio));
         this->ui->statusLabel->setToolTip("TwoKey's token is disconnected.");
-        backend_logout();
+        backendClient->logout();
         ui->twokey_stackedwidget->setCurrentIndex(0);
 
     }

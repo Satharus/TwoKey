@@ -1,6 +1,7 @@
 #ifndef BROWSEREXTENSIONCOMMUNICATOR_H
 #define BROWSEREXTENSIONCOMMUNICATOR_H
 
+#include "backend_client.h"
 #include "sandbird.h"
 
 #include <cstring>
@@ -12,10 +13,14 @@ class BrowserExtensionCommunicatorEmitter : public QObject
 {
     Q_OBJECT
 public:
-    BrowserExtensionCommunicatorEmitter();
+    BrowserExtensionCommunicatorEmitter(BackendClient *backendClient);
     void emitSignal(QString pwd);
+
 signals:
     void testSignal(QString pwd);
+
+private:
+    BackendClient *backendClient;
 };
 
 
