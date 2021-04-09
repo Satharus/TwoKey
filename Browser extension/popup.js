@@ -29,9 +29,9 @@ function f()
          var http=new XMLHttpRequest();
         const url="http://localhost:8000/?masterpwd="+txt;
         http.open("GET",url,true);
-        http.send("hello");
+        http.send();
         http.onreadystatechange = (e) => {
-        console.log(http.responseText)
+        console.log(http.responseText);
   }
     document.body.innerHTML="Two Key";
     document.body.appendChild(x);
