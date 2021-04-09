@@ -1,18 +1,35 @@
 #include "browser_extension_communicator.h"
 
+BrowserExtensionCommunicatorSignalWrapper::BrowserExtensionCommunicatorSignalWrapper(BackendClient *backendClient)
+{
+    this->backendClient = backendClient;
+}
+
+void BrowserExtensionCommunicatorSignalWrapper::emitSignal(QString pwd)
+{
+    (void) pwd;
+    emit testSignal(QString(this->backendClient->getJwt()));
+}
+
+BackendClient *BrowserExtensionCommunicatorSignalWrapper::getBackendClient() const
+{
+    return backendClient;
+}
+
+
 
 /* Test url
- * http://localhost:8000/?masterpwd=lololol&url=test.com&email=lol@lol.net&pwd=lelelel
+ * http://localhost:8000/?masterpwd=test1234&url=test.com&email=lol@lol.net&pwd=lelelel
  */
-BrowserExtensionCommunicator::BrowserExtensionCommunicator(BrowserExtensionCommunicatorEmitter *emitter) :
+BrowserExtensionCommunicator::BrowserExtensionCommunicator(BrowserExtensionCommunicatorSignalWrapper *signalWrapper) :
     QObject()
 {
     memset(&opt, 0, sizeof(opt));
     opt.port = "8000";
     opt.handler = event_handler;
 
-    this->emitter = emitter;
-    opt.udata = this->emitter;
+    this->signalWrapper = signalWrapper;
+    opt.udata = this->signalWrapper;
 
     server = sb_new_server(&opt);
 
@@ -26,8 +43,8 @@ BrowserExtensionCommunicator::BrowserExtensionCommunicator(BrowserExtensionCommu
 BrowserExtensionCommunicator::~BrowserExtensionCommunicator()
 {
     if (running) this->stopServer();
+    delete signalWrapper;
     free(server);
-    delete emitter;
 }
 
 void BrowserExtensionCommunicator::startServer()
@@ -39,7 +56,6 @@ void BrowserExtensionCommunicator::startServer()
     {
       sb_poll_server(server, 1000);
     }
-
 }
 
 void BrowserExtensionCommunicator::stopServer()
@@ -50,51 +66,44 @@ void BrowserExtensionCommunicator::stopServer()
 
 int BrowserExtensionCommunicator::event_handler(sb_Event *e)
 {
-  if (e->type == SB_EV_REQUEST)
-  {
-    char *passwd = reinterpret_cast<char*>(malloc(20));
-    sb_get_var(e->stream, "masterpwd", passwd, 20);
-
-    char *url = reinterpret_cast<char*>(malloc(1000));
-    sb_get_var(e->stream,"url",url,1000);
-
-    char *username = reinterpret_cast<char*>(malloc(20));
-    sb_get_var(e->stream,"email",username,20);
-
-    char *Pwd = reinterpret_cast<char*>(malloc(20));
-    sb_get_var(e->stream,"pwd",Pwd,20);
-
-    qDebug() << e->method << "-" << e->path;
-    qDebug() << "mstrpwd:\t" << passwd;
-    qDebug() << "url:\t" << url;
-    qDebug() << "email:\t" << username;
-    qDebug() << "pwd:\t" << Pwd;
-    if (!strcmp(passwd, "test1234"))
+    BrowserExtensionCommunicatorSignalWrapper* signalWrapper = (BrowserExtensionCommunicatorSignalWrapper*)e->udata;
+    if (e->type == SB_EV_REQUEST)
     {
-        sb_send_status(e->stream, 200, "OK");
-        sb_send_header(e->stream, "Content-Type", "text/plain");
-        sb_writef(e->stream, "user:omar;pass=lol");
-        BrowserExtensionCommunicatorEmitter* emitter = (BrowserExtensionCommunicatorEmitter*)e->udata;
-        emitter->emitSignal(QString(passwd));
+        char *passwd = reinterpret_cast<char*>(malloc(20));
+        sb_get_var(e->stream, "masterpwd", passwd, 20);
+
+        char *url = reinterpret_cast<char*>(malloc(1000));
+        sb_get_var(e->stream,"url",url,1000);
+
+        char *username = reinterpret_cast<char*>(malloc(20));
+        sb_get_var(e->stream,"email",username,20);
+
+        char *pwd = reinterpret_cast<char*>(malloc(20));
+        sb_get_var(e->stream,"pwd",pwd,20);
+
+        qDebug() << e->method << "-" << e->path;
+        qDebug() << "mstrpwd:\t" << passwd;
+        qDebug() << "url:\t" << url;
+        qDebug() << "email:\t" << username;
+        qDebug() << "pwd:\t" << pwd;
+
+        if (signalWrapper->getBackendClient()->login("newuser@gmail.com", QString(passwd)))
+        {
+            sb_send_status(e->stream, 200, "OK");
+            sb_send_header(e->stream, "Content-Type", "text/plain");
+            signalWrapper->emitSignal(QString(passwd));
+            sb_writef(e->stream, signalWrapper->getBackendClient()->getJwt().toStdString().c_str());
+        }
+        else
+        {
+            sb_send_status(e->stream, 401, "Unauthorised");
+            sb_send_header(e->stream, "Content-Type", "text/plain");
+            sb_writef(e->stream, "eskot ya 8aby, el password 8alat 😡");
+        }
+        free (passwd);
+        free (url);
+        free (username);
+        free (pwd);
     }
-    else
-    {
-        sb_send_status(e->stream, 200, "OK");
-        sb_send_header(e->stream, "Content-Type", "text/plain");
-        sb_writef(e->stream, "eskot ya 8aby");
-    }
-
-  }
-  return SB_RES_OK;
-}
-
-BrowserExtensionCommunicatorEmitter::BrowserExtensionCommunicatorEmitter(BackendClient *backendClient)
-{
-    this->backendClient = backendClient;
-}
-
-void BrowserExtensionCommunicatorEmitter::emitSignal(QString pwd)
-{
-    this->backendClient->login("newuser@gmail.com", pwd);
-    emit testSignal(QString(this->backendClient->getJwt()));
+    return SB_RES_OK;
 }

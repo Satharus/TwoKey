@@ -80,7 +80,7 @@ private:
 
     QThread *browserExtensionThread;
     BrowserExtensionCommunicator *browserExtensionComm;
-    BrowserExtensionCommunicatorEmitter *emitter;
+    BrowserExtensionCommunicatorSignalWrapper *signalWrapper;
     QShortcut *returnShortcut;
 };
 #endif // TWOKEY_H

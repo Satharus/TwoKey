@@ -9,12 +9,14 @@
 #include <QObject>
 #include <QDebug>
 
-class BrowserExtensionCommunicatorEmitter : public QObject
+class BrowserExtensionCommunicatorSignalWrapper : public QObject
 {
     Q_OBJECT
 public:
-    BrowserExtensionCommunicatorEmitter(BackendClient *backendClient);
+    BrowserExtensionCommunicatorSignalWrapper(BackendClient *backendClient);
     void emitSignal(QString pwd);
+
+    BackendClient *getBackendClient() const;
 
 signals:
     void testSignal(QString pwd);
@@ -28,7 +30,7 @@ class BrowserExtensionCommunicator : public QObject
 {
     Q_OBJECT
 public:
-    BrowserExtensionCommunicator(BrowserExtensionCommunicatorEmitter *emitter);
+    BrowserExtensionCommunicator(BrowserExtensionCommunicatorSignalWrapper *signalWrapper);
     ~BrowserExtensionCommunicator();
     static int event_handler(sb_Event *e);
 
@@ -39,7 +41,7 @@ public slots:
 private:
     sb_Options opt;
     sb_Server *server;
-    BrowserExtensionCommunicatorEmitter *emitter;
+    BrowserExtensionCommunicatorSignalWrapper *signalWrapper;
     bool running;
 };
 

@@ -8,7 +8,7 @@ TwoKey::TwoKey(QWidget *parent, USBCommunicator *usbComm) :
     ui->setupUi(this);
 
     this->backendClient = new BackendClient(usbComm);
-
+    qDebug() << (void *) this->backendClient;
 
     this->usbComm = usbComm;
     connect(this->usbComm->usb_notif, SIGNAL(tokenStatusChanged()), this, SLOT(changeStatus()));
@@ -19,15 +19,15 @@ TwoKey::TwoKey(QWidget *parent, USBCommunicator *usbComm) :
 
     this->browserExtensionThread = new QThread();
 
-    this->emitter = new BrowserExtensionCommunicatorEmitter(backendClient);
-    this->browserExtensionComm = new BrowserExtensionCommunicator(emitter);
+    this->signalWrapper = new BrowserExtensionCommunicatorSignalWrapper(backendClient);
+    this->browserExtensionComm = new BrowserExtensionCommunicator(signalWrapper);
 
     browserExtensionComm->moveToThread(browserExtensionThread);
 
     connect(browserExtensionThread, SIGNAL(started()), browserExtensionComm, SLOT(startServer()));
     connect(browserExtensionThread, SIGNAL(finished()), browserExtensionComm, SLOT(stopServer()));
 
-    connect(emitter, SIGNAL(testSignal(QString)), this, SLOT(messageBoxTest(QString)));
+    connect(signalWrapper, SIGNAL(testSignal(QString)), this, SLOT(messageBoxTest(QString)));
 
     browserExtensionThread->start();
 
@@ -282,5 +282,5 @@ void TwoKey::on_twokey_stackedwidget_currentChanged(int arg1)
 
 void TwoKey::messageBoxTest(QString pwd)
 {
-    QMessageBox::information(this, "Data recieved from browser extension", "Adam Zahran is based and redpilled\n The Recieved password is " + QString(pwd));
+    QMessageBox::information(this, "Data recieved from browser extension", "Adam Zahran is based and redpilled\n The Recieved token is " + QString(pwd));
 }
