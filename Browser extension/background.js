@@ -17,15 +17,13 @@ function getTab()
                 let link = tabs[0].url;
                  activeUrl=tabs[0].url;
                 //console.log(url);
-                chrome.tabs.sendMessage(tabs[0].id,link);
+                //browser.tabs.sendMessage(tabs[0].id,link);
                  var http=new XMLHttpRequest();
                  const url="http://localhost:8000/?url="+link;
                  http.open("GET",url,true);
-                 http.send("hello");
+                 http.send("");
                  http.onreadystatechange = (e) => {
                  console.log(http.responseText);
                  }
-          
-                
             });
 }
