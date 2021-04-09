@@ -25,9 +25,9 @@ var btn=document.getElementById('LoginBtn');
 btn.addEventListener('click',f);
 function f()
 {
-         var txt=document.getElementById('masterpwd').value;
-         var http=new XMLHttpRequest();
-        const url="http://localhost:8000/?masterpwd="+txt;
+        var masterpasswd=document.getElementById('masterpasswd').value;
+        var http=new XMLHttpRequest();
+        const url="http://localhost:8000/?masterpasswd="+masterpasswd+"&email=newuser@gmail.com";
         http.open("GET",url,true);
         http.send();
         http.onreadystatechange = (e) => {

@@ -6,11 +6,11 @@
 #include <QSerialPort>
 
 
-class USB_communicator
+class USBCommunicator
 {
 public:
-    USB_communicator();
-    ~USB_communicator();
+    USBCommunicator();
+    ~USBCommunicator();
 
     void writeToToken(const char* message, int waitTime = 3000, bool flushAfterWrite = true);
     QString readFromToken(int waitTime = 3000, bool flushAfterRead = false);

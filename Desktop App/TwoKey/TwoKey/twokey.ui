@@ -1,0 +1,1508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TwoKey</class>
+ <widget class="QWidget" name="TwoKey">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>541</width>
+    <height>482</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TwoKey</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget
+{
+	background-color: #eaf1f8;
+	color: #000000;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="manager_logout_button">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="toolTip">
+        <string>Log Out.</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+       </property>
+       <property name="text">
+        <string>&lt;</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="twokey_status_logout_spacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::MinimumExpanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>36</width>
+         <height>17</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="twokey">
+       <property name="styleSheet">
+        <string notr="true">	background-color: transparent;
+	color: #000000;
+
+</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt;🔑 TwoKey&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="twokey_spacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>104</width>
+         <height>21</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="statusLabel">
+       <property name="minimumSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string/>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="icons.qrc">:/Icons/StatusIcons/redStatusIconCircle.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QStackedWidget" name="twokey_stackedwidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="login_page">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QVBoxLayout" name="login_layout">
+         <item>
+          <widget class="QLabel" name="login_username_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Email:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="login_email">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="login_password_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Password:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="login_password_layout">
+           <item>
+            <widget class="QLineEdit" name="login_password">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="login_showpassword_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #000000;
+	border-style: solid;
+	border-color: #ebf2f8;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>👁</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="password_loginbuttons_spacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="login_bottons_layout">
+           <item>
+            <widget class="QPushButton" name="login_button">
+             <property name="maximumSize">
+              <size>
+               <width>389</width>
+               <height>29</height>
+              </size>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Login</string>
+             </property>
+             <property name="autoDefault">
+              <bool>false</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="createaccount_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Create an Account</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="register_page">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <layout class="QVBoxLayout" name="register_layout">
+         <item>
+          <layout class="QHBoxLayout" name="register_name_layout">
+           <item>
+            <widget class="QLabel" name="register_firstname_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+             </property>
+             <property name="text">
+              <string>First name: </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="register_firstname">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="register_lastname_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Last name:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="register_lastname">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="register_email_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Email</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="register_email">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="register_username_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Username: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="register_username">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="register_password_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Password: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="register_password_layout">
+           <item>
+            <widget class="QLineEdit" name="register_password">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #00000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="register_showpassword_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #000000;
+	border-style: solid;
+	border-color: #ebf2f8;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>👁</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="register_serial_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Serial Number:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="register_serial">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="register_password_buttons_spacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="register_buttons_layout">
+           <item>
+            <widget class="QPushButton" name="register_back_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #00000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Back</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="register_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #00000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Create an Account</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="manager_page">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QHBoxLayout" name="manager_layout">
+         <item>
+          <layout class="QVBoxLayout" name="vault_layout">
+           <item>
+            <widget class="QLabel" name="vault_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Vault:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QListWidget" name="manager_accounts_list">
+             <property name="styleSheet">
+              <string notr="true">QListWidget{
+	background-color: #bfbfbf;
+	color: #fff;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	show-decoration-selected: 0;
+}
+
+
+QListWidget::item:selected{
+	color: #000000;
+	font-weight: bold;
+	background-color: #a6a6a6;
+   	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 5px;
+}
+
+
+QListWidget::item:!selected{
+	color: #000000;
+	background-color: transparent;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 0px;
+}
+
+
+QListWidget::item:!selected:hover{
+	color: #000000;
+	background-color: #b3b3b3;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 0px;
+}</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Domain 1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Domain 2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Domain 3</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="manager_addaccount_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Add Account</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="information_layout">
+           <item>
+            <widget class="QLabel" name="information_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Information:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="manager_accounts_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+             </property>
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Accounts:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="manager_accounts_combobox">
+             <property name="styleSheet">
+              <string notr="true">QComboBox{
+	background-color: #bfbfbf;
+	color: #000000;
+	selection-color: #000000;
+	selection-background-color: #bfbfbf;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 5px;
+}</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Account 1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Account 2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Account 3</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="manager_website_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Website:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="manager_website">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="manager_username_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Email/Username:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="manager_username">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="manager_password_label">
+             <property name="styleSheet">
+              <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Password:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="manager_password_layout">
+             <item>
+              <widget class="QLineEdit" name="manager_password">
+               <property name="styleSheet">
+                <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}
+</string>
+               </property>
+               <property name="echoMode">
+                <enum>QLineEdit::Password</enum>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="manager_showpassword_button">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #000000;
+	border-style: solid;
+	border-color: #ebf2f8;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
+</string>
+               </property>
+               <property name="text">
+                <string>👁</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="manager_copypassword_button">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #000000;
+	border-style: solid;
+	border-color: #ebf2f8;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
+</string>
+               </property>
+               <property name="text">
+                <string>📄</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="manager_generate_button">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #000000;
+	border-style: solid;
+	border-color: #ebf2f8;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
+</string>
+               </property>
+               <property name="text">
+                <string>🔄</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="manager_password_buttons_spacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="manager_save_button">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Save Changes</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="manager_edit_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Edit Account Information</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="addaccount_page">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <layout class="QVBoxLayout" name="addaccount_layout">
+         <item>
+          <widget class="QLabel" name="addaccount_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Add Account:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="addaccount_website_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Website:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="addaccount_website">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="addaccount_username_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Email/Username:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="addaccount_username">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="addaccount_password_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel
+{
+	background-color: transparent;
+	color: #000000;
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Password: </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="addaccount_password_layout">
+           <item>
+            <widget class="QLineEdit" name="addaccount_password">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit
+{
+	background-color: #bfbfbf;
+	color: #000000;
+	border-style: solid;
+	border-color: #141414;
+	border-radius: 5px;
+	padding-left: 10px;
+
+}</string>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="addaccount_showpassword_button">
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #000000;
+	border-style: solid;
+	border-color: #ebf2f8;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>👁</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="addaccount_generate_button">
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #ebf2f8;
+	color: #000000;
+	border-style: solid;
+	border-color: #ebf2f8;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+
+QPushButton::hover
+{
+	background-color: #bfbfbf;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #a6a6a6;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>🔄</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="password_addaccounts_spacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="addaccount_buttons_layout">
+           <item>
+            <widget class="QPushButton" name="addaccount_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Add Account</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="addaccount_cancel_button">
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>Cancel</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>
