@@ -63,6 +63,11 @@ TwoKey::~TwoKey()
 
 void TwoKey::on_login_button_clicked()
 {
+    if (!usbComm->getTokenStatus())
+    {
+        QMessageBox::critical(this, "Token not Found", "TwoKey's token is not connected, please connect it to login.");
+        return;
+    }
     if (backendClient->login(ui->login_email->text(),
                       ui->login_password->text()))
     {
