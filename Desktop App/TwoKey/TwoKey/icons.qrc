@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>Icons/StatusIcons/greenStatusIconCircle.png</file>
         <file>Icons/StatusIcons/redStatusIconCircle.png</file>
+        <file>Icons/Branding/unicode_key.png</file>
     </qresource>
 </RCC>

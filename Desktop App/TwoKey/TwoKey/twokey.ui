@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>TwoKey</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/Icons/Branding/unicode_key.png</normaloff>:/Icons/Branding/unicode_key.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">QWidget
 {
@@ -96,7 +100,7 @@ QPushButton::pressed
 </string>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt;🔑 TwoKey&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Icons/Branding/unicode_key.png&quot; width=&quot;45&quot; height=&quot;45&quot;/&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt; TwoKey&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </item>
