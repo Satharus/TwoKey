@@ -159,7 +159,7 @@ QPushButton::pressed
    <item>
     <widget class="QStackedWidget" name="twokey_stackedwidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="login_page">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -782,19 +782,22 @@ QListWidget::item:!selected:hover{
 	padding-left: 0px;
 }</string>
              </property>
+             <property name="currentRow">
+              <number>-1</number>
+             </property>
              <item>
               <property name="text">
-               <string>Domain 1</string>
+               <string>Google</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>Domain 2</string>
+               <string>LinkedIn</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>Domain 3</string>
+               <string>ASU</string>
               </property>
              </item>
             </widget>
@@ -887,17 +890,12 @@ QPushButton::pressed
              </property>
              <item>
               <property name="text">
-               <string>Account 1</string>
+               <string>newuser@gmail.com</string>
               </property>
              </item>
              <item>
               <property name="text">
-               <string>Account 2</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Account 3</string>
+               <string>myotheraccount@gmail.com</string>
               </property>
              </item>
             </widget>
@@ -931,6 +929,9 @@ QPushButton::pressed
 
 }
 </string>
+             </property>
+             <property name="text">
+              <string>www.linkedin.com</string>
              </property>
              <property name="readOnly">
               <bool>true</bool>
@@ -966,6 +967,9 @@ QPushButton::pressed
 
 }
 </string>
+             </property>
+             <property name="text">
+              <string>newuser@gmail.com</string>
              </property>
              <property name="readOnly">
               <bool>true</bool>
@@ -1003,6 +1007,9 @@ QPushButton::pressed
 
 }
 </string>
+               </property>
+               <property name="text">
+                <string>mEbab6j$sjmT</string>
                </property>
                <property name="echoMode">
                 <enum>QLineEdit::Password</enum>
