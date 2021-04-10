@@ -6,6 +6,7 @@
 #include "usb_communicator.h"
 #include "backend_client.h"
 
+#include <QListWidgetItem>
 #include <QMessageBox>
 #include <QMainWindow>
 #include <QClipboard>
@@ -71,6 +72,10 @@ private slots:
     void on_twokey_stackedwidget_currentChanged(int arg1);
 
     void messageBoxTest(QString pwd);
+
+    void on_manager_accounts_combobox_currentIndexChanged(const QString &arg1);
+
+    void on_manager_accounts_list_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 
 private:
     Ui::TwoKey *ui;

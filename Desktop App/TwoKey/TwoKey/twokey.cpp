@@ -284,3 +284,47 @@ void TwoKey::messageBoxTest(QString pwd)
 {
     QMessageBox::information(this, "Data recieved from browser extension", "Adam Zahran is based and redpilled\n The Recieved token is " + QString(pwd));
 }
+
+void TwoKey::on_manager_accounts_combobox_currentIndexChanged(const QString &arg1)
+{
+    ui->manager_username->setText(arg1);
+    if (arg1 == "newuser@gmail.com")
+    {
+        ui->manager_password->setText("y8aGfuH$D6vH");
+    }
+    else if (arg1 == "myotheraccount@gmail.com")
+    {
+        ui->manager_password->setText("mEbab6j$sjmT");
+    }
+    else if (arg1 == "2017170000@cis.asu.edu.eg")
+    {
+        ui->manager_password->setText("2oC$guWyQrTs");
+    }
+}
+
+void TwoKey::on_manager_accounts_list_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
+{
+    (void) previous;
+    if (current->text() == "ASU")
+    {
+        ui->manager_accounts_combobox->setMaxCount(1);
+        ui->manager_accounts_combobox->setItemText(0, "2017170000@cis.asu.edu.eg");
+        ui->manager_website->setText("cis.asu.edu.eg");
+    }
+    else if (current->text() == "LinkedIn")
+    {
+        ui->manager_accounts_combobox->setMaxCount(1);
+        ui->manager_accounts_combobox->setItemText(0, "newuser@gmail.com");
+        ui->manager_website->setText("linkedin.com");
+    }
+    else if (current->text() == "Google")
+    {
+        ui->manager_accounts_combobox->setMaxCount(2);
+        ui->manager_accounts_combobox->setItemText(0, "newuser@gmail.com");
+        ui->manager_accounts_combobox->addItem("myotheraccount@gmail.com");
+        ui->manager_website->setText("google.com");
+    }
+
+   this->on_manager_accounts_combobox_currentIndexChanged(ui->manager_accounts_combobox->currentText());
+}
+
