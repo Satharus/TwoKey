@@ -5,10 +5,9 @@ BrowserExtensionCommunicatorSignalWrapper::BrowserExtensionCommunicatorSignalWra
     this->backendClient = backendClient;
 }
 
-void BrowserExtensionCommunicatorSignalWrapper::emitSignal(QString pwd)
+void BrowserExtensionCommunicatorSignalWrapper::emitSuccessfulLogin()
 {
-    (void) pwd;
-    emit testSignal(QString(this->backendClient->getJwt()));
+    emit successfulLogin();
 }
 
 BackendClient *BrowserExtensionCommunicatorSignalWrapper::getBackendClient() const
@@ -76,17 +75,33 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e)
         char *url = reinterpret_cast<char*>(malloc(1000));
         sb_get_var(e->stream, "url", url, 1000);
 
+        char *loggedin = reinterpret_cast<char*>(malloc(1000));
+        sb_get_var(e->stream, "loggedin", loggedin, 1000);
+
         qDebug() << e->method << "-" << e->path;
         qDebug() << "mstrpwd:\t" << masterpasswd;
         qDebug() << "url:\t" << url;
         qDebug() << "email:\t" << email;
+        qDebug() << "loggedin:\t" << loggedin;
+
+        if (strlen(loggedin))
+        {
+            if (signalWrapper->getBackendClient()->getJwt().size() != 0)
+            {
+                sb_send_status(e->stream, 200, "OK");
+                sb_send_header(e->stream, "Content-Type", "text/plain");
+                signalWrapper->emitSuccessfulLogin();
+                sb_writef(e->stream, "yes");
+                goto end;
+            }
+        }
 
 
-        if (strlen(email) && strlen(masterpasswd) && signalWrapper->getBackendClient()->login(QString(email), QString(masterpasswd)))
+        if (strlen(email) && strlen(masterpasswd) && signalWrapper->getBackendClient()->login(QString(email), QString(masterpasswd)) == BackendClient::loginStatus::SUCCESS)
         {
             sb_send_status(e->stream, 200, "OK");
             sb_send_header(e->stream, "Content-Type", "text/plain");
-            signalWrapper->emitSignal(QString(masterpasswd));
+            signalWrapper->emitSuccessfulLogin();
             sb_writef(e->stream, signalWrapper->getBackendClient()->getJwt().toStdString().c_str());
         }
         else if (!strlen(url))
@@ -100,13 +115,14 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e)
         {
             sb_send_status(e->stream, 200, "OK");
             sb_send_header(e->stream, "Content-Type", "text/plain");
-            sb_writef(e->stream, "user=lol&pass=strongPass");
+            sb_writef(e->stream, "user=username&pass=strongPass");
         }
 
-
+end:
         free (masterpasswd);
         free (url);
         free (email);
+        free(loggedin);
     }
     return SB_RES_OK;
 }

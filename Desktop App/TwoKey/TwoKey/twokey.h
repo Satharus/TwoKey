@@ -71,7 +71,7 @@ private slots:
 
     void on_twokey_stackedwidget_currentChanged(int arg1);
 
-    void messageBoxTest(QString pwd);
+    void loginFromBrowserExtension();
 
     void on_manager_accounts_combobox_currentIndexChanged(const QString &arg1);
 

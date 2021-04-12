@@ -5,11 +5,6 @@
 
 #include <QtNetwork>
 
-
-#define LOGIN_SUCESS        0
-#define LOGIN_INVALID       1
-#define LOGIN_DOESNT_EXIST  2
-
 class BackendClient : public QObject
 {
     Q_OBJECT

@@ -14,12 +14,12 @@ class BrowserExtensionCommunicatorSignalWrapper : public QObject
     Q_OBJECT
 public:
     BrowserExtensionCommunicatorSignalWrapper(BackendClient *backendClient);
-    void emitSignal(QString pwd);
+    void emitSuccessfulLogin();
 
     BackendClient *getBackendClient() const;
 
 signals:
-    void testSignal(QString pwd);
+    void successfulLogin();
 
 private:
     BackendClient *backendClient;

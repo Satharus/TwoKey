@@ -15,8 +15,7 @@
     [
         "storage",
         "tabs",
-        "<all_urls>",
-        "nativeMessaging"
+        "<all_urls>"
     ],
     "background":
     {

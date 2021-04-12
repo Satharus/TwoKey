@@ -106,17 +106,17 @@ int BackendClient::_2fa()
     if (jsonResponse.object()["Message"].toString() == "Successful Login!!")
     {
         qDebug() << "\nResponse(New JWT): " <<  this->jwt;
-        return LOGIN_SUCESS;
+        return loginStatus::SUCCESS;
     }
     else
     {
         qDebug() << "\nResponse: " <<  jsonResponse.object()["Message"].toString();
         if (jsonResponse.object()["Message"].toString().contains("User doesn't exist"))
-            return LOGIN_DOESNT_EXIST;
+            return loginStatus::DOESNT_EXIST;
         else if (jsonResponse.object()["Message"].toString().contains("Wrong password or token"))
-            return LOGIN_INVALID;
+            return loginStatus::INVALID;
     }
-    return LOGIN_INVALID;
+    return loginStatus::INVALID;
 }
 
 bool BackendClient::logout()

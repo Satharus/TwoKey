@@ -27,7 +27,7 @@ TwoKey::TwoKey(QWidget *parent, USBCommunicator *usbComm) :
     connect(browserExtensionThread, SIGNAL(started()), browserExtensionComm, SLOT(startServer()));
     connect(browserExtensionThread, SIGNAL(finished()), browserExtensionComm, SLOT(stopServer()));
 
-    connect(signalWrapper, SIGNAL(testSignal(QString)), this, SLOT(messageBoxTest(QString)));
+    connect(signalWrapper, SIGNAL(successfulLogin()), this, SLOT(loginFromBrowserExtension()));
 
     browserExtensionThread->start();
 
@@ -71,7 +71,7 @@ void TwoKey::on_login_button_clicked()
     int loginStatus = backendClient->login(ui->login_email->text(), ui->login_password->text());
     if (loginStatus == BackendClient::loginStatus::SUCCESS)
     {
-        ui->twokey_stackedwidget->setCurrentIndex(2); // LOGIN BUTTON
+        ui->twokey_stackedwidget->setCurrentIndex(2);
         ui->login_email->clear();
         ui->login_password->clear();
     }
@@ -301,9 +301,9 @@ void TwoKey::on_twokey_stackedwidget_currentChanged(int arg1)
     }
 }
 
-void TwoKey::messageBoxTest(QString pwd)
+void TwoKey::loginFromBrowserExtension()
 {
-    QMessageBox::information(this, "Data recieved from browser extension", "Adam Zahran is based and redpilled\n The Recieved token is " + QString(pwd));
+    ui->twokey_stackedwidget->setCurrentIndex(2);
 }
 
 void TwoKey::on_manager_accounts_combobox_currentIndexChanged(const QString &arg1)
