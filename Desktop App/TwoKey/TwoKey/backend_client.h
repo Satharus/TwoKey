@@ -6,16 +6,28 @@
 #include <QtNetwork>
 
 
-class BackendClient
+#define LOGIN_SUCESS        0
+#define LOGIN_INVALID       1
+#define LOGIN_DOESNT_EXIST  2
+
+class BackendClient : public QObject
 {
+    Q_OBJECT
 public:
     BackendClient(USBCommunicator *usbComm);
-    ~BackendClient();
-    bool login(QString email, QString password);
+    int login(QString email, QString password);
     bool _register(QString firstName, QString lastName, QString email, QString username, QString password, QString serial);
-    bool _2fa();
+    int _2fa();
     bool logout();
     QString getJwt() const;
+
+    enum loginStatus
+    {
+        SUCCESS       =     0,
+        INVALID       =     1,
+        DOESNT_EXIST  =     2
+    };
+    Q_ENUM(loginStatus)
 
 private:
     QString jwt;

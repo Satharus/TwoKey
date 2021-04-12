@@ -1,16 +1,11 @@
 #include "backend_client.h"
 
-BackendClient::BackendClient(USBCommunicator *usbComm)
+BackendClient::BackendClient(USBCommunicator *usbComm) : QObject ()
 {
     this->usbComm = usbComm;
 }
 
-BackendClient::~BackendClient()
-{
-
-}
-
-bool BackendClient::login(QString email, QString password)
+int BackendClient::login(QString email, QString password)
 {
     QNetworkRequest request(QUrl("https://64.227.127.192/login"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -40,11 +35,8 @@ bool BackendClient::login(QString email, QString password)
     qDebug() << "Message: " + challenge;
     qDebug() << "Response:" + tokenChallengeResponse;
 
-    if (_2fa())
-    {
-        return true;
-    }
-    else return false;
+    int loginStatus = _2fa();
+    return  loginStatus;
 }
 
 
@@ -84,7 +76,7 @@ bool BackendClient::_register(QString firstName, QString lastName, QString email
     else return false;
 }
 
-bool BackendClient::_2fa()
+int BackendClient::_2fa()
 {
     QNetworkRequest request(QUrl("https://64.227.127.192/2fa"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -114,13 +106,17 @@ bool BackendClient::_2fa()
     if (jsonResponse.object()["Message"].toString() == "Successful Login!!")
     {
         qDebug() << "\nResponse(New JWT): " <<  this->jwt;
-        return true;
+        return LOGIN_SUCESS;
     }
     else
     {
         qDebug() << "\nResponse: " <<  jsonResponse.object()["Message"].toString();
-        return false;
+        if (jsonResponse.object()["Message"].toString().contains("User doesn't exist"))
+            return LOGIN_DOESNT_EXIST;
+        else if (jsonResponse.object()["Message"].toString().contains("Wrong password or token"))
+            return LOGIN_INVALID;
     }
+    return LOGIN_INVALID;
 }
 
 bool BackendClient::logout()

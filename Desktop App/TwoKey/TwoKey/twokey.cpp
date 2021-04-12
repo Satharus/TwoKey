@@ -32,7 +32,6 @@ TwoKey::TwoKey(QWidget *parent, USBCommunicator *usbComm) :
     browserExtensionThread->start();
 
 
-
     ui->twokey_stackedwidget->setCurrentIndex(0);
     ui->manager_save_button->setVisible(false);
     ui->manager_generate_button->setVisible(false);
@@ -68,15 +67,22 @@ void TwoKey::on_login_button_clicked()
         QMessageBox::critical(this, "Token not Found", "TwoKey's token is not connected, please connect it to login.");
         return;
     }
-    if (backendClient->login(ui->login_email->text(),
-                      ui->login_password->text()))
+
+    int loginStatus = backendClient->login(ui->login_email->text(), ui->login_password->text());
+    if (loginStatus == BackendClient::loginStatus::SUCCESS)
     {
         ui->twokey_stackedwidget->setCurrentIndex(2); // LOGIN BUTTON
         ui->login_email->clear();
         ui->login_password->clear();
     }
-    else
+    else if (loginStatus == BackendClient::loginStatus::INVALID)
     {
+        QMessageBox::critical(this, "Invalid credentials!", "The username or password you have entered is incorrect.");
+        ui->login_password->clear();
+    }
+    else if (loginStatus == BackendClient::loginStatus::DOESNT_EXIST)
+    {
+        QMessageBox::critical(this, "Invalid account!", "The user doesn't exist.");
         ui->login_password->clear();
     }
 }
@@ -187,10 +193,12 @@ void TwoKey::on_manager_save_button_clicked()    //    SAVE INFO BUTTON
 
 void TwoKey::on_login_showpassword_button_clicked()    //     SHOW PASSWORD
 {
-    if(ui->login_password->echoMode() == QLineEdit::Password){
+    if(ui->login_password->echoMode() == QLineEdit::Password)
+    {
         ui->login_password->setEchoMode(QLineEdit::Normal);
     }
-    else{
+    else
+    {
         ui->login_password->setEchoMode(QLineEdit::Password);
     }
 }
@@ -200,10 +208,12 @@ void TwoKey::on_login_showpassword_button_clicked()    //     SHOW PASSWORD
 
 void TwoKey::on_register_showpassword_button_clicked()    //     SHOW PASSWORD
 {
-    if(ui->register_password->echoMode() == QLineEdit::Password){
+    if(ui->register_password->echoMode() == QLineEdit::Password)
+    {
         ui->register_password->setEchoMode(QLineEdit::Normal);
     }
-    else{
+    else
+    {
         ui->register_password->setEchoMode(QLineEdit::Password);
     }
 }
@@ -212,10 +222,12 @@ void TwoKey::on_register_showpassword_button_clicked()    //     SHOW PASSWORD
 
 void TwoKey::on_manager_showpassword_button_clicked()    //     SHOW PASSWORD
 {
-    if(ui->manager_password->echoMode() == QLineEdit::Password){
+    if(ui->manager_password->echoMode() == QLineEdit::Password)
+    {
         ui->manager_password->setEchoMode(QLineEdit::Normal);
     }
-    else{
+    else
+    {
         ui->manager_password->setEchoMode(QLineEdit::Password);
     }
 }
@@ -236,10 +248,12 @@ void TwoKey::on_manager_generate_button_clicked()    //    GENERATE PASSWORD
 
 void TwoKey::on_addaccount_showpassword_button_clicked()    //     SHOW PASSWORD
 {
-    if(ui->addaccount_password->echoMode() == QLineEdit::Password){
+    if(ui->addaccount_password->echoMode() == QLineEdit::Password)
+    {
         ui->addaccount_password->setEchoMode(QLineEdit::Normal);
     }
-    else{
+    else
+    {
         ui->addaccount_password->setEchoMode(QLineEdit::Password);
     }
 }
@@ -275,11 +289,13 @@ void TwoKey::changeStatus()
 
 void TwoKey::on_twokey_stackedwidget_currentChanged(int arg1)
 {
-    if(arg1 == 2){
+    if(arg1 == 2)
+    {
         ui->manager_logout_button->setVisible(true);
         ui->manager_logout_button->setEnabled(true);
     }
-    else{
+    else
+    {
         ui->manager_logout_button->setVisible(false);
         ui->manager_logout_button->setEnabled(false);
     }
