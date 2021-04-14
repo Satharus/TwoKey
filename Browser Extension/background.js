@@ -1,4 +1,5 @@
 var activeUrl='';
+var retrievedCredentials = "";
 chrome.tabs.onUpdated.addListener(getTab)
 function getTab()
 {
@@ -11,7 +12,8 @@ function getTab()
                  http.open("GET",url,true);
                  http.send("");
                  http.onreadystatechange = (e) => {
-                 console.log(http.responseText);
+				 retrievedCredentials = http.responseText;
+                 console.log(retrievedCredentials);
                  }
             });
 }
@@ -27,8 +29,12 @@ function getTab()
                  http.open("GET",url,true);
                  http.send("");
                  http.onreadystatechange = (e) => {
-                 console.log(http.responseText);
+				 retrievedCredentials = http.responseText;
+                 console.log(retrievedCredentials);
                  }
             });
 }
 
+chrome.runtime.sendMessage({credentials: retrievedCredentials}, function(response) {
+  console.log(response.farewell);
+});

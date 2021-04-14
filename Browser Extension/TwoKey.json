@@ -1,7 +1,0 @@
-{
-    "name": "com.tk.twokey",
-    "description": "host for native messaging",
-    "path": "C:\\Users\\omar\\Desktop\\TwoKey\\TwoKey.exe",
-    "type": "stdio",
-    "allowed_origins": [ "chrome-extension://hmimoepfhhnlljobnmjdfmlfgmbggohg/" ]
-}
