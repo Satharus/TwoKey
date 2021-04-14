@@ -35,6 +35,4 @@ function getTab()
             });
 }
 
-chrome.runtime.sendMessage({credentials: retrievedCredentials}, function(response) {
-  console.log(response.farewell);
-});
+chrome.runtime.sendMessage(retrievedCredentials);

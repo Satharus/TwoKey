@@ -21,12 +21,15 @@ function get_cred(input)
     console.log(input);
 }
 
-chrome.runtime.onMessage.addListener(
-  function(request, sender, credentials) {
-    console.log(sender.tab ?
-                "from a content script:" + sender.tab.url :
-                "from the extension");
-    if (request.greeting == "hello")
-      sendResponse({farewell: "goodbye"});
-  }
-);
+chrome.runtime.onMessage.addListiner(fillCreds);
+function fillCreds(creds,sender,sendRes)
+{
+  document.addEventListener("input",get_cred);
+function get_cred(input)
+{
+    if(input.type="email")
+    input.target.value=creds;
+    if(input.type="password")
+    console.log(input);
+}
+}

@@ -1,6 +1,6 @@
 (function()
 {
-	var btn1=document.createElement("BUTTON");
+	var btn1=document.createElement("AutoFill");
 	btn1.innerHTML="Fill";
 	var x = document.createElement("P");
 	x.innerText="Welcome again";
@@ -48,5 +48,15 @@
 	  }
 
 	}
+  chrome.runtime.onMessage.addListener(gotCreds);
+  function gotCreds(credentials,sender,sendResponse)
+  {
+    btn1.addEventListener('click',autoFill);
+    function autoFill()
+    {
+      chrome.runtime.sendMessage(credentials);
+    }
+  }
+
 
 })();
