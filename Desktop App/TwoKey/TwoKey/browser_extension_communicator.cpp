@@ -108,14 +108,14 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e)
         {
             sb_send_status(e->stream, 401, "Unauthorised");
             sb_send_header(e->stream, "Content-Type", "text/plain");
-            sb_writef(e->stream, "eskot ya 8aby, el password 8alat 😡");
+            sb_writef(e->stream, "Unauthorised login, wrong password.");
         }
 
-        if (strlen(url))
+        if (strlen(url) && signalWrapper->getBackendClient()->getJwt().size() != 0)
         {
             sb_send_status(e->stream, 200, "OK");
             sb_send_header(e->stream, "Content-Type", "text/plain");
-            sb_writef(e->stream, "user=username&pass=strongPass");
+            sb_writef(e->stream, "{\"email\":\"newuser@gmail.com\", \"password\": \"strongPassword12345\"}");
         }
 
 end:

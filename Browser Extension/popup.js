@@ -1,7 +1,5 @@
 (function()
 {
-	var btn1=document.createElement("AutoFill");
-	btn1.innerHTML="Fill";
 	var x = document.createElement("P");
 	x.innerText="Welcome again";
 	var btn=document.getElementById('LoginBtn');
@@ -16,10 +14,9 @@
 		{
 			document.body.innerHTML="TwoKey";
 			document.body.appendChild(x);
-			document.body.appendChild(btn1);
 			return;
 		}
-	console.log(loggedinChecker.responseText);
+
 	}
 	
 
@@ -38,7 +35,6 @@
 		if (http.readyState == 4 && http.status == 200) {
 			document.body.innerHTML="TwoKey";
 			document.body.appendChild(x);
-			document.body.appendChild(btn1);
 		}
 		else if (http.readyState == 4)
 		{
@@ -48,15 +44,4 @@
 	  }
 
 	}
-  chrome.runtime.onMessage.addListener(gotCreds);
-  function gotCreds(credentials,sender,sendResponse)
-  {
-    btn1.addEventListener('click',autoFill);
-    function autoFill()
-    {
-      chrome.runtime.sendMessage(credentials);
-    }
-  }
-
-
 })();

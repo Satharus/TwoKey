@@ -13,8 +13,10 @@ function getTab()
                  http.send("");
                  http.onreadystatechange = (e) => {
 				 retrievedCredentials = http.responseText;
-                 console.log(retrievedCredentials);
+				 if (retrievedCredentials.length != 0)
+					console.log(retrievedCredentials);
                  }
+				 chrome.tabs.sendMessage(tabs[0].id, retrievedCredentials);
             });
 }
 chrome.tabs.onActivated.addListener(getTab)
@@ -30,9 +32,10 @@ function getTab()
                  http.send("");
                  http.onreadystatechange = (e) => {
 				 retrievedCredentials = http.responseText;
-                 console.log(retrievedCredentials);
+				 if (retrievedCredentials.length != 0)
+					console.log(retrievedCredentials);
                  }
+				 chrome.tabs.sendMessage(tabs[0].id, retrievedCredentials);
             });
 }
 
-chrome.runtime.sendMessage(retrievedCredentials);
