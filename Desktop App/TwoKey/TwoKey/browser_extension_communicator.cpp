@@ -115,7 +115,7 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e)
         {
             sb_send_status(e->stream, 200, "OK");
             sb_send_header(e->stream, "Content-Type", "text/plain");
-            sb_writef(e->stream, "{\"email\":\"newuser@gmail.com\", \"password\": \"strongPassword12345\"}");
+            sb_writef(e->stream, "{\"email\":\"newuser@gmail.com\", \"password\": \"y8aGfuH$D6vH\"}");
         }
 
 end:

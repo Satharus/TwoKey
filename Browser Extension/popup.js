@@ -38,7 +38,7 @@
 		}
 		else if (http.readyState == 4)
 		{
-			alert("wrong password");
+			alert("Wrong password or token");
 		}
 		console.log(http.responseText);
 	  }
