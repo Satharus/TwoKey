@@ -8,7 +8,6 @@ TwoKey::TwoKey(QWidget *parent, USBCommunicator *usbComm) :
     ui->setupUi(this);
 
     this->backendClient = new BackendClient(usbComm);
-    qDebug() << (void *) this->backendClient;
 
     this->usbComm = usbComm;
     connect(this->usbComm->usb_notif, SIGNAL(tokenStatusChanged()), this, SLOT(changeStatus()));
@@ -40,10 +39,46 @@ TwoKey::TwoKey(QWidget *parent, USBCommunicator *usbComm) :
 
     returnShortcut = new QShortcut(QKeySequence("Return"), ui->login_page);
     QObject::connect(returnShortcut, SIGNAL(activated()), ui->login_button, SLOT(click()));
+
+
+    passwordDialog = new PasswordDialog(this);
+    connect(passwordDialog, SIGNAL(passwordGenerated(QString)), this, SLOT(fillGeneratedPassword(QString)));
+
+    this->closing = false;
+
+    exitAction = new QAction(tr("&Exit"), this);
+    connect(exitAction, SIGNAL(triggered()), this, SLOT(attemptToClose()));
+
+    twoKeySystemTrayMenu = new QMenu(this);
+    twoKeySystemTrayMenu->addAction(exitAction);
+
+    twoKeySystemTrayIcon = new QSystemTrayIcon(this);
+    twoKeySystemTrayIcon->setContextMenu(twoKeySystemTrayMenu);
+    twoKeySystemTrayIcon->setIcon(QIcon(":/Icons/Branding/unicode_key.png"));
+    twoKeySystemTrayIcon->show();
+
+    connect(twoKeySystemTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(systemTrayIconActivated(QSystemTrayIcon::ActivationReason)));
+}
+
+void TwoKey::closeEvent(QCloseEvent *event)
+{
+    if(closing)
+    {
+        event->accept();
+    }
+    else
+    {
+        this->hide();
+        event->ignore();
+    }
 }
 
 TwoKey::~TwoKey()
 {
+    this->twoKeySystemTrayIcon->hide();
+    delete twoKeySystemTrayIcon;
+    delete twoKeySystemTrayMenu;
+    delete exitAction;
     delete usbComm;
     delete returnShortcut;
     delete ui;
@@ -62,6 +97,11 @@ TwoKey::~TwoKey()
 
 void TwoKey::on_login_button_clicked()
 {
+    if (ui->login_email->text().isEmpty() || ui->login_password->text().isEmpty())
+    {
+        QMessageBox::critical(this, "Empty Login Fields", "Please enter your credentials.");
+    }
+
     if (!usbComm->getTokenStatus())
     {
         QMessageBox::critical(this, "Token not Found", "TwoKey's token is not connected, please connect it to login.");
@@ -238,9 +278,10 @@ void TwoKey::on_manager_copypassword_button_clicked()    //    COPY PASSWORD TO 
     clipboard->setText(ui->manager_password->text());
 }
 
+
 void TwoKey::on_manager_generate_button_clicked()    //    GENERATE PASSWORD
 {
-    ui->manager_password->setText("PASSWORDMANAGER");
+    passwordDialog->show();
 }
 
 //                FORTH page ADD ACCOUNT
@@ -346,6 +387,33 @@ void TwoKey::on_manager_accounts_list_currentItemChanged(QListWidgetItem *curren
         ui->manager_website->setText("google.com");
     }
 
-   this->on_manager_accounts_combobox_currentIndexChanged(ui->manager_accounts_combobox->currentText());
+    this->on_manager_accounts_combobox_currentIndexChanged(ui->manager_accounts_combobox->currentText());
+}
+
+void TwoKey::attemptToClose()
+{
+    closing = true;
+    close();
+}
+
+void TwoKey::systemTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
+{
+    if(reason == QSystemTrayIcon::Trigger)
+    {
+        if(isVisible())
+        {
+            hide();
+        }
+        else
+        {
+            show();
+            activateWindow();
+        }
+    }
+}
+
+void TwoKey::fillGeneratedPassword(QString password)
+{
+    ui->manager_password->setText(password);
 }
 

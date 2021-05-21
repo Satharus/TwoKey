@@ -101,7 +101,9 @@ int BackendClient::_2fa()
     this->jwt = jsonResponse.object()["Access-token"].toString();
 
     for (auto a :jsonResponse.object().keys())
-    qDebug() << a << jsonResponse.object()[a].toString();
+    {
+        qDebug() << a << jsonResponse.object()[a].toString();
+    }
 
     if (jsonResponse.object()["Message"].toString() == "Successful Login!!")
     {

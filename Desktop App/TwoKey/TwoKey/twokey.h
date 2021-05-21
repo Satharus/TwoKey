@@ -5,8 +5,11 @@
 #include "browser_extension_communicator.h"
 #include "usb_communicator.h"
 #include "backend_client.h"
+#include "passworddialog.h"
 
 #include <QListWidgetItem>
+#include <QSystemTrayIcon>
+#include <QCloseEvent>
 #include <QMessageBox>
 #include <QMainWindow>
 #include <QClipboard>
@@ -15,7 +18,9 @@
 #include <QWidget>
 #include <QThread>
 #include <QPixmap>
+#include <QAction>
 #include <QDebug>
+#include <QMenu>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class TwoKey; }
@@ -77,7 +82,15 @@ private slots:
 
     void on_manager_accounts_list_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 
+    void attemptToClose();
+    void systemTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
+
+    void fillGeneratedPassword(QString);
+
 private:
+
+
+    void closeEvent(QCloseEvent *event) override;
     Ui::TwoKey *ui;
     USBCommunicator *usbComm;
 
@@ -87,5 +100,13 @@ private:
     BrowserExtensionCommunicator *browserExtensionComm;
     BrowserExtensionCommunicatorSignalWrapper *signalWrapper;
     QShortcut *returnShortcut;
+
+    PasswordDialog *passwordDialog;
+
+
+    QAction *exitAction;
+    QMenu *twoKeySystemTrayMenu;
+    QSystemTrayIcon* twoKeySystemTrayIcon;
+    bool closing;
 };
 #endif // TWOKEY_H

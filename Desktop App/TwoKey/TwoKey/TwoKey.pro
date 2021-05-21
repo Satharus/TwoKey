@@ -19,6 +19,8 @@ SOURCES += \
     backend_client.cpp \
     browser_extension_communicator.cpp \
     main.cpp \
+    passworddialog.cpp \
+    passwordgenerator.cpp \
     sandbird.c \
     twokey.cpp \
     usb_communicator.cpp \
@@ -27,12 +29,15 @@ SOURCES += \
 HEADERS += \
     backend_client.h \
     browser_extension_communicator.h \
+    passworddialog.h \
+    passwordgenerator.h \
     sandbird.h \
     twokey.h \
     usb_communicator.h \
     usb_event_handler.h
 
 FORMS += \
+    passworddialog.ui \
     twokey.ui
 
 # Default rules for deployment.
