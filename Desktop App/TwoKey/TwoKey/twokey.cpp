@@ -9,13 +9,6 @@ TwoKey::TwoKey(QWidget *parent, USBCommunicator *usbComm) :
 
     this->backendClient = new BackendClient(usbComm);
 
-    this->usbComm = usbComm;
-    connect(this->usbComm->usb_notif, SIGNAL(tokenStatusChanged()), this, SLOT(changeStatus()));
-
-    this->usbComm->usb_notif->checkDeviceID();
-    this->usbComm->checkForToken();
-
-
     this->browserExtensionThread = new QThread();
 
     this->signalWrapper = new BrowserExtensionCommunicatorSignalWrapper(backendClient);
@@ -58,6 +51,15 @@ TwoKey::TwoKey(QWidget *parent, USBCommunicator *usbComm) :
     twoKeySystemTrayIcon->show();
 
     connect(twoKeySystemTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(systemTrayIconActivated(QSystemTrayIcon::ActivationReason)));
+
+    this->ui->twokey->setText("<html><head/><body><p><img src=\":/Icons/Branding/Logo_Default.png\" width=\"45\" height=\"60\"/><span style=\" font-size:36pt; font-weight:600;\"> TwoKey</span></p></body></html>");
+
+    this->usbComm = usbComm;
+    connect(this->usbComm->usb_notif, SIGNAL(tokenStatusChanged()), this, SLOT(changeStatus()));
+
+    this->usbComm->usb_notif->checkDeviceID();
+    this->usbComm->checkForToken();
+
 }
 
 void TwoKey::closeEvent(QCloseEvent *event)
@@ -301,7 +303,7 @@ void TwoKey::on_addaccount_showpassword_button_clicked()    //     SHOW PASSWORD
 
 void TwoKey::on_addaccount_generate_button_clicked()    //    GENERATE PASSWORD
 {
-    ui->manager_password->setText("PASSWORDMANAGER");
+    ui->manager_password->clear();
 }
 
 void TwoKey::changeStatus()
@@ -310,21 +312,24 @@ void TwoKey::changeStatus()
     if (usbComm->getTokenStatus())
     {
         //Set to green
-        ui->statusLabel->setPixmap(QPixmap("://Icons/StatusIcons/greenStatusIconCircle.png").scaled(ui->statusLabel->maximumWidth(),
-                                                                                     ui->statusLabel->maximumHeight(),
-                                                                                     Qt::KeepAspectRatio));
-        this->ui->statusLabel->setToolTip("TwoKey's token is connected.");
+        this->ui->twokey->setText("<html><head/><body><p><img src=\":/Icons/Branding/Logo_Unlocked.png\" width=\"45\" height=\"60\"/><span style=\" font-size:36pt; font-weight:600;\"> TwoKey</span></p></body></html>");
+
+        this->ui->twokey->setToolTip("TwoKey's token is connected.");
+
+        twoKeySystemTrayIcon->setIcon(QIcon(":/Icons/Branding/Logo_Unlocked.png"));
+        twoKeySystemTrayIcon->show();
     }
     else
     {
         //Set to red
-        ui->statusLabel->setPixmap(QPixmap("://Icons/StatusIcons/redStatusIconCircle.png").scaled(ui->statusLabel->maximumWidth(),
-                                                                                     ui->statusLabel->maximumHeight(),
-                                                                                     Qt::KeepAspectRatio));
-        this->ui->statusLabel->setToolTip("TwoKey's token is disconnected.");
+        this->ui->twokey->setText("<html><head/><body><p><img src=\":/Icons/Branding/Logo_Locked.png\" width=\"45\" height=\"60\"/><span style=\" font-size:36pt; font-weight:600;\"> TwoKey</span></p></body></html>");
+
+        this->ui->twokey->setToolTip("TwoKey's token is disconnected.");
+
+        twoKeySystemTrayIcon->setIcon(QIcon(":/Icons/Branding/Logo_Locked.png"));
+        twoKeySystemTrayIcon->show();
         backendClient->logout();
         ui->twokey_stackedwidget->setCurrentIndex(0);
-
     }
 }
 

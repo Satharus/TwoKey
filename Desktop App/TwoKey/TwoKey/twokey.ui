@@ -14,7 +14,7 @@
    <string>TwoKey</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="icons.qrc">
+   <iconset>
     <normaloff>:/Icons/Branding/unicode_key.png</normaloff>:/Icons/Branding/unicode_key.png</iconset>
   </property>
   <property name="styleSheet">
@@ -114,45 +114,11 @@ QPushButton::pressed
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>104</width>
+         <width>124</width>
          <height>21</height>
         </size>
        </property>
       </spacer>
-     </item>
-     <item>
-      <widget class="QLabel" name="statusLabel">
-       <property name="minimumSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="toolTip">
-        <string/>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap resource="icons.qrc">:/Icons/StatusIcons/redStatusIconCircle.png</pixmap>
-       </property>
-       <property name="scaledContents">
-        <bool>true</bool>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-       </property>
-      </widget>
      </item>
     </layout>
    </item>
@@ -1051,7 +1017,11 @@ QPushButton::pressed
 </string>
                </property>
                <property name="text">
-                <string>👁</string>
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="icons.qrc">
+                 <normaloff>:/Icons/Buttons/Show.png</normaloff>:/Icons/Buttons/Show.png</iconset>
                </property>
               </widget>
              </item>
@@ -1087,7 +1057,11 @@ QPushButton::pressed
 </string>
                </property>
                <property name="text">
-                <string>📄</string>
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="icons.qrc">
+                 <normaloff>:/Icons/Buttons/Copy.png</normaloff>:/Icons/Buttons/Copy.png</iconset>
                </property>
               </widget>
              </item>
@@ -1126,7 +1100,11 @@ QPushButton::pressed
 </string>
                </property>
                <property name="text">
-                <string>🔄</string>
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="icons.qrc">
+                 <normaloff>:/Icons/Buttons/Regenerate.png</normaloff>:/Icons/Buttons/Regenerate.png</iconset>
                </property>
               </widget>
              </item>
