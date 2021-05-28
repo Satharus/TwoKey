@@ -12,7 +12,7 @@
    viewBox="0 0 210 297"
    version="1.1"
    id="svg8"
-   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)"
    sodipodi:docname="Icons.svg">
   <defs
      id="defs2" />
@@ -24,8 +24,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="507.56463"
-     inkscape:cy="495.48873"
+     inkscape:cx="-838.30355"
+     inkscape:cy="1050.6481"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -43,7 +43,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -67,5 +67,200 @@
        r="79.375"
        inkscape:export-xdpi="80"
        inkscape:export-ydpi="80" />
+    <g
+       id="g966"
+       transform="matrix(-0.25881905,0.96592582,0.96592582,0.25881905,-449.07585,193.96422)"
+       inkscape:export-filename="/mnt/Mass-Storage/Work/University/GP/TwoKey/Desktop App/TwoKey/TwoKey/Icons/Branding/Logo_Unlocked.png"
+       inkscape:export-xdpi="80.262718"
+       inkscape:export-ydpi="80.262718">
+      <path
+         style="fill:#3c679d;fill-opacity:1;stroke:#000000;stroke-width:5.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+         d="m -61.861262,266.52144 11.225321,10.95805 h 8.28535 v 8.55262 h 9.62171 v 10.69078 h 9.6217 v 8.81989 H -6.0019194 V 288.43754 L -45.557821,248.88165"
+         id="path948" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:3.84219;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.0991379"
+         d="M -49.999691,256.36664 -12.952329,293.414"
+         id="path958" />
+      <circle
+         style="fill:#3c679d;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:4.666;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path946"
+         cx="-69.187286"
+         cy="241.84456"
+         r="30.150599" />
+      <circle
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.22452;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99569;paint-order:fill markers stroke"
+         id="path960"
+         cx="-74.568199"
+         cy="235.46446"
+         r="6.4144678" />
+    </g>
+    <g
+       id="g966-3"
+       transform="matrix(-0.5,0.8660254,0.8660254,0.5,-468.47325,77.7434)"
+       inkscape:export-filename="/mnt/Mass-Storage/Work/University/GP/TwoKey/Desktop App/TwoKey/TwoKey/Icons/Branding/Logo_Unlocked.png"
+       inkscape:export-xdpi="80.262718"
+       inkscape:export-ydpi="80.262718">
+      <path
+         style="fill:#419d3c;fill-opacity:1;stroke:#000000;stroke-width:5.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+         d="m -24.819596,308.4768 11.225321,10.95805 h 8.2853504 v 8.55262 h 9.62171 v 10.69078 h 9.6216996 v 8.81989 H 31.039747 V 330.3929 L -8.5161546,290.83701"
+         id="path948-6" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:3.84219;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.1"
+         d="m -12.958025,298.322 37.047362,37.04736"
+         id="path958-7" />
+      <circle
+         style="fill:#419d3c;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:4.666;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path946-5"
+         cx="-32.145618"
+         cy="283.79993"
+         r="30.150599" />
+      <circle
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.22452;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99569;paint-order:fill markers stroke"
+         id="path960-3"
+         cx="-37.526531"
+         cy="277.41983"
+         r="6.4144678" />
+    </g>
+    <g
+       id="g966-6"
+       transform="matrix(-0.25881905,0.96592582,0.96592582,0.25881905,-340.47847,189.48619)"
+       inkscape:export-filename="/mnt/Mass-Storage/Work/University/GP/TwoKey/Desktop App/TwoKey/TwoKey/Icons/Branding/Logo_Locked.png"
+       inkscape:export-xdpi="80.262718"
+       inkscape:export-ydpi="80.262718">
+      <path
+         style="fill:#3c679d;fill-opacity:1;stroke:#000000;stroke-width:5.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+         d="m -61.861262,266.52144 11.225321,10.95805 h 8.28535 v 8.55262 h 9.62171 v 10.69078 h 9.6217 v 8.81989 H -6.0019194 V 288.43754 L -45.557821,248.88165"
+         id="path948-2" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:3.84219;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.1"
+         d="M -49.999691,256.36664 -12.952329,293.414"
+         id="path958-9" />
+      <circle
+         style="fill:#3c679d;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:4.666;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path946-1"
+         cx="-69.187286"
+         cy="241.84456"
+         r="30.150599" />
+      <circle
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.22452;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99569;paint-order:fill markers stroke"
+         id="path960-2"
+         cx="-74.568199"
+         cy="235.46446"
+         r="6.4144678" />
+    </g>
+    <g
+       id="g966-3-7"
+       transform="matrix(-0.5,0.8660254,0.8660254,0.5,-359.87584,73.265361)"
+       inkscape:export-filename="/mnt/Mass-Storage/Work/University/GP/TwoKey/Desktop App/TwoKey/TwoKey/Icons/Branding/Logo_Locked.png"
+       inkscape:export-xdpi="80.262718"
+       inkscape:export-ydpi="80.262718">
+      <path
+         style="fill:#9d3c3c;fill-opacity:1;stroke:#000000;stroke-width:5.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+         d="m -24.819596,308.4768 11.225321,10.95805 h 8.2853504 v 8.55262 h 9.62171 v 10.69078 h 9.6216996 v 8.81989 H 31.039747 V 330.3929 L -8.5161546,290.83701"
+         id="path948-6-0" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:3.84219;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.1"
+         d="m -12.958025,298.322 37.047362,37.04736"
+         id="path958-7-9" />
+      <circle
+         style="fill:#9d3c3c;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:4.666;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path946-5-3"
+         cx="-32.145618"
+         cy="283.79993"
+         r="30.150599" />
+      <circle
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.22452;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99569;paint-order:fill markers stroke"
+         id="path960-3-6"
+         cx="-37.526531"
+         cy="277.41983"
+         r="6.4144678" />
+    </g>
+    <g
+       id="g966-0"
+       transform="matrix(-0.25881905,0.96592582,0.96592582,0.25881905,-555.8417,193.80004)"
+       inkscape:export-filename="/mnt/Mass-Storage/Work/University/GP/TwoKey/Desktop App/TwoKey/TwoKey/Icons/Branding/Logo_Default.png"
+       inkscape:export-xdpi="80.262718"
+       inkscape:export-ydpi="80.262718">
+      <path
+         style="fill:#3c679d;fill-opacity:1;stroke:#000000;stroke-width:5.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+         d="m -61.861262,266.52144 11.225321,10.95805 h 8.28535 v 8.55262 h 9.62171 v 10.69078 h 9.6217 v 8.81989 H -6.0019194 V 288.43754 L -45.557821,248.88165"
+         id="path948-62" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:3.84219;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.0991379"
+         d="M -49.999691,256.36664 -12.952329,293.414"
+         id="path958-6" />
+      <circle
+         style="fill:#3c679d;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:4.666;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path946-18"
+         cx="-69.187286"
+         cy="241.84456"
+         r="30.150599" />
+      <circle
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.22452;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99569;paint-order:fill markers stroke"
+         id="path960-7"
+         cx="-74.568199"
+         cy="235.46446"
+         r="6.4144678" />
+    </g>
+    <g
+       id="g966-3-9"
+       transform="matrix(-0.5,0.8660254,0.8660254,0.5,-265.29863,154.68636)"
+       inkscape:export-filename="/mnt/Mass-Storage/Work/University/GP/TwoKey/Desktop App/TwoKey/TwoKey/Icons/Branding/Logo_Default.png"
+       inkscape:export-xdpi="80.262718"
+       inkscape:export-ydpi="80.262718">
+      <path
+         style="fill:#3c679d;fill-opacity:1;stroke:#000000;stroke-width:5.665;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1"
+         d="M 63.373898,1.5069037 74.599219,12.464954 h 8.28535 v 8.55262 h 9.62171 v 10.69078 h 9.621701 v 8.81989 h 17.10526 v -17.10524 l -39.555901,-39.55589"
+         id="path948-6-2" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:3.84219;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.1"
+         d="M 75.235469,-8.6478963 112.28283,28.399464"
+         id="path958-7-0" />
+      <circle
+         style="fill:#3c679d;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:4.666;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path946-5-2"
+         cx="56.047874"
+         cy="-23.16997"
+         r="30.150599" />
+      <circle
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3.22452;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.99569;paint-order:fill markers stroke"
+         id="path960-3-3"
+         cx="50.666962"
+         cy="-29.550066"
+         r="6.4144678" />
+    </g>
+    <path
+       style="fill:#3c679d;stroke-width:0.4;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;stroke:#000000;stroke-opacity:0.98275864"
+       d="m -128.18129,352.66408 c -2.38339,-0.18053 -3.25984,-0.284 -4.78859,-0.56537 -5.96601,-1.09804 -12.09887,-3.75579 -18.11642,-7.85099 -0.87275,-0.59394 -0.96457,-0.65904 -1.9579,-1.38808 -2.21254,-1.62387 -4.38361,-3.44822 -6.48346,-5.44806 -0.84378,-0.80359 -3.44755,-3.51497 -3.44755,-3.59003 0,-0.0751 2.60377,-2.78644 3.44755,-3.59003 2.37005,-2.25717 4.65746,-4.14724 7.42702,-6.13691 2.15334,-1.54697 4.91573,-3.22187 7.32712,-4.44261 5.28197,-2.67394 10.18371,-4.1342 15.41277,-4.59156 1.30467,-0.11411 3.93211,-0.11411 5.23678,0 6.31049,0.55195 12.42489,2.65326 18.80051,6.46109 1.13412,0.67735 2.96718,1.87465 3.93938,2.57308 2.769562,1.98967 5.056972,3.87974 7.427012,6.13691 0.84378,0.80359 3.44755,3.51497 3.44755,3.59003 0,0.0751 -2.60377,2.78644 -3.44755,3.59003 -2.37004,2.25717 -4.65745,4.14724 -7.427012,6.13691 -3.29339,2.36598 -7.41661,4.6688 -10.93176,6.10538 -4.00483,1.6367 -7.80866,2.58222 -11.76095,2.92341 -0.83249,0.0719 -3.54447,0.12922 -4.1045,0.0868 z m 3.51477,-4.82707 c 3.04989,-0.39533 5.84511,-1.5756 8.23259,-3.47615 0.66724,-0.53116 2.05863,-1.92255 2.58978,-2.58979 1.92956,-2.42391 3.09485,-5.21715 3.50337,-8.39771 0.10536,-0.82033 0.11838,-2.89004 0.0231,-3.6799 -0.27696,-2.29689 -1.00152,-4.52742 -2.0722,-6.37916 -0.16856,-0.29152 -0.17245,-0.2945 -0.69145,-0.52823 -2.55747,-1.15175 -5.61907,-2.11648 -8.25917,-2.60249 -1.90939,-0.3515 -3.4512,-0.4919 -5.4019,-0.4919 -1.9507,0 -3.49251,0.1404 -5.4019,0.4919 -2.64328,0.4866 -5.70168,1.45068 -8.26644,2.60578 l -0.52922,0.23835 -0.26024,0.4659 c -1.04012,1.86214 -1.71991,4.03004 -1.9663,6.27062 -0.0925,0.84107 -0.0803,2.81233 0.0223,3.60913 0.40996,3.18357 1.5741,5.9739 3.50359,8.39771 0.53115,0.66724 1.92254,2.05863 2.58978,2.58979 2.65038,2.10984 5.89881,3.36281 9.2941,3.5849 0.66582,0.0435 2.38088,-0.0168 3.09017,-0.10875 z m -2.81409,-9.34598 c -1.60193,-0.16875 -3.04525,-0.85234 -4.20974,-1.99385 -2.54947,-2.49912 -2.83165,-6.46657 -0.66344,-9.32775 1.98029,-2.6132 5.59221,-3.50629 8.57442,-2.12013 1.53038,0.71133 2.73902,1.91997 3.45036,3.45035 0.97948,2.10728 0.84361,4.61482 -0.35817,6.61007 -0.56692,0.94123 -1.46903,1.84342 -2.4081,2.40833 -1.30473,0.78486 -2.87141,1.13246 -4.38533,0.97298 z m -17.64847,3.57491 c -1.91271,-3.27091 -2.95127,-7.36066 -2.82442,-11.12226 0.0479,-1.41995 0.25242,-3.13641 0.47867,-4.01696 0.0376,-0.14645 0.0684,-0.27948 0.0684,-0.29561 0,-0.0876 -2.43499,1.62067 -3.81686,2.67778 -1.50542,1.15163 -4.20225,3.46669 -5.00349,4.29518 l -0.21033,0.21748 0.21033,0.21748 c 0.40627,0.42008 2.06096,1.8963 3.09278,2.75918 1.74633,1.46043 3.44383,2.72539 5.35015,3.98687 0.95711,0.63337 2.864,1.81093 2.93329,1.8114 0.0175,1.4e-4 -0.10784,-0.23863 -0.27854,-0.53054 z m 37.43727,-0.018 c 2.4611,-1.48176 5.04497,-3.32951 7.34107,-5.2497 1.031822,-0.86288 2.686512,-2.3391 3.092772,-2.75918 l 0.21033,-0.21748 -0.21033,-0.21748 c -0.80123,-0.82849 -3.498062,-3.14355 -5.003482,-4.29518 -1.58188,-1.21012 -3.86055,-2.79314 -3.80238,-2.64156 0.0619,0.16129 0.26938,1.3206 0.36041,2.01376 0.47543,3.62013 0.0228,7.25346 -1.32802,10.66031 -0.29925,0.75473 -0.92525,2.04228 -1.32696,2.72928 -0.17222,0.29452 -0.28058,0.52301 -0.2408,0.50774 0.0398,-0.0153 0.44811,-0.25399 0.90739,-0.53051 z"
+       id="path1188"
+       inkscape:export-filename="/mnt/Mass-Storage/Work/University/GP/TwoKey/Desktop App/TwoKey/TwoKey/Icons/Buttons/Show.png"
+       inkscape:export-xdpi="481.19891"
+       inkscape:export-ydpi="481.19891" />
+    <g
+       id="g1194"
+       inkscape:export-filename="/mnt/Mass-Storage/Work/University/GP/TwoKey/Desktop App/TwoKey/TwoKey/Icons/Buttons/Regenerate.png"
+       inkscape:export-xdpi="481.19891"
+       inkscape:export-ydpi="481.19891">
+      <rect
+         style="fill:#3c679d;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+         id="rect1170"
+         width="52.384827"
+         height="52.384827"
+         x="-77.775429"
+         y="307.17941"
+         rx="3"
+         ry="3" />
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.4;stroke:#000000;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m -71.092719,346.12518 v -7.07288 h 7.07287 7.07288 l -2.7734,2.79221 -2.77339,2.79221 0.75937,0.58123 c 3.39461,2.59823 6.27824,3.66864 9.95625,3.69576 4.44464,0.0328 8.05445,-1.49903 11.37972,-4.82893 2.919396,-2.92347 4.250456,-5.74487 4.648006,-9.85226 0.10259,-1.0599 0.31855,-2.01457 0.47992,-2.12148 0.16137,-0.10691 1.17058,-0.19621 2.24271,-0.19844 l 1.94931,-0.004 -0.19165,2.05052 c -0.86196,9.22249 -6.53254,16.24615 -14.951766,18.51948 -2.40332,0.64894 -8.44368,0.63372 -10.84792,-0.0273 -2.37897,-0.6541 -5.16419,-2.03142 -7.01635,-3.46965 l -1.5601,-1.21145 -2.72323,2.71397 -2.72323,2.71397 z m -0.71911,-14.54736 c 0.44472,-7.14244 4.79504,-13.67711 11.13546,-16.72673 3.14617,-1.51325 4.82688,-1.85392 9.16281,-1.85728 3.28723,-0.003 4.12055,0.0857 5.82084,0.61665 2.36267,0.73774 4.91587,2.03795 6.78045,3.45292 l 1.356486,1.0294 2.60729,-2.61711 c 1.43401,-1.43942 2.69883,-2.61712 2.8107,-2.61712 0.11187,0 0.2034,3.15516 0.2034,7.01146 v 7.01146 h -7.205166 -7.20517 l 2.70726,-2.7165 c 1.48898,-1.49407 2.70725,-2.79774 2.70725,-2.89705 0,-0.39605 -3.41262,-2.55884 -5.07121,-3.21395 -4.71744,-1.86327 -9.66727,-1.34676 -14.01343,1.4623 -4.47548,2.89263 -7.3737,7.82512 -7.3737,12.5493 0,1.89937 -0.0747,1.95004 -2.88314,1.95604 l -1.69252,0.004 z"
+         id="path1168" />
+    </g>
+    <path
+       style="fill:#3c679d;stroke-width:0.4;fill-opacity:1;stroke:#000000;stroke-opacity:0.98275864;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m -213.32903,357.27042 c -0.36577,-0.079 -1.10244,-0.35856 -1.63703,-0.62126 -0.80178,-0.39401 -1.11826,-0.62511 -1.80736,-1.31978 -0.68859,-0.69415 -0.91608,-1.01075 -1.29464,-1.80176 -0.25259,-0.52779 -0.52125,-1.21285 -0.59702,-1.52235 -0.2039,-0.83293 -0.2039,-33.23767 0,-34.0706 0.0758,-0.3095 0.34562,-0.99701 0.59967,-1.52781 0.80421,-1.68024 2.36909,-3.00129 4.32712,-3.6529 0.52598,-0.17504 1.17297,-0.18929 9.908,-0.21819 10.20823,-0.0338 9.80784,-0.0537 11.21309,0.5594 0.56009,0.24439 1.06206,0.71023 5.14374,4.77354 4.83346,4.81172 4.89327,4.88276 5.34024,6.34348 0.21211,0.69317 0.21462,0.82669 0.21462,11.38244 0,9.52899 0.0169,10.68105 0.15688,10.68105 0.29564,0 1.12205,-0.49024 1.54064,-0.91395 0.53956,-0.54615 0.84881,-1.17436 0.97236,-1.97526 0.0613,-0.39741 0.0879,-6.60332 0.0701,-16.34584 -0.0266,-14.58446 -0.0413,-15.73661 -0.20495,-16.14504 -0.2702,-0.67419 -0.77504,-1.3118 -1.34948,-1.70439 -1.02306,-0.6992 -0.39476,-0.66943 -14.12831,-0.66943 -10.83692,0 -12.46454,0.0198 -12.99798,0.15797 -0.68908,0.1785 -1.28362,0.53517 -1.72711,1.0361 l -0.30158,0.34064 h -1.92061 -1.9206 l 0.14725,-0.41737 c 0.32496,-0.92102 0.83313,-1.70059 1.63494,-2.50811 0.67392,-0.67872 0.99707,-0.91399 1.79195,-1.3046 1.68138,-0.82626 0.84347,-0.78353 15.326,-0.78153 14.45433,0.002 13.59812,-0.0417 15.26147,0.77937 0.78992,0.38993 1.12461,0.63356 1.80471,1.31366 0.69346,0.69345 0.91323,0.9985 1.29687,1.80003 0.25405,0.5308 0.5239,1.21831 0.59967,1.52781 0.11258,0.45986 0.13776,3.58313 0.13776,17.08646 v 16.52373 l -0.23961,0.76735 c -0.40009,1.28134 -0.89665,2.11278 -1.81106,3.03248 -0.68429,0.68825 -0.99538,0.9139 -1.79302,1.30054 -0.53768,0.26064 -1.27093,0.52522 -1.6557,0.59743 l -0.69062,0.12961 v 0.6765 c 0,0.87731 -0.31316,2.0995 -0.7838,3.05901 -0.28223,0.57538 -0.59156,0.9815 -1.25343,1.64565 -0.96709,0.97042 -1.5897,1.36819 -2.82269,1.80337 l -0.81851,0.28889 -12.53348,0.0186 c -10.42654,0.0155 -12.64528,-0.006 -13.19852,-0.12498 z m 25.80326,-3.64553 c 0.7435,-0.34851 1.45563,-1.06065 1.80414,-1.80414 l 0.2732,-0.58283 0.0275,-12.92031 c 0.019,-8.90896 -0.006,-12.98286 -0.0803,-13.12178 -0.10262,-0.19177 -0.2252,-0.20149 -2.54119,-0.20149 -1.92723,0 -2.54896,-0.034 -2.98909,-0.16323 -1.45613,-0.4277 -2.58493,-1.39276 -3.24433,-2.7737 l -0.38081,-0.79753 -0.0512,-2.60901 -0.0512,-2.60901 -8.64077,-0.0262 c -9.61502,-0.0291 -9.39535,-0.0428 -10.40786,0.65026 -0.56905,0.38954 -1.15683,1.17016 -1.37901,1.83145 -0.2039,0.60689 -0.2039,32.33825 0,32.94514 0.22218,0.66129 0.80996,1.44192 1.37901,1.83144 1.01868,0.6973 0.36366,0.66645 13.67714,0.6442 l 12.02191,-0.0201 z m -22.66395,-6.2662 c -0.58261,-0.15844 -1.23879,-0.74811 -1.41009,-1.26715 -0.30456,-0.9228 0.12988,-2.05793 0.95664,-2.49958 l 0.43472,-0.23223 9.51521,-0.0318 c 6.94476,-0.0232 9.66381,3e-4 10.06529,0.087 0.42514,0.0918 0.64845,0.21714 0.98328,0.55197 0.9831,0.9831 0.78239,2.48507 -0.42707,3.19599 l -0.4924,0.28943 -9.56637,0.0202 c -7.61782,0.0161 -9.66676,-0.007 -10.05921,-0.11382 z m -0.27379,-9.02187 c -1.65477,-0.7176 -1.64042,-3.07622 0.023,-3.77122 0.33317,-0.13921 1.55164,-0.15809 10.07655,-0.15611 9.15881,0.002 9.72033,0.0126 10.10768,0.18857 1.34778,0.61228 1.65296,2.30457 0.59656,3.30801 -0.65535,0.6225 -0.13794,0.59412 -10.74883,0.58973 -8.43032,-0.003 -9.74425,-0.0242 -10.05492,-0.15898 z m 0.33032,-8.83851 c -1.75934,-0.4173 -2.1306,-2.78037 -0.58705,-3.73661 l 0.49546,-0.30694 5.58428,-0.0329 c 3.79765,-0.0224 5.74981,0.003 6.10166,0.0796 0.95168,0.20699 1.67789,1.0724 1.67789,1.99952 0,0.88562 -0.70135,1.76286 -1.58788,1.98609 -0.51304,0.12918 -11.14396,0.13936 -11.68436,0.0112 z"
+       id="path1190"
+       inkscape:export-filename="/mnt/Mass-Storage/Work/University/GP/TwoKey/Desktop App/TwoKey/TwoKey/Icons/Buttons/Copy.png"
+       inkscape:export-xdpi="481.19891"
+       inkscape:export-ydpi="481.19891" />
   </g>
 </svg>
