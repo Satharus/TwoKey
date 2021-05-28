@@ -91,9 +91,9 @@ repeat:     int idx = randomGenerator->bounded(0, 4);
 
         bool isSpecial = false;
 
-        for (int i = 0; i < 8; i++)
+        for (int j = 0; j < 8; j++)
         {
-            if (c == specialCharacters[i])
+            if (c == specialCharacters[j])
                 isSpecial = true;
         }
 
@@ -107,11 +107,11 @@ repeat:     int idx = randomGenerator->bounded(0, 4);
             specialCharacterCount++;
         }
 
-        if (isSpecial && specialCharacterCount <= static_cast<double>(ceil(0.2*length)))
+        if (isSpecial && specialCharacterCount <= static_cast<double>(ceil(0.2*length)) && c != '\0')
             password.append(c);
-        else if (isSpecial)
+        else if (isSpecial && c != '\0')
             i--;
-        else
+        else if (c != '\0')
             password.append(c);
     }
 

@@ -100,7 +100,7 @@ QPushButton::pressed
 </string>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Icons/Branding/unicode_key.png&quot; width=&quot;45&quot; height=&quot;45&quot;/&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt; TwoKey&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Icons/Branding/Logo_Default.png&quot; width=&quot;60&quot; height=&quot;60&quot;/&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt; TwoKey&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </item>
@@ -232,7 +232,11 @@ QPushButton::pressed
 </string>
              </property>
              <property name="text">
-              <string>👁</string>
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/Icons/Buttons/Show.png</normaloff>:/Icons/Buttons/Show.png</iconset>
              </property>
             </widget>
            </item>
@@ -550,7 +554,11 @@ QPushButton::pressed
 </string>
              </property>
              <property name="text">
-              <string>👁</string>
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/Icons/Buttons/Show.png</normaloff>:/Icons/Buttons/Show.png</iconset>
              </property>
             </widget>
            </item>
@@ -1352,7 +1360,11 @@ QPushButton::pressed
 </string>
              </property>
              <property name="text">
-              <string>👁</string>
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/Icons/Buttons/Show.png</normaloff>:/Icons/Buttons/Show.png</iconset>
              </property>
             </widget>
            </item>
@@ -1385,7 +1397,11 @@ QPushButton::pressed
 </string>
              </property>
              <property name="text">
-              <string>🔄</string>
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="icons.qrc">
+               <normaloff>:/Icons/Buttons/Regenerate.png</normaloff>:/Icons/Buttons/Regenerate.png</iconset>
              </property>
             </widget>
            </item>

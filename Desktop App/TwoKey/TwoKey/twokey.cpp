@@ -52,7 +52,7 @@ TwoKey::TwoKey(QWidget *parent, USBCommunicator *usbComm) :
 
     connect(twoKeySystemTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(systemTrayIconActivated(QSystemTrayIcon::ActivationReason)));
 
-    this->ui->twokey->setText("<html><head/><body><p><img src=\":/Icons/Branding/Logo_Default.png\" width=\"45\" height=\"60\"/><span style=\" font-size:36pt; font-weight:600;\"> TwoKey</span></p></body></html>");
+    this->ui->twokey->setText("<html><head/><body><p><img src=\":/Icons/Branding/Logo_Default.png\" width=\"60\" height=\"60\"/><span style=\" font-size:36pt; font-weight:600;\"> TwoKey</span></p></body></html>");
 
     this->usbComm = usbComm;
     connect(this->usbComm->usb_notif, SIGNAL(tokenStatusChanged()), this, SLOT(changeStatus()));
@@ -238,10 +238,12 @@ void TwoKey::on_login_showpassword_button_clicked()    //     SHOW PASSWORD
     if(ui->login_password->echoMode() == QLineEdit::Password)
     {
         ui->login_password->setEchoMode(QLineEdit::Normal);
+        ui->login_showpassword_button->setIcon(QIcon(":/Icons/Buttons/Hide.png"));
     }
     else
     {
         ui->login_password->setEchoMode(QLineEdit::Password);
+        ui->login_showpassword_button->setIcon(QIcon(":/Icons/Buttons/Show.png"));
     }
 }
 
@@ -253,10 +255,12 @@ void TwoKey::on_register_showpassword_button_clicked()    //     SHOW PASSWORD
     if(ui->register_password->echoMode() == QLineEdit::Password)
     {
         ui->register_password->setEchoMode(QLineEdit::Normal);
+        ui->register_showpassword_button->setIcon(QIcon(":/Icons/Buttons/Hide.png"));
     }
     else
     {
         ui->register_password->setEchoMode(QLineEdit::Password);
+        ui->register_showpassword_button->setIcon(QIcon(":/Icons/Buttons/Show.png"));
     }
 }
 
@@ -267,10 +271,12 @@ void TwoKey::on_manager_showpassword_button_clicked()    //     SHOW PASSWORD
     if(ui->manager_password->echoMode() == QLineEdit::Password)
     {
         ui->manager_password->setEchoMode(QLineEdit::Normal);
+        ui->manager_showpassword_button->setIcon(QIcon(":/Icons/Buttons/Hide.png"));
     }
     else
     {
         ui->manager_password->setEchoMode(QLineEdit::Password);
+        ui->manager_showpassword_button->setIcon(QIcon(":/Icons/Buttons/Show.png"));
     }
 }
 
@@ -294,16 +300,18 @@ void TwoKey::on_addaccount_showpassword_button_clicked()    //     SHOW PASSWORD
     if(ui->addaccount_password->echoMode() == QLineEdit::Password)
     {
         ui->addaccount_password->setEchoMode(QLineEdit::Normal);
+        ui->addaccount_showpassword_button->setIcon(QIcon(":/Icons/Buttons/Hide.png"));
     }
     else
     {
         ui->addaccount_password->setEchoMode(QLineEdit::Password);
+        ui->addaccount_showpassword_button->setIcon(QIcon(":/Icons/Buttons/Show.png"));
     }
 }
 
 void TwoKey::on_addaccount_generate_button_clicked()    //    GENERATE PASSWORD
 {
-    ui->manager_password->clear();
+     passwordDialog->show();
 }
 
 void TwoKey::changeStatus()
@@ -312,22 +320,27 @@ void TwoKey::changeStatus()
     if (usbComm->getTokenStatus())
     {
         //Set to green
-        this->ui->twokey->setText("<html><head/><body><p><img src=\":/Icons/Branding/Logo_Unlocked.png\" width=\"45\" height=\"60\"/><span style=\" font-size:36pt; font-weight:600;\"> TwoKey</span></p></body></html>");
+        this->ui->twokey->setText("<html><head/><body><p><img src=\":/Icons/Branding/Logo_Unlocked.png\" width=\"60\" height=\"60\"/><span style=\" font-size:36pt; font-weight:600;\"> TwoKey</span></p></body></html>");
 
         this->ui->twokey->setToolTip("TwoKey's token is connected.");
 
         twoKeySystemTrayIcon->setIcon(QIcon(":/Icons/Branding/Logo_Unlocked.png"));
         twoKeySystemTrayIcon->show();
+
+        setWindowIcon(QIcon(":/Icons/Branding/Logo_Unlocked.png"));
     }
     else
     {
         //Set to red
-        this->ui->twokey->setText("<html><head/><body><p><img src=\":/Icons/Branding/Logo_Locked.png\" width=\"45\" height=\"60\"/><span style=\" font-size:36pt; font-weight:600;\"> TwoKey</span></p></body></html>");
+        this->ui->twokey->setText("<html><head/><body><p><img src=\":/Icons/Branding/Logo_Locked.png\" width=\"60\" height=\"60\"/><span style=\" font-size:36pt; font-weight:600;\"> TwoKey</span></p></body></html>");
 
         this->ui->twokey->setToolTip("TwoKey's token is disconnected.");
 
         twoKeySystemTrayIcon->setIcon(QIcon(":/Icons/Branding/Logo_Locked.png"));
         twoKeySystemTrayIcon->show();
+
+        setWindowIcon(QIcon(":/Icons/Branding/Logo_Locked.png"));
+
         backendClient->logout();
         ui->twokey_stackedwidget->setCurrentIndex(0);
     }
@@ -419,6 +432,13 @@ void TwoKey::systemTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
 
 void TwoKey::fillGeneratedPassword(QString password)
 {
-    ui->manager_password->setText(password);
+    if (ui->twokey_stackedwidget->currentIndex() == 2)
+    {
+        ui->manager_password->setText(password);
+    }
+    else if (ui->twokey_stackedwidget->currentIndex() == 3)
+    {
+        ui->addaccount_password->setText(password);
+    }
 }
 

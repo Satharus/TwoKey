@@ -8,5 +8,6 @@
         <file>Icons/Branding/Logo_Default.png</file>
         <file>Icons/Branding/Logo_Locked.png</file>
         <file>Icons/Branding/Logo_Unlocked.png</file>
+        <file>Icons/Buttons/Hide.png</file>
     </qresource>
 </RCC>
