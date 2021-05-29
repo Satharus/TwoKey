@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>Icons/StatusIcons/greenStatusIconCircle.png</file>
-        <file>Icons/StatusIcons/redStatusIconCircle.png</file>
         <file>Icons/Buttons/Copy.png</file>
         <file>Icons/Buttons/Regenerate.png</file>
         <file>Icons/Buttons/Show.png</file>
