@@ -31,7 +31,7 @@ QString USBCommunicator::readFromToken(int waitTime, bool flushAfterRead)
 {
     if (!token->isOpen()) return "";
     token->waitForReadyRead(waitTime);
-    response = token->read(16);
+    response = token->read(32);
     if (flushAfterRead)
         token->flush();
     return response;

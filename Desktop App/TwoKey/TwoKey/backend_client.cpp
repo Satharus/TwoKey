@@ -32,8 +32,11 @@ int BackendClient::login(QString email, QString password)
     usbComm->writeToToken(challenge.toStdString().c_str());
     tokenChallengeResponse = usbComm->readFromToken();
 
+    QByteArray response = QByteArray::fromHex(tokenChallengeResponse.toUtf8());
+
     qDebug() << "Message: " + challenge;
-    qDebug() << "Response:" + tokenChallengeResponse;
+    qDebug() << "Response:" + response.toHex(',');
+
 
     int loginStatus = _2fa();
     return  loginStatus;
