@@ -39,3 +39,7 @@ function getTab()
             });
 }
 
+<<<<<<< HEAD
+var sending= chrome.runtime.sendMessage(retrievedCredentials);
+=======
+>>>>>>> 41b758cfdf32476aa03e75496b7747588e9cd0d4

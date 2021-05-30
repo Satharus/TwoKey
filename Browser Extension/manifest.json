@@ -15,11 +15,13 @@
     [
         "storage",
         "tabs",
-        "<all_urls>"
+        "<all_urls>",
+        "contextMenus"
     ],
     "background":
     {
-        "scripts":["background.js"]
+        "scripts":["background.js","chooseAccount.js"],
+        "persistent":false
     },
     "content_scripts":
     [
