@@ -11,7 +11,6 @@ app = Flask(__name__)
 
 SECRET_KEY = "secret_key"
 app.config["MONGO_URI"] = "mongodb://localhost:27017/testdb"
-
 mongo = PyMongo(app)
 
 @app.route("/")

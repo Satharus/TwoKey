@@ -6,6 +6,9 @@ from functools import wraps
 import jwt , datetime
 import json
 import base64
+import pyaes
+import binascii
+
 status_code_ok = "200"
 status_code_fail = "400"
 login_blueprint = Blueprint('login', __name__)
@@ -54,11 +57,11 @@ def authentication():
         return ret
     else:return {"code":status_code_fail} 
 
-def encrpyt_chall(key, val):
-  ret = ""
-  for i in range(16):
-    ret += chr(1+ord(val[i]))
-  return ret
+def encrpyt_chall(key, plaintext):
+    iv = "AAAAAAAAAAAAAAAA" #IV for CBC
+    aes = pyaes.AESModeOfOperationCBC(bytes(key.encode('utf-8')), iv = bytes(iv.encode('utf-8')))
+    ciphertext = aes.encrypt(bytes(plaintext.encode('utf-8')))
+    return binascii.hexlify(ciphertext).decode('ascii').upper()
 
 def get_physical_id(public_id):
     find_physicalID = mongo.db.devices.find_one({'Serial':public_id})
@@ -80,6 +83,7 @@ def User_login(user_id,email, password, challenge, encrpted_challange):
         n = f.write(str(datetime.datetime.now()) + " -> Original: " + original_encrpted + " - ")
         n = f.write("Recieved: " + encrpted_challange.decode("utf-8") + "\n")
         f.close()
+        #return {"original":original_encrpted, "encrypted":encrpted_challange.decode("utf-8")}
 
         if current_user['password'] != password or original_encrpted != encrpted_challange.decode("utf-8"):
             #return {"original":original_encrpted, "encrypted":encrpted_challange.decode("utf-8")}

@@ -26,6 +26,7 @@ def view_only_urls():
                 all_urls.append(account['url'])
     else:
         return {"code":status_code_ok}
+
     data = {
         "code":status_code_ok,
         "data":json.dumps(all_urls),
@@ -80,9 +81,9 @@ def Add_account():
         else:
             return {"code":status_code_fail}
     else:
-    	data = {
-        "code":status_code_ok,
-    	}
+        data = {
+            "code":status_code_ok,
+    	    }
         return data
     return {"code":status_code_fail}
 
