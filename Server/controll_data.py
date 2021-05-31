@@ -4,7 +4,8 @@ from flask import Blueprint
 import json 
 
 control_blueprint = Blueprint("controll_data", __name__)
-
+status_code_ok = "200"
+status_code_fail = "400"
 def get_all_user_data(req):
     token_exist, token = is_token_exist(req)
     if token_exist == True:
@@ -24,8 +25,12 @@ def view_only_urls():
             if account['url'] not in all_urls:
                 all_urls.append(account['url'])
     else:
-        return {"Message":"No accounts yet.."}
-    return json.dumps(all_urls)
+        return {"code":status_code_ok}
+    data = {
+        "code":status_code_ok,
+        "data":json.dumps(all_urls),
+    }
+    return data
 
 @control_blueprint.route("/view-accounts", methods=['POST'])
 def View_accounts_by_url():
@@ -41,8 +46,12 @@ def View_accounts_by_url():
                 l.append(account['password'])
                 accounts.append(l)
     else:
-        {"Message":f"No accounts for {url} yet.."}
-    return json.dumps(accounts)
+        {"code":status_code_fail}
+    data = {
+        "code":status_code_ok,
+        "data":json.dumps(accounts),
+    }
+    return data
 @control_blueprint.route("/Add-acc", methods=['POST'])
 def Add_account():
     req = request.json
@@ -57,7 +66,7 @@ def Add_account():
         password = req.get('password')
 
         if not url or not username or not password:
-            return {"Message":"Url, username or password is missing !!"}
+            return {"code":status_code_fail}
         username_duplicated = 0
         if user_data:
             accounts = []
@@ -69,10 +78,14 @@ def Add_account():
                                             "username":username,
                                             "password":password})
         else:
-            return {"code":400}
+            return {"code":status_code_fail}
     else:
-        return token
-    return {"Message":f"your data to {url} is saved..!"}
+    	data = {
+        "code":status_code_ok,
+        "data":token,
+    	}
+        return data
+    return {"code":status_code_fail}
 
 @control_blueprint.route("/delete-acc", methods=['POST'])
 def delete_specific_account():
@@ -83,12 +96,12 @@ def delete_specific_account():
         url = req.get("url")
         username = req.get("username")
         if not url or not username:
-            return {"Code":400}
+            return {"code":status_code_fail}
         else:
             data = mongo.db[user_id].find_one_and_delete({"url":url, "username":username})
             if not data:
-                return {"Code":400}
-    return {"Code":200}
+                return {"code":status_code_fail}
+    return {"code":status_code_ok}
 @control_blueprint.route("/update", methods=['POST'])
 def update_specific_account():
     req = request.json
@@ -102,7 +115,7 @@ def update_specific_account():
 
         user_data = get_all_user_data(req)
         if not url or not username or not old_username or not password:
-            return {"Codeee":400}
+            return {"code":status_code_fail}
         else:
             exist = 0
             if user_data:
@@ -113,5 +126,5 @@ def update_specific_account():
             if exist == 1:
                 mongo.db[user_id].update_one({"username":old_username}, {"$set": {"username":username, "password":password}})
             else:
-                return {"code":400}
-    return {"Code":200}
+                return {"code":status_code_fail}
+    return {"code":status_code_ok}

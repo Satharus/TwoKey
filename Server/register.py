@@ -6,7 +6,8 @@ from flask import Blueprint
 import jwt , datetime
 reg_blueprint = Blueprint('register', __name__)
 
-
+status_code_ok = "200"
+status_code_fail = "400"
 def serial_exist(serial):
     serial = mongo.db.devices.find_one({'Serial':serial})
     if not serial:
@@ -32,10 +33,10 @@ def User_Register():
     public_id = str(uuid.uuid4())
    
     if not serial_exist(serial):
-        return {"Message":"Wrong Serial!"}
+        return {"code":status_code_fail}
 
     if get_user_by_email(email):
-        return {"Message":"User already exists"}
+        return {"code":status_code_fail}
     
     user = mongo.db.user.insert_one({"public_id":public_id, 'last_name':lastname,
                                           "first_name":firstname, "email":email,
@@ -45,7 +46,7 @@ def User_Register():
     mongo.db.devices.update_one({"Serial":serial}, {"$set": {"Serial":public_id}})
     #db.coll.updateOne({"_id": 1, "grades": 80}, {$set: {"grades.$": 82}})
 
-    return {"Message":f"Done {firstname}"}, 200
+    return {"code":status_code_ok}
 
 
 
