@@ -72,7 +72,7 @@ bool BackendClient::_register(QString firstName, QString lastName, QString email
 
     qDebug() << "\nResponse: " <<  jsonResponse;
 
-    if (jsonResponse.object()["Message"].toString().contains("Done"))
+    if (jsonResponse.object()["code"].toString() == "200")
     {
             return true;
     }
@@ -108,17 +108,20 @@ int BackendClient::_2fa()
         qDebug() << a << jsonResponse.object()[a].toString();
     }
 
-    if (jsonResponse.object()["Message"].toString() == "Successful Login!!")
+    if (jsonResponse.object()["code"].toString() == "200")
     {
         qDebug() << "\nResponse(New JWT): " <<  this->jwt;
         return loginStatus::SUCCESS;
     }
     else
     {
-        qDebug() << "\nResponse: " <<  jsonResponse.object()["Message"].toString();
-        if (jsonResponse.object()["Message"].toString().contains("User doesn't exist"))
-            return loginStatus::DOESNT_EXIST;
-        else if (jsonResponse.object()["Message"].toString().contains("Wrong password or token"))
+        for (auto a :jsonResponse.object().keys())
+        {
+            qDebug() << a << jsonResponse.object()[a].toString();
+        }
+//        if (jsonResponse.object()["Message"].toString().contains("User doesn't exist"))
+//            return loginStatus::DOESNT_EXIST;
+        if (jsonResponse.object()["code"].toString().contains("400"))
             return loginStatus::INVALID;
     }
     return loginStatus::INVALID;
