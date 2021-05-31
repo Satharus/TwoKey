@@ -82,7 +82,6 @@ def Add_account():
     else:
     	data = {
         "code":status_code_ok,
-        "data":token,
     	}
         return data
     return {"code":status_code_fail}

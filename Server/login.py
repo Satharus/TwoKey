@@ -6,7 +6,8 @@ from functools import wraps
 import jwt , datetime
 import json
 import base64
-
+status_code_ok = "200"
+status_code_fail = "400"
 login_blueprint = Blueprint('login', __name__)
 @login_blueprint.route('/login', methods=['POST'])
 def initial_login():
@@ -27,11 +28,11 @@ def initial_login():
     jwt_token = jwt.encode(payload,SECRET_KEY)
  
     return_info = {
-     "Message":"Successful",
+     "code":status_code_ok,
      "Access-token":jwt_token.decode("UTF-8"),
      "challenge":challenge
     }
-    return return_info, 200
+    return return_info
 
 @login_blueprint.route("/2fa", methods=['POST'])
 def authentication():
@@ -44,14 +45,14 @@ def authentication():
     if token_exist == True:
         user_id = token['user_id']
    	#return {"Message":"1"}
-    else: return {"Message":"Something went wrong"}
+    else: return {"code":status_code_fail}
     encrpted_challange = req.get('challenge')
     finduser = mongo.db.session.find_one({'id':user_id})
  
     if finduser:
         ret = User_login(user_id,finduser['email'], finduser['password'], finduser['challenge'], encrpted_challange)
         return ret
-    else:return {"Message": "Something went wrong!!"} 
+    else:return {"code":status_code_fail} 
 
 def encrpyt_chall(key, val):
   ret = ""
@@ -82,9 +83,9 @@ def User_login(user_id,email, password, challenge, encrpted_challange):
 
         if current_user['password'] != password or original_encrpted != encrpted_challange.decode("utf-8"):
             #return {"original":original_encrpted, "encrypted":encrpted_challange.decode("utf-8")}
-            return  {"Message": "[ERROR] Authentication failed: Wrong password or token"}
+            return  {"code": status_code_fail}
     else:
-            return  {"Message": "[ERROR] Authentication failed: User doesn't exist" }
+            return  {"code": status_code_fail }
 
     timelimit = datetime.datetime.now() + datetime.timedelta(seconds=10000)
     payload = {"user_id":public_id, "exp":timelimit}
@@ -95,10 +96,10 @@ def User_login(user_id,email, password, challenge, encrpted_challange):
 
 
     return_info = {
-        "Message":"Successful Login!!",
+	"code":status_code_ok,
         "Access-token":jwt_token.decode("UTF-8"),
     }
-    return return_info, 200
+    return return_info
         
     
 
