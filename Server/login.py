@@ -47,7 +47,7 @@ def authentication():
     else: return {"Message":"Something went wrong"}
     encrpted_challange = req.get('challenge')
     finduser = mongo.db.session.find_one({'id':user_id})
-   
+ 
     if finduser:
         ret = User_login(user_id,finduser['email'], finduser['password'], finduser['challenge'], encrpted_challange)
         return ret
@@ -67,6 +67,7 @@ def User_login(user_id,email, password, challenge, encrpted_challange):
 
     encrpted_challange = base64.b64decode(encrpted_challange.encode('ascii').decode('ascii'))
     # print(encrpted_challange)
+    #return {"code":"ok"}
     current_user = get_user_by_email(email)
     if current_user:
         public_id = current_user['public_id']
@@ -83,9 +84,9 @@ def User_login(user_id,email, password, challenge, encrpted_challange):
             #return {"original":original_encrpted, "encrypted":encrpted_challange.decode("utf-8")}
             return  {"Message": "[ERROR] Authentication failed: Wrong password or token"}
     else:
-        return  {"Message": "[ERROR] Authentication failed: User doesn't exist" }
+            return  {"Message": "[ERROR] Authentication failed: User doesn't exist" }
 
-    timelimit = datetime.datetime.now() + datetime.timedelta(minutes=10)
+    timelimit = datetime.datetime.now() + datetime.timedelta(seconds=10000)
     payload = {"user_id":public_id, "exp":timelimit}
     jwt_token = jwt.encode(payload,SECRET_KEY)
 
