@@ -1,4 +1,5 @@
 import pyaes
+import binascii
 
 key = "rskDSkocuB6YuLxO"
 plaintext = "ThisIsAGPTest123"
@@ -6,6 +7,8 @@ iv = "AAAAAAAAAAAAAAAA" #IV for CBC
 
 aes = pyaes.AESModeOfOperationCBC(bytes(key.encode('utf-8')), iv = bytes(iv.encode('utf-8')))
 ciphertext = aes.encrypt(bytes(plaintext.encode('utf-8')))
+
+print(binascii.hexlify(ciphertext).decode('ascii').upper());
 
 print("Encrypted: ", end='')
 for a in ciphertext:
