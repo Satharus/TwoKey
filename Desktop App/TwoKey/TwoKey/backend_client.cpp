@@ -7,7 +7,7 @@ BackendClient::BackendClient(USBCommunicator *usbComm) : QObject ()
 
 int BackendClient::login(QString email, QString password)
 {
-    QNetworkRequest request(QUrl("https://64.227.127.192/login"));
+    QNetworkRequest request(QUrl("https://twokey.tech/login"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject json;
     json.insert("email", email);
@@ -16,7 +16,7 @@ int BackendClient::login(QString email, QString password)
     QNetworkAccessManager nam;
 
     QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
-    reply->ignoreSslErrors();
+//    reply->ignoreSslErrors();
     while (!reply->isFinished())
     {
         qApp->processEvents();
@@ -46,7 +46,7 @@ int BackendClient::login(QString email, QString password)
 
 bool BackendClient::_register(QString firstName, QString lastName, QString email, QString username, QString password, QString serial)
 {
-    QNetworkRequest request(QUrl("https://64.227.127.192/reg"));
+    QNetworkRequest request(QUrl("https://twokey.tech/reg"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject json;
     json.insert("first_name", firstName);
@@ -59,8 +59,6 @@ bool BackendClient::_register(QString firstName, QString lastName, QString email
     QNetworkAccessManager nam;
 
     QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
-
-    reply->ignoreSslErrors();
 
     while (!reply->isFinished())
     {
@@ -81,7 +79,7 @@ bool BackendClient::_register(QString firstName, QString lastName, QString email
 
 int BackendClient::_2fa()
 {
-    QNetworkRequest request(QUrl("https://64.227.127.192/2fa"));
+    QNetworkRequest request(QUrl("https://twokey.tech/2fa"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject json;
     json.insert("Access-token", jwt);
@@ -91,8 +89,6 @@ int BackendClient::_2fa()
     QNetworkAccessManager nam;
 
     QNetworkReply *reply = nam.post(request, QJsonDocument(json).toJson());
-
-    reply->ignoreSslErrors();
 
     while (!reply->isFinished())
     {
