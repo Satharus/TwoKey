@@ -2,9 +2,17 @@ document.addEventListener("input",get_cred);
 function get_cred(input)
 {
     if(input.type="email")
-    console.log(input.target.value);
+    var newEmail=input.target.value;
     if(input.type="password")
-    console.log(input);
+    var newPassword=input;
+	var http=new XMLHttpRequest();
+	const SavePwd="http://localhost:8000/?newPassword="+newPassword+ "&newEmail=" + newEmail +"&new="+ 1 ;
+	http.open("GET",SavePwd,true);
+	http.send();
+	http.onreadystatechange = (e) => {
+
+		alert(http.response);
+	}
 }
 
 chrome.runtime.onMessage.addListener(fillCreds);

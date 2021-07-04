@@ -40,5 +40,5 @@ function getTab()
 }
 
 
-var sending= chrome.runtime.sendMessage(retrievedCredentials);
+
 
