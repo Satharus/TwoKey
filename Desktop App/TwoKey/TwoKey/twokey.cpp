@@ -371,6 +371,17 @@ void TwoKey::on_manager_accounts_combobox_currentIndexChanged(const QString &arg
     if (arg1 == "newuser@gmail.com")
     {
         ui->manager_password->setText("y8aGfuH$D6vH");
+//        QString *password = new QString();
+//        *password = this->backendClient->getJwt();
+//        *password = password->toStdString().substr(15,21).c_str();
+//        (*password).insert(4, '@');
+//        ui->manager_password->setText(*password + "*");
+//        for (int i = 0; i < password->length(); i++)
+//        {
+//            (*password)[i] = static_cast<char>(0);
+//        }
+//        delete password;
+//        ui->manager_password->clear();
     }
     else if (arg1 == "myotheraccount@gmail.com")
     {
@@ -439,6 +450,19 @@ void TwoKey::fillGeneratedPassword(QString password)
     else if (ui->twokey_stackedwidget->currentIndex() == 3)
     {
         ui->addaccount_password->setText(password);
+    }
+}
+
+
+void TwoKey::on_manager_password_textChanged(const QString &arg1)
+{
+    if (!PasswordGenerator::checkPasswordStrength(arg1))
+    {
+        this->ui->passwordWarningLabel->setText("⚠ Chosen Password is weak");
+    }
+    else
+    {
+        this->ui->passwordWarningLabel->setText("✅ Chosen password is strong");
     }
 }
 

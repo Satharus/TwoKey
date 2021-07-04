@@ -87,6 +87,8 @@ private slots:
 
     void fillGeneratedPassword(QString);
 
+    void on_manager_password_textChanged(const QString &arg1);
+
 private:
 
 

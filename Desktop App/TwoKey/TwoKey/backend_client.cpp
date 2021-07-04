@@ -10,8 +10,15 @@ int BackendClient::login(QString email, QString password)
     QNetworkRequest request(QUrl("https://twokey.tech/login"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QJsonObject json;
+
+    QCryptographicHash *sha256sum =  new QCryptographicHash(QCryptographicHash::Algorithm::Sha256);
+
+    QByteArray password_hash = sha256sum->hash(password.toUtf8(), QCryptographicHash::Algorithm::Sha256);
+
+    qDebug() << password_hash.toHex();
     json.insert("email", email);
-    json.insert("password", password);
+    json.insert("password", QString(password));
+    //json.insert("password_hash", QString(password_hash.toHex()));
 
     QNetworkAccessManager nam;
 
@@ -39,6 +46,8 @@ int BackendClient::login(QString email, QString password)
 
 
     int loginStatus = _2fa();
+    delete reply;
+    delete sha256sum;
     return  loginStatus;
 }
 

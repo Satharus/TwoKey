@@ -9,7 +9,8 @@ PasswordGenerator::PasswordGenerator() : QObject ()
 
 bool PasswordGenerator::checkPasswordStrength(QString password)
 {
-    if (password.length() < 9)
+    QChar specialCharacters[9] = {'!', '@', '#', '$', '%', '^', '&', '*'};
+    if (password.length() < 11)
     {
         return false;
     }
@@ -25,13 +26,13 @@ bool PasswordGenerator::checkPasswordStrength(QString password)
     }
 
     bool containsSpecial = false;
-    for (QChar a : this->specialCharacters)
+    for (QChar a : specialCharacters)
     {
         if (password.contains(a))
             containsSpecial = true;
     }
 
-    if (!containsSpecial && password.length() < 11) return false;
+    if (!containsSpecial) return false;
 
     return true;
 }

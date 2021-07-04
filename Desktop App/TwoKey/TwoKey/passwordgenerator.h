@@ -12,7 +12,7 @@ private:
     QRandomGenerator *randomGenerator;
 public:
     PasswordGenerator();
-    bool checkPasswordStrength(QString password);
+    static bool checkPasswordStrength(QString password);
     QString generatePassword(int mask, int length);
 
 

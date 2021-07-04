@@ -3,6 +3,7 @@
 
 #include "usb_communicator.h"
 
+#include <QCryptographicHash>
 #include <QtNetwork>
 
 class BackendClient : public QObject

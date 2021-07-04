@@ -110,7 +110,7 @@ QPushButton::pressed
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::MinimumExpanding</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -125,7 +125,7 @@ QPushButton::pressed
    <item>
     <widget class="QStackedWidget" name="twokey_stackedwidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="login_page">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -504,11 +504,17 @@ QPushButton::pressed
           <layout class="QHBoxLayout" name="register_password_layout">
            <item>
             <widget class="QLineEdit" name="register_password">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="styleSheet">
               <string notr="true">QLineEdit
 {
 	background-color: #bfbfbf;
-	color: #00000000;
+	color: #000000;
 	border-style: solid;
 	border-color: #141414;
 	border-radius: 5px;
@@ -1117,6 +1123,16 @@ QPushButton::pressed
               </widget>
              </item>
             </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="passwordWarningLabel">
+             <property name="text">
+              <string/>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
            </item>
            <item>
             <spacer name="manager_password_buttons_spacer">

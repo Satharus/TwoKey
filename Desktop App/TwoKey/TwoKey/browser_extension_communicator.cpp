@@ -78,6 +78,9 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e)
         char *loggedin = reinterpret_cast<char*>(malloc(1000));
         sb_get_var(e->stream, "loggedin", loggedin, 1000);
 
+        char *_new = reinterpret_cast<char*>(malloc(1000));
+        sb_get_var(e->stream, "new", _new, 1000);
+
         qDebug() << e->method << "-" << e->path;
         qDebug() << "mstrpwd:\t" << masterpasswd;
         qDebug() << "url:\t" << url;
