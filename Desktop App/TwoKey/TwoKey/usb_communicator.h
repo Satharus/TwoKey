@@ -1,4 +1,4 @@
-#ifndef USB_COMMUNICATOR_H
+    #ifndef USB_COMMUNICATOR_H
 #define USB_COMMUNICATOR_H
 
 #include "usb_event_handler.h"

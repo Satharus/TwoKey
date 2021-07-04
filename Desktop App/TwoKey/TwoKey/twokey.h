@@ -89,10 +89,18 @@ private slots:
 
     void on_manager_password_textChanged(const QString &arg1);
 
+    void on_manager_delete_button_clicked();
+
+    void on_addaccount_password_textChanged(const QString &arg1);
+
 private:
 
 
     void closeEvent(QCloseEvent *event) override;
+
+
+    void loadWebsitesList();
+    void loadAccountsForWebsite(QString website);
     Ui::TwoKey *ui;
     USBCommunicator *usbComm;
 
@@ -110,5 +118,8 @@ private:
     QMenu *twoKeySystemTrayMenu;
     QSystemTrayIcon* twoKeySystemTrayIcon;
     bool closing;
+    QString oldUsername, oldPassword;
+
+    QHash<QString, QString> credentials;
 };
 #endif // TWOKEY_H

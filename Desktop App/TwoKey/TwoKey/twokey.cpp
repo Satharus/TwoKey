@@ -29,6 +29,8 @@ TwoKey::TwoKey(QWidget *parent, USBCommunicator *usbComm) :
     ui->manager_generate_button->setVisible(false);
     ui->manager_logout_button->setVisible(false);
     ui->manager_logout_button->setEnabled(false);
+    this->ui->manager_delete_button->setVisible(false);
+    this->ui->manager_delete_button->setEnabled(false);
 
     returnShortcut = new QShortcut(QKeySequence("Return"), ui->login_page);
     QObject::connect(returnShortcut, SIGNAL(activated()), ui->login_button, SLOT(click()));
@@ -75,6 +77,39 @@ void TwoKey::closeEvent(QCloseEvent *event)
     }
 }
 
+void TwoKey::loadWebsitesList()
+{
+    ui->manager_accounts_list->clear();
+    QStringList websites = this->backendClient->getWebsites();
+    this->ui->manager_accounts_list->addItems(websites);
+    this->loadAccountsForWebsite(websites[0]);
+    this->ui->manager_password->setText(this->credentials[this->ui->manager_accounts_combobox->currentText()]);
+}
+
+void TwoKey::loadAccountsForWebsite(QString website)
+{
+    for (int i = 0 ; i < ui->manager_accounts_combobox->count(); i++)
+    {
+        ui->manager_accounts_combobox->removeItem(i);
+    }
+    ui->manager_accounts_combobox->clear();
+
+    this->credentials = this->backendClient->getAccountsForWebsite(website);
+
+    ui->manager_accounts_combobox->setMaxCount(this->credentials.count());
+
+    int i = 0;
+    for(auto a : this->credentials.keys())
+    {
+        if (i == 0)
+        {
+            ui->manager_website->setText(website);
+            ui->manager_password->setText(this->credentials[a]);
+        }
+        ui->manager_accounts_combobox->addItem(a);
+    }
+}
+
 TwoKey::~TwoKey()
 {
     this->twoKeySystemTrayIcon->hide();
@@ -102,6 +137,7 @@ void TwoKey::on_login_button_clicked()
     if (ui->login_email->text().isEmpty() || ui->login_password->text().isEmpty())
     {
         QMessageBox::critical(this, "Empty Login Fields", "Please enter your credentials.");
+        return;
     }
 
     if (!usbComm->getTokenStatus())
@@ -116,16 +152,16 @@ void TwoKey::on_login_button_clicked()
         ui->twokey_stackedwidget->setCurrentIndex(2);
         ui->login_email->clear();
         ui->login_password->clear();
+        this->loadWebsitesList();
     }
     else if (loginStatus == BackendClient::loginStatus::INVALID)
     {
-        QMessageBox::critical(this, "Invalid credentials!", "The username or password you have entered is incorrect.");
+        QMessageBox::critical(this, "Invalid credentials!", "The username, password, and/or token is incorrect.");
         ui->login_password->clear();
     }
-    else if (loginStatus == BackendClient::loginStatus::DOESNT_EXIST)
+    else if (loginStatus == BackendClient::loginStatus::NORESPONSE)
     {
-        QMessageBox::critical(this, "Invalid account!", "The user doesn't exist.");
-        ui->login_password->clear();
+        QMessageBox::critical(this, "Communication Error", "No Server Response. Please check your network connection or see if you can load https://twokey.tech");
     }
 }
 
@@ -165,6 +201,7 @@ void TwoKey::on_register_back_button_clicked()
 void TwoKey::on_manager_addaccount_button_clicked()
 {
     ui->twokey_stackedwidget->setCurrentIndex(3); // ADD ACCOUNT BUTTON
+
 }
 
 void TwoKey::on_manager_logout_button_clicked()
@@ -178,11 +215,17 @@ void TwoKey::on_manager_logout_button_clicked()
 void TwoKey::on_addaccount_button_clicked()
 {
     ui->twokey_stackedwidget->setCurrentIndex(2); // ADD ACCOUNT BUTTON
+    this->backendClient->addAccount(this->ui->addaccount_website->text(),
+                                    this->ui->addaccount_username->text(),
+                                    this->ui->addaccount_password->text());
+
+    this->loadWebsitesList();
+    this->loadAccountsForWebsite(this->ui->addaccount_website->text());
 }
 
 void TwoKey::on_addaccount_cancel_button_clicked()
 {
-    ui->twokey_stackedwidget->setCurrentIndex(2); // CANCEL BUTTON
+    ui->twokey_stackedwidget->setCurrentIndex(2); // CANCEL BUTTON 
 }
 
 /*
@@ -207,10 +250,20 @@ void TwoKey::on_manager_edit_button_clicked()    //    EDIT INFO BUTTON
     ui->manager_generate_button->setEnabled(true);
     ui->manager_save_button->setVisible(true);
     ui->manager_save_button->setEnabled(true);
+    this->ui->manager_delete_button->setVisible(true);
+    this->ui->manager_delete_button->setEnabled(true);
 }
 
 void TwoKey::on_manager_save_button_clicked()    //    SAVE INFO BUTTON
-{
+{    
+
+    if (ui->manager_password->text().isEmpty() || ui->manager_username->text().isEmpty())
+    {
+        QMessageBox::critical(this, "Invalid password", "Password can't be empty.");
+        return;
+    }
+
+
     ui->manager_edit_button->setEnabled(true);
     ui->manager_edit_button->setVisible(true);
     ui->manager_website->setReadOnly(true);
@@ -220,6 +273,33 @@ void TwoKey::on_manager_save_button_clicked()    //    SAVE INFO BUTTON
     ui->manager_generate_button->setEnabled(false);
     ui->manager_save_button->setEnabled(false);
     ui->manager_save_button->setVisible(false);
+    this->ui->manager_delete_button->setVisible(false);
+    this->ui->manager_delete_button->setEnabled(false);
+
+    if (ui->manager_password->text() == oldPassword && ui->manager_username->text() == oldUsername)
+    {
+        return;
+    }
+
+    QString password = this->ui->manager_password->text();
+    QString username = this->ui->manager_username->text();
+    bool ret = false;
+    ret = this->backendClient->changeAccount(this->ui->manager_website->text(), this->oldUsername, username, password);
+    if (ret)
+    {
+        QMessageBox::information(this, "Successful", "The account information was updated successfuly.");
+        this->credentials[this->oldUsername] = password;
+        if (this->oldUsername != username)
+        {
+            this->credentials.insert(username, password);
+            this->credentials.remove(this->oldUsername);
+        }
+        this->loadAccountsForWebsite(this->ui->manager_website->text());
+    }
+    else
+    {
+       QMessageBox::information(this, "Failed", "The account information failed to update.");
+    }
 }
 
 /*
@@ -368,55 +448,19 @@ void TwoKey::loginFromBrowserExtension()
 void TwoKey::on_manager_accounts_combobox_currentIndexChanged(const QString &arg1)
 {
     ui->manager_username->setText(arg1);
-    if (arg1 == "newuser@gmail.com")
-    {
-        ui->manager_password->setText("y8aGfuH$D6vH");
-//        QString *password = new QString();
-//        *password = this->backendClient->getJwt();
-//        *password = password->toStdString().substr(15,21).c_str();
-//        (*password).insert(4, '@');
-//        ui->manager_password->setText(*password + "*");
-//        for (int i = 0; i < password->length(); i++)
-//        {
-//            (*password)[i] = static_cast<char>(0);
-//        }
-//        delete password;
-//        ui->manager_password->clear();
-    }
-    else if (arg1 == "myotheraccount@gmail.com")
-    {
-        ui->manager_password->setText("mEbab6j$sjmT");
-    }
-    else if (arg1 == "2017170000@cis.asu.edu.eg")
-    {
-        ui->manager_password->setText("2oC$guWyQrTs");
-    }
+    this->oldUsername = arg1;
+    this->ui->manager_password->setText(this->credentials[arg1]);
+    this->oldPassword = this->ui->manager_password->text();
 }
 
 void TwoKey::on_manager_accounts_list_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous)
 {
     (void) previous;
-    if (current->text() == "ASU")
+    if (current != nullptr)
     {
-        ui->manager_accounts_combobox->setMaxCount(1);
-        ui->manager_accounts_combobox->setItemText(0, "2017170000@cis.asu.edu.eg");
-        ui->manager_website->setText("cis.asu.edu.eg");
+        this->loadAccountsForWebsite(current->text());
+        this->on_manager_accounts_combobox_currentIndexChanged(ui->manager_accounts_combobox->currentText());
     }
-    else if (current->text() == "LinkedIn")
-    {
-        ui->manager_accounts_combobox->setMaxCount(1);
-        ui->manager_accounts_combobox->setItemText(0, "newuser@gmail.com");
-        ui->manager_website->setText("linkedin.com");
-    }
-    else if (current->text() == "Google")
-    {
-        ui->manager_accounts_combobox->setMaxCount(2);
-        ui->manager_accounts_combobox->setItemText(0, "newuser@gmail.com");
-        ui->manager_accounts_combobox->addItem("myotheraccount@gmail.com");
-        ui->manager_website->setText("google.com");
-    }
-
-    this->on_manager_accounts_combobox_currentIndexChanged(ui->manager_accounts_combobox->currentText());
 }
 
 void TwoKey::attemptToClose()
@@ -456,13 +500,48 @@ void TwoKey::fillGeneratedPassword(QString password)
 
 void TwoKey::on_manager_password_textChanged(const QString &arg1)
 {
-    if (!PasswordGenerator::checkPasswordStrength(arg1))
+    if (arg1.isEmpty())
+    {
+        this->ui->passwordWarningLabel->clear();
+    }
+    else if (!PasswordGenerator::checkPasswordStrength(arg1))
     {
         this->ui->passwordWarningLabel->setText("⚠ Chosen Password is weak");
     }
     else
     {
         this->ui->passwordWarningLabel->setText("✅ Chosen password is strong");
+    }
+}
+
+void TwoKey::on_manager_delete_button_clicked()
+{
+    bool ret = this->backendClient->removeAccount(this->ui->manager_website->text(), this->ui->manager_username->text());
+    if (ret)
+    {
+        QMessageBox::information(this, "Successful", "Account removed successfuly.");
+        this->loadWebsitesList();
+    }
+    else
+    {
+        QMessageBox::information(this, "Failed", "Unable to remove account.");
+    }
+}
+
+
+void TwoKey::on_addaccount_password_textChanged(const QString &arg1)
+{
+    if (arg1.isEmpty())
+    {
+        this->ui->addaccount_passwordWarningLabel->clear();
+    }
+    else if (!PasswordGenerator::checkPasswordStrength(arg1))
+    {
+        this->ui->addaccount_passwordWarningLabel->setText("⚠ Chosen Password is weak");
+    }
+    else
+    {
+        this->ui->addaccount_passwordWarningLabel->setText("✅ Chosen password is strong");
     }
 }
 
