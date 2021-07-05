@@ -10,6 +10,9 @@ linux {
 
 windows {
     LIBS += -lws2_32
+    LIBS += "C:\Program Files\OpenSSL-Win64\lib\libssl.lib" "C:\Program Files\OpenSSL-Win64\lib\libcrypto.lib"
+    LIBS += -L"C:\Program Files\OpenSSL-Win64\lib"
+    INCLUDEPATH += "C:\Program Files\OpenSSL-Win64\include"
 }
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.

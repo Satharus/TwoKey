@@ -4,7 +4,13 @@
 #include "usb_communicator.h"
 
 #include <QCryptographicHash>
+#include <openssl/evp.h>
+#include <openssl/sha.h>
+#include <openssl/hmac.h>
+#include <openssl/aes.h>
 #include <QtNetwork>
+
+#define KEY_LEN  32
 
 class BackendClient : public QObject
 {
@@ -23,6 +29,8 @@ public:
     bool removeAccount(QString website, QString username);
 
     QString getJwt() const;
+    QString encryptWithKey(std::string text);
+    QString decryptWithKey(std::string encryptedText);
 
     enum loginStatus
     {
@@ -34,10 +42,25 @@ public:
 
 private:
     QString jwt;
+    QString masterpassword;
+    QByteArray encryptionkey;
+    QString salt;
     QString tokenChallengeResponse;
     USBCommunicator *usbComm;
     QStringList parseJSONArray(QString arrayString);
 
+};
+
+
+class CHashGenerator
+{
+public:
+    std::string calculateHMACHash(const char* password, const char* salt, const char* data, int iterations);
+    char* generateKey(const char* password , const unsigned char* salt, int iterations);
+
+private:
+    char pbkdf2Key[64];
+    char hash[41];
 };
 
 #endif // BACKEND_CLIENT_H

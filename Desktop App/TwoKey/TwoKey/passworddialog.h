@@ -38,6 +38,10 @@ private slots:
 
     void on_LengthSlider_sliderReleased();
 
+    void on_LengthSpinBox_valueChanged(int arg1);
+
+    void on_LengthSlider_sliderMoved(int position);
+
 private:
     Ui::PasswordDialog *ui;
     PasswordGenerator *generator;

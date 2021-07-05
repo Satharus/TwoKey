@@ -28,6 +28,7 @@ PasswordDialog::~PasswordDialog()
 void PasswordDialog::on_LengthSlider_valueChanged(int value)
 {
     this->passwordLength = value;
+    this->on_RegenrateButton_clicked();
 }
 
 
@@ -35,6 +36,7 @@ void PasswordDialog::on_UppercasCheckBox_stateChanged(int arg1)
 {
     (void) arg1;
     this->passwordMask ^= PasswordGenerator::PasswordStrength::UPPERCASE;
+    this->on_RegenrateButton_clicked();
 }
 
 
@@ -42,6 +44,7 @@ void PasswordDialog::on_LowercaseCheckBox_stateChanged(int arg1)
 {
     (void) arg1;
     this->passwordMask ^= PasswordGenerator::PasswordStrength::LOWERCASE;
+    this->on_RegenrateButton_clicked();
 }
 
 
@@ -49,6 +52,7 @@ void PasswordDialog::on_NumbersCheckBox_stateChanged(int arg1)
 {
     (void) arg1;
     this->passwordMask ^= PasswordGenerator::PasswordStrength::NUMBERS;
+    this->on_RegenrateButton_clicked();
 }
 
 
@@ -56,6 +60,7 @@ void PasswordDialog::on_SpecialCharacterCheckBox_stateChanged(int arg1)
 {
     (void) arg1;
     this->passwordMask ^= PasswordGenerator::PasswordStrength::SPECIAL_CHARS;
+    this->on_RegenrateButton_clicked();
 }
 
 
@@ -82,3 +87,15 @@ void PasswordDialog::on_LengthSlider_sliderReleased()
 {
     this->on_RegenrateButton_clicked();
 }
+
+void PasswordDialog::on_LengthSpinBox_valueChanged(int arg1)
+{
+    this->on_RegenrateButton_clicked();
+}
+
+
+void PasswordDialog::on_LengthSlider_sliderMoved(int position)
+{
+    this->on_RegenrateButton_clicked();
+}
+
