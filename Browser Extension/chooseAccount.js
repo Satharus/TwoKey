@@ -6,36 +6,46 @@ function saveCreds(request, sender, sendResponse)
 	console.log(request);
     emails_list=request;
 	console.log(emails_list);
-	
+	var Nemail;
+	var pw;
 	for( i=0;i<emails_list.length;i++)
 	{
 	console.log("email list: ");
 	console.log(emails_list)
-    chrome.contextMenus.create({id:creds_list[i].toString(),type:'radio', title:creds_list[i].email});
-
+    chrome.contextMenus.create({id:i.toString(),type:'radio', title:emails_list[i].email});
+				alert(1);
     chrome.contextMenus.onClicked.addListener((info, tab) => {
-        var Nemail=info.menuItemId;
-        var pw;
-        for(var j=0;j<creds_list.length();j++)
+		
+		 Nemail=emails_list[info.menuItemId];
+		
+        for(var j=0;j<emails_list.length;j++)
         {
-            if(Nemail==creds_list[j].email)
+			alert(1);
+            if(Nemail==emails_list[j].email)
             {
-                 pw=creds_list[j].password;
+                 pw=emails_list[j].password;
             }
-         
-        }
-        if(input.srcElement.type==="email" || input.srcElement.type==="text")
-        {
-            input.target.value=email;
-        }
-        if(input.srcElement.type==="pass" || input.srcElement.type==="password")
-        {
-            input.target.value=pw;
-        }
-       
+        } 
       });
 	}
-	return true;
+
+	
+	document.addEventListener("click",fill_Creds);
+		function fill_Creds(input)
+		{
+			alert(1);
+			console.log(input);
+			if(input.srcElement.type==="email" || input.srcElement.type==="text")
+			{
+				input.target.value=email;
+			}
+			if(input.srcElement.type==="pass" || input.srcElement.type==="password")
+			{
+				input.target.value=pw;
+			}
+		}
+		return true;
+
 }
 
 

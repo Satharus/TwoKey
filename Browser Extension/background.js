@@ -13,7 +13,7 @@ function getTab()
                  http.send("");
                  http.onreadystatechange = (e) => {
 				 retrievedCredentials = http.responseText;
-				 if (retrievedCredentials.length != 0)
+				 if (retrievedCredentials.length != 0 && retrievedCredentials != "[]")
 					console.log(retrievedCredentials);
                  }
 				 var credentials = JSON.parse(retrievedCredentials);
@@ -35,7 +35,7 @@ function getTab()
                  http.send("");
                  http.onreadystatechange = (e) => {
 				 retrievedCredentials = http.responseText;
-				 if (retrievedCredentials.length != 0)
+				 if (retrievedCredentials.length != 0 && retrievedCredentials != "[]")
                                  
 					console.log(retrievedCredentials);
                                         

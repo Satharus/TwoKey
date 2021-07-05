@@ -21,7 +21,7 @@ function fillCreds(request,sender,sendResponse)
 	chrome.runtime.sendMessage(request);
 	var credentials = JSON.parse(request);
 	console.log(credentials);
-	console.log(credentials.email + "  " + credentials.password);
+	console.log(credentials[0].email + "  " + credentials[0].password);
 
   document.addEventListener("click",fill_Creds);
 function fill_Creds(input)
@@ -29,11 +29,11 @@ function fill_Creds(input)
 	console.log(input);
     if(input.srcElement.type==="email" || input.srcElement.type==="text")
 	{
-		input.target.value=credentials.email;
+		input.target.value=credentials[0].email;
 	}
     if(input.srcElement.type==="pass" || input.srcElement.type==="password")
 	{
-		input.target.value=credentials.password;
+		input.target.value=credentials[0].password;
 	}
 }
 }
