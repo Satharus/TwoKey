@@ -16,10 +16,10 @@ function getTab()
 				 if (retrievedCredentials.length != 0 && retrievedCredentials != "[]")
 					console.log(retrievedCredentials);
                  }
-				 var credentials = JSON.parse(retrievedCredentials);
-				 console.log(credentials)
-				 console.log(credentials[0].email + "  " + credentials[0].password);
-				 chrome.tabs.sendMessage(tabs[0].id, credentials);
+				 // var credentials = JSON.parse(retrievedCredentials);
+				 // console.log(credentials)
+				 // console.log(credentials[0].email + "  " + credentials[0].password);
+				 chrome.tabs.sendMessage(tabs[0].id, retrievedCredentials);
             });
 }
 chrome.tabs.onActivated.addListener(getTab)
@@ -40,10 +40,10 @@ function getTab()
 					console.log(retrievedCredentials);
                                         
                  }
-				 var credentials = JSON.parse(retrievedCredentials);
-				 console.log(credentials)
-				 console.log(credentials[0].email + "  " + credentials[0].password);
-				 chrome.tabs.sendMessage(tabs[0].id, credentials);
+				 // var credentials = JSON.parse(retrievedCredentials);
+				 // console.log(credentials)
+				 // console.log(credentials[0].email + "  " + credentials[0].password);
+				 chrome.tabs.sendMessage(tabs[0].id, retrievedCredentials);
             });
 }
 

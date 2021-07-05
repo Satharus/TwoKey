@@ -3,9 +3,9 @@ var emails_list = [];
 chrome.runtime.onMessage.addListener(saveCreds);
 function saveCreds(request, sender, sendResponse)
 {
-	console.log(request);
-    emails_list=request;
-	console.log(emails_list);
+	//console.log(request);
+    emails_list=JSON.parse(request);
+	//console.log(emails_list);
 	var Nemail;
 	var pw;
 	for( i=0;i<emails_list.length;i++)
@@ -16,36 +16,21 @@ function saveCreds(request, sender, sendResponse)
 				alert(1);
     chrome.contextMenus.onClicked.addListener((info, tab) => {
 		
-		 Nemail=emails_list[info.menuItemId];
+		Nemail=emails_list[info.menuItemId].email;
+		pw = emails_list[info.menuItemId].password;	
 		
-        for(var j=0;j<emails_list.length;j++)
-        {
-			alert(1);
-            if(Nemail==emails_list[j].email)
-            {
-                 pw=emails_list[j].password;
-            }
-        } 
+		console.log(Nemail + pw);
       });
 	}
-
 	
-	document.addEventListener("click",fill_Creds);
-		function fill_Creds(input)
-		{
-			alert(1);
-			console.log(input);
-			if(input.srcElement.type==="email" || input.srcElement.type==="text")
-			{
-				input.target.value=email;
-			}
-			if(input.srcElement.type==="pass" || input.srcElement.type==="password")
-			{
-				input.target.value=pw;
-			}
-		}
-		return true;
-
+	chrome.contextMenus.onClicked.addListener(clickData);
+	function clickData(info, tab)
+	{
+		alert(6);
+		console.log(info.menuItemId);
+		console.log(emails_list[info.menuItemId]);
+		chrome.tabs.sendMessage(tab.id, JSON.stringify(emails_list[info.menuItemId]));
+	}
 }
 
 
@@ -56,11 +41,4 @@ function saveCreds(request, sender, sendResponse)
 //     console.log(emails);
 // }
 
-// chrome.contextMenus.onClicked.addListener(clickData);
-// function clickData()
-// {
-//     if(clickData.menuItemId == "chooseAccount" && clickData.editable || clickData.wasChecked)
-//     {
-//         alert("lets go ");
-//     }
-// }
+

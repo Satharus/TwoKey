@@ -11,7 +11,7 @@ function get_cred(input)
 	http.send();
 	http.onreadystatechange = (e) => {
 
-		alert(http.response);
+		//alert(http.response);
 	}
 }
 
@@ -19,21 +19,23 @@ chrome.runtime.onMessage.addListener(fillCreds);
 function fillCreds(request,sender,sendResponse)
 {
 	chrome.runtime.sendMessage(request);
-	var credentials = JSON.parse(request);
-	console.log(credentials);
-	console.log(credentials[0].email + "  " + credentials[0].password);
+	// var credentials = JSON.parse(request);
+	// console.log(credentials);
+	// console.log(credentials[0].email + "  " + credentials[0].password);
 
-  document.addEventListener("click",fill_Creds);
-function fill_Creds(input)
-{
-	console.log(input);
-    if(input.srcElement.type==="email" || input.srcElement.type==="text")
+ document.addEventListener("click",fill_Creds);
+	function fill_Creds(input)
 	{
-		input.target.value=credentials[0].email;
+		var creds = JSON.parse(request);
+	//	console.log(input);
+		if(input.srcElement.type==="email" || input.srcElement.type==="text")
+		{
+			
+			input.target.value=creds[0].email;
+		}
+		if(input.srcElement.type==="pass" || input.srcElement.type==="password")
+		{
+			input.target.value=credentials[0].password;
+		}
 	}
-    if(input.srcElement.type==="pass" || input.srcElement.type==="password")
-	{
-		input.target.value=credentials[0].password;
-	}
-}
 }
