@@ -33,7 +33,9 @@ function getTab()
                  http.onreadystatechange = (e) => {
 				 retrievedCredentials = http.responseText;
 				 if (retrievedCredentials.length != 0)
+                                 
 					console.log(retrievedCredentials);
+                                        
                  }
 				 chrome.tabs.sendMessage(tabs[0].id, retrievedCredentials);
             });
