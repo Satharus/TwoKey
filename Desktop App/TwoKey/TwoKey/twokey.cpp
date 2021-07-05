@@ -443,6 +443,7 @@ void TwoKey::on_twokey_stackedwidget_currentChanged(int arg1)
 void TwoKey::loginFromBrowserExtension()
 {
     ui->twokey_stackedwidget->setCurrentIndex(2);
+    this->loadWebsitesList();
 }
 
 void TwoKey::on_manager_accounts_combobox_currentIndexChanged(const QString &arg1)

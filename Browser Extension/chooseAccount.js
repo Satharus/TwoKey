@@ -1,23 +1,19 @@
 var i;
-var creds_list;
+var emails_list = [];
 chrome.runtime.onMessage.addListener(saveCreds);
-function saveCreds(request,sender,sendResponse)
+function saveCreds(request, sender, sendResponse)
 {
-    creds_list=JSON.parse(request);
-    alert(creds_list);
-}
-var x =["123@gmail.com","321@gmai.com","eee@gmail.com"];
-for( i=0;i<creds_list.length();i++)
-{
+	console.log(request);
+    emails_list=request;
+	console.log(emails_list);
+	
+	for( i=0;i<emails_list.length;i++)
+	{
+	console.log("email list: ");
+	console.log(emails_list)
     chrome.contextMenus.create({id:creds_list[i].toString(),type:'radio', title:creds_list[i].email});
-        
-}
-
 
     chrome.contextMenus.onClicked.addListener((info, tab) => {
-        // alert("Item " + info.menuItemId  + " clicked " +
-        //             "in tab " + tab.id);
-
         var Nemail=info.menuItemId;
         var pw;
         for(var j=0;j<creds_list.length();j++)
@@ -38,9 +34,9 @@ for( i=0;i<creds_list.length();i++)
         }
        
       });
-
-
-
+	}
+	return true;
+}
 
 
 // chrome.runtime.onMessage.addListener(choose_acc);

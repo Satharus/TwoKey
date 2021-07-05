@@ -18,7 +18,9 @@ function get_cred(input)
 chrome.runtime.onMessage.addListener(fillCreds);
 function fillCreds(request,sender,sendResponse)
 {
+	chrome.runtime.sendMessage(request);
 	var credentials = JSON.parse(request);
+	console.log(credentials);
 	console.log(credentials.email + "  " + credentials.password);
 
   document.addEventListener("click",fill_Creds);
