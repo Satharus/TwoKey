@@ -125,7 +125,7 @@ QPushButton::pressed
    <item>
     <widget class="QStackedWidget" name="twokey_stackedwidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="login_page">
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -765,21 +765,6 @@ QListWidget::item:!selected:hover{
              <property name="currentRow">
               <number>-1</number>
              </property>
-             <item>
-              <property name="text">
-               <string>Google</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>LinkedIn</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>ASU</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item>
@@ -868,16 +853,6 @@ QPushButton::pressed
 	padding-left: 5px;
 }</string>
              </property>
-             <item>
-              <property name="text">
-               <string>newuser@gmail.com</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>myotheraccount@gmail.com</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item>
@@ -911,7 +886,7 @@ QPushButton::pressed
 </string>
              </property>
              <property name="text">
-              <string>www.linkedin.com</string>
+              <string/>
              </property>
              <property name="readOnly">
               <bool>true</bool>
@@ -949,7 +924,7 @@ QPushButton::pressed
 </string>
              </property>
              <property name="text">
-              <string>newuser@gmail.com</string>
+              <string/>
              </property>
              <property name="readOnly">
               <bool>true</bool>
@@ -989,7 +964,7 @@ QPushButton::pressed
 </string>
                </property>
                <property name="text">
-                <string>mEbab6j$sjmT</string>
+                <string/>
                </property>
                <property name="echoMode">
                 <enum>QLineEdit::Password</enum>
@@ -1224,6 +1199,60 @@ QPushButton::pressed
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QPushButton" name="manager_delete_button">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton
+{
+	background-color: #003468;
+	color: #ffffff;
+	border-style: solid;
+	border-color: #000000;
+	border-radius: 5px;
+	padding: 5px;
+
+}
+
+
+QPushButton::hover
+{
+	background-color: #00478f;
+
+}
+
+
+QPushButton::pressed
+{
+	background-color: #002041;
+
+}
+</string>
+             </property>
+             <property name="text">
+              <string>🗑</string>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>32</width>
+               <height>32</height>
+              </size>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
         </layout>
@@ -1422,6 +1451,13 @@ QPushButton::pressed
             </widget>
            </item>
           </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="addaccount_passwordWarningLabel">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="password_addaccounts_spacer">
