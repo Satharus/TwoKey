@@ -93,14 +93,15 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e)
             {
                 sb_send_status(e->stream, 200, "OK");
                 sb_send_header(e->stream, "Content-Type", "text/plain");
-                signalWrapper->emitSuccessfulLogin();
+                //signalWrapper->emitSuccessfulLogin();
                 sb_writef(e->stream, "yes");
                 goto end;
             }
         }
 
 
-        if (strlen(email) && strlen(masterpasswd) && signalWrapper->getBackendClient()->login(QString(email), QString(masterpasswd)) == BackendClient::loginStatus::SUCCESS)
+        if (strlen(email) && strlen(masterpasswd) &&
+            signalWrapper->getBackendClient()->login(QString(email), QString(masterpasswd)) == BackendClient::loginStatus::SUCCESS)
         {
             sb_send_status(e->stream, 200, "OK");
             sb_send_header(e->stream, "Content-Type", "text/plain");
@@ -118,7 +119,45 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e)
         {
             sb_send_status(e->stream, 200, "OK");
             sb_send_header(e->stream, "Content-Type", "text/plain");
-            sb_writef(e->stream, "{\"email\":\"newuser@gmail.com\", \"password\": \"y8aGfuH$D6vH\"}");
+
+            QString _url = QString(url);
+            qDebug() << _url;
+            if (_url.contains("http://"))
+            {
+                _url.remove("http://");
+            }
+            else if (_url.contains("https://"))
+            {
+                _url.remove("https://");
+            }
+
+            qDebug() << _url;
+
+            int indexOfLastSlash = _url.indexOf('/');
+            _url.remove(indexOfLastSlash, _url.length() - indexOfLastSlash);
+            qDebug() << _url;
+
+            QHash <QString, QString> accountsForURL = signalWrapper->getBackendClient()->getAccountsForWebsite(_url);
+            qDebug() << accountsForURL.keys();
+            qDebug() << accountsForURL.values();
+
+            QString JSONResponse = "[";
+            int i = 1;
+            int max = accountsForURL.keys().length();
+            for (auto a : accountsForURL.keys())
+            {
+                JSONResponse.append("{");
+                JSONResponse.append("\"email\":\"" + a + "\"");
+                JSONResponse.append(",\"password\":\"" + accountsForURL[a] + "\"");
+                JSONResponse.append("}");
+                if (i != max) JSONResponse.append(',');
+                i++;
+            }
+
+            JSONResponse.append(']');
+
+            qDebug() << JSONResponse;
+            sb_writef(e->stream, JSONResponse.toStdString().c_str());
         }
 
 end:
