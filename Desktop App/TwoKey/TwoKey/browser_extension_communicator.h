@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <QObject>
 #include <QDebug>
+#include <chrono>
 
 class BrowserExtensionCommunicatorSignalWrapper : public QObject
 {
@@ -33,6 +34,7 @@ public:
     BrowserExtensionCommunicator(BrowserExtensionCommunicatorSignalWrapper *signalWrapper);
     ~BrowserExtensionCommunicator();
     static int event_handler(sb_Event *e);
+    static QString stripURL(QString url);
 
 public slots:
     void startServer();

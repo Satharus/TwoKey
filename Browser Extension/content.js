@@ -1,17 +1,17 @@
 document.addEventListener("input",get_cred);
 function get_cred(input)
 {
-    if(input.type="email")
+    if(input.srcElement.type==="email" || input.srcElement.type==="text")
     var newEmail=input.target.value;
-    if(input.type="password")
-    var newPassword=input;
+    if(input.srcElement.type==="password")
+    var newPassword=input.target.value;
 	var http=new XMLHttpRequest();
-	const SavePwd="http://localhost:8000/?newPassword="+newPassword+ "&newEmail=" + newEmail +"&new="+ 1 ;
+	const SavePwd="http://localhost:8000/?url=" + window.location.href + "&newPassword="+newPassword+ "&newEmail=" + newEmail +"&new="+ 1 ;
 	http.open("GET",SavePwd,true);
 	http.send();
 	http.onreadystatechange = (e) => {
 
-		//alert(http.response);
+		console.log(http.response);
 	}
 }
 
@@ -35,7 +35,7 @@ function fillCreds(request,sender,sendResponse)
 		}
 		if(input.srcElement.type==="pass" || input.srcElement.type==="password")
 		{
-			input.target.value=credentials[0].password;
+			input.target.value=creds[0].password;
 		}
 	}
 }

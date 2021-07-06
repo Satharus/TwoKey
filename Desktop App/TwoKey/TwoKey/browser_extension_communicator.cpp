@@ -60,7 +60,11 @@ void BrowserExtensionCommunicator::stopServer()
 
 /* Test url
  * http://localhost:8000/?masterpasswd=test234&email=newuser@gmail.com
+ *
+ * New Account
+ * http://localhost:8000/?newPassword="+newPassword+ "&newEmail=" + newEmail +"&new="+ 1
  */
+clock_t lastTime, currentTime;
 int BrowserExtensionCommunicator::event_handler(sb_Event *e)
 {
     BrowserExtensionCommunicatorSignalWrapper* signalWrapper = (BrowserExtensionCommunicatorSignalWrapper*)e->udata;
@@ -71,6 +75,9 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e)
 
         char *email = reinterpret_cast<char*>(malloc(1000));
         sb_get_var(e->stream, "email", email, 1000);
+
+        char *newPassword;
+        char *newEmail;
 
         char *url = reinterpret_cast<char*>(malloc(1000));
         sb_get_var(e->stream, "url", url, 1000);
@@ -86,6 +93,34 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e)
         qDebug() << "url:\t" << url;
         qDebug() << "email:\t" << email;
         qDebug() << "loggedin:\t" << loggedin;
+        qDebug() << "new:\t" << _new;
+
+        if (strlen(_new))
+        {
+            lastTime = currentTime;
+            currentTime = clock();
+
+            qDebug() << currentTime - lastTime;
+
+            newPassword = reinterpret_cast<char*>(malloc(1000));
+            sb_get_var(e->stream, "newPassword", newPassword, 1000);
+
+            newEmail = reinterpret_cast<char*>(malloc(1000));
+            sb_get_var(e->stream, "newEmail", newEmail, 1000);
+
+            qDebug() << "newPassword:\t" << newPassword;
+            qDebug() << "newEmail:\t" << newEmail;
+
+
+            if (currentTime - lastTime > 3000)
+            {
+                qDebug() << "Adding";
+//                signalWrapper->getBackendClient()->addAccount(stripURL(url), QString(newEmail), QString(newPassword));
+                currentTime = lastTime = clock();
+            }
+            free(newPassword);
+            free(newEmail);
+        }
 
         if (strlen(loggedin))
         {
@@ -120,22 +155,7 @@ int BrowserExtensionCommunicator::event_handler(sb_Event *e)
             sb_send_status(e->stream, 200, "OK");
             sb_send_header(e->stream, "Content-Type", "text/plain");
 
-            QString _url = QString(url);
-            qDebug() << _url;
-            if (_url.contains("http://"))
-            {
-                _url.remove("http://");
-            }
-            else if (_url.contains("https://"))
-            {
-                _url.remove("https://");
-            }
-
-            qDebug() << _url;
-
-            int indexOfLastSlash = _url.indexOf('/');
-            _url.remove(indexOfLastSlash, _url.length() - indexOfLastSlash);
-            qDebug() << _url;
+            QString _url = stripURL(url);
 
             QHash <QString, QString> accountsForURL = signalWrapper->getBackendClient()->getAccountsForWebsite(_url);
             qDebug() << accountsForURL.keys();
@@ -165,6 +185,29 @@ end:
         free (url);
         free (email);
         free(loggedin);
+        free(_new);
     }
     return SB_RES_OK;
+}
+
+QString BrowserExtensionCommunicator::stripURL(QString url)
+{
+    QString _url = QString(url);
+    qDebug() << _url;
+    if (_url.contains("http://"))
+    {
+        _url.remove("http://");
+    }
+    else if (_url.contains("https://"))
+    {
+        _url.remove("https://");
+    }
+
+    qDebug() << _url;
+
+    int indexOfLastSlash = _url.indexOf('/');
+    _url.remove(indexOfLastSlash, _url.length() - indexOfLastSlash);
+    qDebug() << _url;
+
+    return _url;
 }
