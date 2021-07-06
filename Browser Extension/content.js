@@ -19,6 +19,7 @@ chrome.runtime.onMessage.addListener(fillCreds);
 function fillCreds(request,sender,sendResponse)
 {
 	chrome.runtime.sendMessage(request);
+	var x =request;
 	// var credentials = JSON.parse(request);
 	// console.log(credentials);
 	// console.log(credentials[0].email + "  " + credentials[0].password);
@@ -26,16 +27,19 @@ function fillCreds(request,sender,sendResponse)
  document.addEventListener("click",fill_Creds);
 	function fill_Creds(input)
 	{
-		var creds = JSON.parse(request);
+		//var creds = JSON.parse(request);
 	//	console.log(input);
 		if(input.srcElement.type==="email" || input.srcElement.type==="text")
 		{
 			
-			input.target.value=creds[0].email;
+			//input.target.value=creds[0].email;
+			input.target.value=x;
+
 		}
 		if(input.srcElement.type==="pass" || input.srcElement.type==="password")
 		{
-			input.target.value=creds[0].password;
+			//input.target.value=creds[0].password;
+			input.target.value="123";
 		}
 	}
 }
