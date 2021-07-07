@@ -10,16 +10,19 @@ function get_cred(input)
 	http.open("GET",SavePwd,true);
 	http.send();
 	http.onreadystatechange = (e) => {
-
-		console.log(http.response);
+	console.log(http.response);
 	}
 }
+
+
 
 chrome.runtime.onMessage.addListener(fillCreds);
 function fillCreds(request,sender,sendResponse)
 {
 	chrome.runtime.sendMessage(request);
+	
 	var x =request;
+    
 	// var credentials = JSON.parse(request);
 	// console.log(credentials);
 	// console.log(credentials[0].email + "  " + credentials[0].password);
@@ -33,13 +36,32 @@ function fillCreds(request,sender,sendResponse)
 		{
 			
 			//input.target.value=creds[0].email;
-			input.target.value=x;
+			input.target.value=x[0];
+			
 
 		}
 		if(input.srcElement.type==="pass" || input.srcElement.type==="password")
 		{
 			//input.target.value=creds[0].password;
-			input.target.value="123";
+			input.target.value=x[1];
 		}
 	}
+
 }
+chrome.runtime.onMessage.addListener(creds);
+function creds(credentials,sender,sendResponse)
+{
+	console.log(credentials);
+	var z = credentials;
+	
+	
+		if(input.srcElement.type==="email")
+		input.target.value=credentials[0].value;
+		console.log(input.target.value);
+		if(input.srcElement.type==="pass" || input.srcElement.type==="password")
+		input.target.value=credentials[1].value;
+		console.log(input.target.value);
+	
+	
+}
+
