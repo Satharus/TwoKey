@@ -21,7 +21,9 @@ function getTab()
 				 // console.log(credentials)
 				 // console.log(credentials[0].email + "  " + credentials[0].password);
 				 //chrome.tabs.sendMessage(tabs[0].id, retrievedCredentials);
-                                 chrome.tabs.sendMessage(tabs[0].id, "les go");
+				 console.log(retrievedCredentials);
+				 console.log(JSON.parse(retrievedCredentials));
+                                 chrome.tabs.sendMessage(tabs[0].id, retrievedCredentials);
             });
 }
 chrome.tabs.onActivated.addListener(getTab)
@@ -34,7 +36,7 @@ function getTab()
                  var http=new XMLHttpRequest();
                  const url="http://localhost:8000/?url="+link;
                  http.open("GET",url,true);
-                 //http.send("");
+                 http.send("");
                  http.onreadystatechange = (e) => {
 				 retrievedCredentials = http.responseText;
 				 if (retrievedCredentials.length != 0 && retrievedCredentials != "[]")
@@ -47,7 +49,9 @@ function getTab()
 				 // console.log(credentials)
 				 // console.log(credentials[0].email + "  " + credentials[0].password);
 				 //chrome.tabs.sendMessage(tabs[0].id, retrievedCredentials);
-                                 chrome.tabs.sendMessage(tabs[0].id, "les go",);
+				 				 console.log(retrievedCredentials);
+				 console.log(JSON.parse(retrievedCredentials));
+                                 chrome.tabs.sendMessage(tabs[0].id, retrievedCredentials);
             });
 }
 

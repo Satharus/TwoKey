@@ -8,15 +8,16 @@ function saveCreds(request, sender, sendResponse)
 	//console.log(request);
     //emails_list=JSON.parse(request);
 	//console.log(emails_list);
-	emails_list=request;
+	emails_list=JSON.parse(request);
 	
 	var Nemail;
 	var pw;
+	chrome.contextMenus.removeAll();
 	for( i=0;i<emails_list.length;i++)
 	{
 		// console.log("email list: ");
 		//console.log(emails_list)
-    	chrome.contextMenus.create({id:emails_list[i],type:'radio', title:emails_list[i]});
+    	chrome.contextMenus.create({id:emails_list[i].email,type:'radio', title:emails_list[i].email});
 				
     
 	}
@@ -27,7 +28,9 @@ function saveCreds(request, sender, sendResponse)
 	{
 		//console.log(6);
 		//console.log(info.menuItemId);
-		email_pw=[info.menuItemId,"123"];
+		
+		email_pw=[info.menuItemId,""];
+		
 		console.log(email_pw[0]+"	"+email_pw[1]);
 		
 		chrome.tabs.sendMessage(tab.id,email_pw);
