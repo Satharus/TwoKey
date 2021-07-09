@@ -12,7 +12,7 @@ TwoKey has 4 modules:
 
 The following is the general architecture of the project:
 
-![](Misc./Architecture.png)
+![](Misc/Architecture.png)
 
 
 ### Should I use this? 
@@ -24,7 +24,7 @@ Probably not, this is a PoC graduation project implemented in less than 4 months
 
 
 Documentation and Presentation:
- - [Documentation (PDF)](Misc./Documentation/TwoKey Documentation.pdf)
+ - [Documentation (PDF)](Misc/Documentation/TwoKey Documentation.pdf)
  - [Documentation (on Google Docs)](https://docs.google.com/document/d/1EKH_7GnC5Gk7F7UE59FQuZhJ4n82jdFRYTa4lHULmrA/edit?usp=sharing)
  - [Presentation (on Google Slides)](https://docs.google.com/presentation/d/15kjcTesO-ccG5K21x3QOe8d7D0Zuf3NYI-c2UDwzBeA/edit?usp=sharing)
 
