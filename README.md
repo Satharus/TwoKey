@@ -1,6 +1,6 @@
 # TwoKey
 
-TwoKey is a password manager which is relies on a USB physical access token as the second factor of authentication.
+TwoKey is a password manager which relies on a USB physical access token as the second factor of authentication.
 
 
 TwoKey has 4 modules:
